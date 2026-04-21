@@ -1,0 +1,488 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
+import { Search, X, Ruler, ArrowRight, Filter, Layers3 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+import libraryImg from "@/assets/format-library.jpg";
+import warehouse from "@/assets/warehouse-rows.jpg";
+import factory from "@/assets/factory-floor.jpg";
+import packing from "@/assets/process-packing.jpg";
+import polishing from "@/assets/process-polishing.jpg";
+import drilling from "@/assets/process-drilling.jpg";
+import qc from "@/assets/process-qc.jpg";
+import port from "@/assets/shipping-port.jpg";
+import lframes from "@/assets/logistics-lframes.jpg";
+
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
+import { SendDrawingButton } from "@/components/site/SendDrawingButton";
+import { StatBand } from "@/components/site/StatBand";
+import { Gallery } from "@/components/site/Gallery";
+import { FAQ } from "@/components/site/FAQ";
+import { CtaBand } from "@/components/site/CtaBand";
+import { motion as m } from "framer-motion";
+
+export const Route = createFileRoute("/library")({
+  component: LibraryPage,
+  head: () => ({
+    meta: [
+      { title: "Integrated Format Library | Standard RS-SKUs | Rider Shower Systems" },
+      {
+        name: "description",
+        content:
+          "Searchable catalog of Rider's standard tempered shower glass formats — filter by size, thickness, glass type, and hardware compatibility.",
+      },
+      { property: "og:title", content: "Integrated Format Library | Rider Shower Systems" },
+      {
+        property: "og:description",
+        content: "Filter Rider's standard RS-SKU shower glass formats by size, thickness, type, and hardware platform.",
+      },
+      { property: "og:image", content: libraryImg },
+      { name: "twitter:image", content: libraryImg },
+    ],
+  }),
+});
+
+type GlassType = "Clear" | "Low-Iron" | "Frosted" | "Tinted Bronze" | "Tinted Grey";
+type Hardware = "Roller" | "Pivot Hinge" | "Wall Hinge" | "Glass-to-Glass Hinge" | "Clamp" | "Channel";
+type Category = "Sliding" | "Swing" | "Tub" | "Fixed" | "Return Panel";
+
+type Format = {
+  sku: string;
+  category: Category;
+  width: number;
+  height: number;
+  thickness: 6 | 8 | 10 | 12;
+  type: GlassType;
+  hardware: Hardware[];
+};
+
+const FORMATS: Format[] = [
+  { sku: "RS-SL-2476-08", category: "Sliding", width: 24, height: 76, thickness: 8, type: "Clear", hardware: ["Roller"] },
+  { sku: "RS-SL-2876-08", category: "Sliding", width: 28, height: 76, thickness: 8, type: "Clear", hardware: ["Roller"] },
+  { sku: "RS-SL-3076-08", category: "Sliding", width: 30, height: 76, thickness: 8, type: "Low-Iron", hardware: ["Roller"] },
+  { sku: "RS-SL-3278-10", category: "Sliding", width: 32, height: 78, thickness: 10, type: "Clear", hardware: ["Roller"] },
+  { sku: "RS-SL-3678-10", category: "Sliding", width: 36, height: 78, thickness: 10, type: "Low-Iron", hardware: ["Roller"] },
+  { sku: "RS-SW-2476-10", category: "Swing", width: 24, height: 76, thickness: 10, type: "Clear", hardware: ["Pivot Hinge", "Wall Hinge"] },
+  { sku: "RS-SW-2676-10", category: "Swing", width: 26, height: 76, thickness: 10, type: "Low-Iron", hardware: ["Pivot Hinge", "Glass-to-Glass Hinge"] },
+  { sku: "RS-SW-2878-12", category: "Swing", width: 28, height: 78, thickness: 12, type: "Clear", hardware: ["Wall Hinge", "Glass-to-Glass Hinge"] },
+  { sku: "RS-SW-3078-12", category: "Swing", width: 30, height: 78, thickness: 12, type: "Low-Iron", hardware: ["Wall Hinge"] },
+  { sku: "RS-SW-3280-12", category: "Swing", width: 32, height: 80, thickness: 12, type: "Frosted", hardware: ["Pivot Hinge"] },
+  { sku: "RS-TB-4858-06", category: "Tub", width: 48, height: 58, thickness: 6, type: "Clear", hardware: ["Roller", "Channel"] },
+  { sku: "RS-TB-5258-06", category: "Tub", width: 52, height: 58, thickness: 6, type: "Tinted Bronze", hardware: ["Roller"] },
+  { sku: "RS-TB-5660-08", category: "Tub", width: 56, height: 60, thickness: 8, type: "Clear", hardware: ["Roller"] },
+  { sku: "RS-TB-6060-08", category: "Tub", width: 60, height: 60, thickness: 8, type: "Frosted", hardware: ["Channel"] },
+  { sku: "RS-FX-3076-08", category: "Fixed", width: 30, height: 76, thickness: 8, type: "Clear", hardware: ["Clamp", "Channel"] },
+  { sku: "RS-FX-3678-10", category: "Fixed", width: 36, height: 78, thickness: 10, type: "Low-Iron", hardware: ["Clamp"] },
+  { sku: "RS-FX-4280-10", category: "Fixed", width: 42, height: 80, thickness: 10, type: "Clear", hardware: ["Clamp", "Channel"] },
+  { sku: "RS-FX-4880-12", category: "Fixed", width: 48, height: 80, thickness: 12, type: "Low-Iron", hardware: ["Clamp"] },
+  { sku: "RS-FX-6080-12", category: "Fixed", width: 60, height: 80, thickness: 12, type: "Tinted Grey", hardware: ["Clamp"] },
+  { sku: "RS-RP-1276-08", category: "Return Panel", width: 12, height: 76, thickness: 8, type: "Clear", hardware: ["Clamp"] },
+  { sku: "RS-RP-1876-08", category: "Return Panel", width: 18, height: 76, thickness: 8, type: "Clear", hardware: ["Clamp", "Channel"] },
+  { sku: "RS-RP-2478-10", category: "Return Panel", width: 24, height: 78, thickness: 10, type: "Low-Iron", hardware: ["Clamp"] },
+];
+
+const CATEGORIES: Category[] = ["Sliding", "Swing", "Tub", "Fixed", "Return Panel"];
+const THICKNESSES: Format["thickness"][] = [6, 8, 10, 12];
+const TYPES: GlassType[] = ["Clear", "Low-Iron", "Frosted", "Tinted Bronze", "Tinted Grey"];
+const HARDWARE: Hardware[] = ["Roller", "Pivot Hinge", "Wall Hinge", "Glass-to-Glass Hinge", "Clamp", "Channel"];
+
+function LibraryPage() {
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState<Category | "All">("All");
+  const [thickness, setThickness] = useState<Format["thickness"] | "All">("All");
+  const [type, setType] = useState<GlassType | "All">("All");
+  const [hardware, setHardware] = useState<Hardware | "All">("All");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return FORMATS.filter((f) => {
+      if (category !== "All" && f.category !== category) return false;
+      if (thickness !== "All" && f.thickness !== thickness) return false;
+      if (type !== "All" && f.type !== type) return false;
+      if (hardware !== "All" && !f.hardware.includes(hardware)) return false;
+      if (q) {
+        const hay = `${f.sku} ${f.category} ${f.type} ${f.hardware.join(" ")} ${f.width}x${f.height}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [query, category, thickness, type, hardware]);
+
+  const reset = () => {
+    setQuery("");
+    setCategory("All");
+    setThickness("All");
+    setType("All");
+    setHardware("All");
+  };
+
+  const hasFilters = query !== "" || category !== "All" || thickness !== "All" || type !== "All" || hardware !== "All";
+
+  return (
+    <>
+      {/* SECTION 1 — HERO */}
+      <section className="relative overflow-hidden border-b border-border bg-secondary text-secondary-foreground">
+        <div className="absolute inset-0">
+          <img src={libraryImg} alt="Industrial warehouse stacked with standard tempered shower glass formats" className="h-full w-full object-cover opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/30" />
+          <div className="absolute inset-0 grid-blueprint opacity-15" />
+        </div>
+        <div className="container-rider relative grid gap-10 py-20 sm:py-28 lg:grid-cols-12 lg:items-center">
+          <m.div
+            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-amber/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">
+              <Layers3 className="h-3.5 w-3.5" /> Format Library
+            </span>
+            <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance">
+              Standard RS-SKU formats, ready for your program.
+            </h1>
+            <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed opacity-85">
+              Filter Rider's catalog of repeat-spec tempered glass panels by size, thickness, glass type, and hardware compatibility. Use this library as a starting point — every SKU is also available in private-label and custom variants.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <SendDrawingButton size="lg" variant="amber" label="Quote a SKU" />
+              <a href="#filters" className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10">
+                Browse formats <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </m.div>
+        </div>
+      </section>
+
+      {/* SECTION 2 — STAT BAND */}
+      <section className="container-rider -mt-12 relative z-10">
+        <StatBand
+          stats={[
+            { value: FORMATS.length, label: "Standard RS-SKUs" },
+            { value: 5, label: "Categories" },
+            { value: 4, label: "Thicknesses" },
+            { value: 6, label: "Hardware platforms" },
+          ]}
+        />
+      </section>
+
+      {/* SECTION 3 — INTRO */}
+      <section className="container-rider py-16">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+          <Reveal className="lg:col-span-7">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">What is the Library?</span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+              Repeat-spec geometry. Identical batch after batch.
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+              Every entry below is a Rider RS-SKU — a locked specification with verified hardware mapping, polished safety edges, and SGCC certification. Pick a SKU and re-order forever, or send your own drawing to add a new RS-SKU to the library.
+            </p>
+          </Reveal>
+          <Reveal className="lg:col-span-5">
+            <img src={warehouse} alt="Warehouse stacked with standard formats" className="rounded-xl border border-border shadow-xl object-cover w-full h-64" />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* SECTION 4 — FILTER + RESULTS */}
+      <section id="filters" className="container-rider pb-12">
+        <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <Filter className="h-4 w-4 text-primary" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Filter Catalog</span>
+            </div>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search by SKU, size (e.g. 32x78), or hardware..."
+                className="w-full rounded-md border border-input bg-background py-2.5 pl-10 pr-10 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+              />
+              {query && (
+                <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" aria-label="Clear search">
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <SelectField label="Category" value={category} onChange={(v) => setCategory(v as typeof category)} options={["All", ...CATEGORIES]} />
+              <SelectField label="Thickness" value={String(thickness)} onChange={(v) => setThickness(v === "All" ? "All" : (Number(v) as Format["thickness"]))} options={["All", ...THICKNESSES.map((t) => `${t}`)]} suffix="mm" />
+              <SelectField label="Glass Type" value={type} onChange={(v) => setType(v as typeof type)} options={["All", ...TYPES]} />
+              <SelectField label="Hardware" value={hardware} onChange={(v) => setHardware(v as typeof hardware)} options={["All", ...HARDWARE]} />
+            </div>
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+              <div className="text-sm text-muted-foreground">
+                Showing <span className="font-bold text-foreground">{filtered.length}</span> of{" "}
+                <span className="font-bold text-foreground">{FORMATS.length}</span> standard formats
+              </div>
+              {hasFilters && (
+                <button onClick={reset} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                  <X className="h-3.5 w-3.5" /> Reset filters
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8">
+          {filtered.length === 0 ? (
+            <div className="rounded-xl border border-dashed border-border bg-surface-2 py-16 text-center">
+              <Layers3 className="mx-auto h-10 w-10 text-muted-foreground" />
+              <p className="mt-4 font-semibold text-foreground">No matching formats</p>
+              <p className="mt-1 text-sm text-muted-foreground">Try adjusting your filters or send a drawing for a custom RS-SKU.</p>
+              <div className="mt-5">
+                <SendDrawingButton size="md" variant="solid" label="Request custom SKU" />
+              </div>
+            </div>
+          ) : (
+            <motion.ul layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <AnimatePresence mode="popLayout">
+                {filtered.map((f, i) => (
+                  <motion.li
+                    key={f.sku}
+                    layout
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.35, delay: Math.min(i * 0.02, 0.2), ease: [0.22, 1, 0.36, 1] }}
+                    className="group relative overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">{f.category}</div>
+                        <div className="mt-1 font-display text-lg font-bold text-foreground">{f.sku}</div>
+                      </div>
+                      <span className="inline-flex items-center rounded-full bg-amber/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-secondary">
+                        {f.thickness}mm
+                      </span>
+                    </div>
+                    <div className="mt-4 flex items-center gap-2 rounded-md bg-surface-2 px-3 py-2.5">
+                      <Ruler className="h-4 w-4 text-primary" />
+                      <span className="text-sm font-semibold text-foreground">
+                        {f.width}" <span className="text-muted-foreground">W</span> × {f.height}"{" "}
+                        <span className="text-muted-foreground">H</span>
+                      </span>
+                    </div>
+                    <dl className="mt-3 space-y-2 text-xs">
+                      <div className="flex justify-between gap-3">
+                        <dt className="font-semibold uppercase tracking-wider text-muted-foreground">Glass Type</dt>
+                        <dd className="font-medium text-foreground">{f.type}</dd>
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <dt className="font-semibold uppercase tracking-wider text-muted-foreground">Compatible Hardware</dt>
+                        <dd className="flex flex-wrap gap-1.5">
+                          {f.hardware.map((h) => (
+                            <span key={h} className="inline-flex items-center rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium text-foreground">
+                              {h}
+                            </span>
+                          ))}
+                        </dd>
+                      </div>
+                    </dl>
+                    <div className="mt-5">
+                      <SendDrawingButton size="sm" variant="outline" label={`Quote ${f.sku}`} defaultProgram={`Library SKU: ${f.sku}`} withIcon={false} />
+                    </div>
+                  </motion.li>
+                ))}
+              </AnimatePresence>
+            </motion.ul>
+          )}
+        </div>
+      </section>
+
+      {/* SECTION 5 — SKU NAMING */}
+      <section className="bg-surface-2 border-y border-border">
+        <div className="container-rider py-20">
+          <Reveal className="mb-10 max-w-2xl">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">SKU System</span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">How RS-SKU codes work.</h2>
+          </Reveal>
+          <div className="grid gap-5 md:grid-cols-4">
+            {[
+              { code: "RS", label: "Rider Shower", desc: "Brand prefix, present on every SKU." },
+              { code: "SL / SW / TB / FX / RP", label: "Category", desc: "Sliding, Swing, Tub, Fixed, Return Panel." },
+              { code: "30·76", label: "Dimensions", desc: "Width × Height in inches." },
+              { code: "08", label: "Thickness", desc: "Glass thickness in millimetres." },
+            ].map((s) => (
+              <div key={s.label} className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                <div className="font-display text-lg font-bold text-primary">{s.code}</div>
+                <div className="mt-2 text-sm font-semibold text-foreground">{s.label}</div>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6 — GALLERY */}
+      <section className="container-rider py-20">
+        <Reveal className="mb-10 max-w-2xl">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">From the Floor</span>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">Standard formats in production.</h2>
+        </Reveal>
+        <Gallery
+          images={[
+            { src: factory, alt: "Factory floor with standard formats", span: "wide" },
+            { src: polishing, alt: "Edge polishing line" },
+            { src: drilling, alt: "CNC drilling" },
+            { src: qc, alt: "Light-table QC" },
+            { src: lframes, alt: "L-frame transport" },
+            { src: port, alt: "Container shipping", span: "wide" },
+          ]}
+        />
+      </section>
+
+      {/* SECTION 7 — CUSTOM SKU */}
+      <section className="bg-secondary text-secondary-foreground">
+        <div className="container-rider py-20">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">Need a custom SKU?</span>
+              <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
+                Send a drawing — we'll add it to the library.
+              </h2>
+              <p className="mt-4 text-base opacity-85 leading-relaxed">
+                Every Rider RS-SKU started as a customer drawing. Send your CAD or PDF and engineering will return a feasibility, quote, and proposed RS-SKU code within 24 hours.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <SendDrawingButton size="lg" variant="amber" label="Send Drawing" />
+              </div>
+            </div>
+            <div className="lg:col-span-5">
+              <StaggerGroup className="grid grid-cols-2 gap-3">
+                {["DWG", "DXF", "PDF", "STEP"].map((f) => (
+                  <StaggerItem key={f} className="rounded-xl border border-white/15 bg-white/5 p-5 text-center backdrop-blur">
+                    <div className="font-display text-2xl font-bold text-amber">{f}</div>
+                    <div className="mt-1 text-[11px] uppercase tracking-wider opacity-70">accepted</div>
+                  </StaggerItem>
+                ))}
+              </StaggerGroup>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8 — COMPATIBILITY MATRIX */}
+      <section className="container-rider py-20">
+        <Reveal className="mb-10 max-w-2xl">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Compatibility</span>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+            Hardware platforms supported across the library.
+          </h2>
+        </Reveal>
+        <div className="overflow-hidden rounded-xl border border-border bg-card">
+          <div className="grid grid-cols-3 border-b border-border bg-surface-2 px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:px-6">
+            <div>Hardware</div>
+            <div>Categories</div>
+            <div>Notes</div>
+          </div>
+          {[
+            { hw: "Roller", cats: "Sliding · Tub", notes: "Top-roller, bottom-roller, bypass" },
+            { hw: "Pivot Hinge", cats: "Swing", notes: "Floor-to-ceiling and wall-mount" },
+            { hw: "Wall Hinge", cats: "Swing", notes: "Major North American platforms" },
+            { hw: "Glass-to-Glass Hinge", cats: "Swing", notes: "Frameless 90° corner installs" },
+            { hw: "Clamp", cats: "Fixed · Return Panel", notes: "Wall and glass-to-glass clamps" },
+            { hw: "Channel", cats: "Fixed · Tub", notes: "U-channel and wall-channel" },
+          ].map((r, i) => (
+            <div key={r.hw} className={`grid grid-cols-3 px-4 py-4 text-sm sm:px-6 ${i % 2 ? "bg-surface-2" : "bg-card"}`}>
+              <div className="font-semibold text-foreground">{r.hw}</div>
+              <div className="text-primary font-medium">{r.cats}</div>
+              <div className="text-muted-foreground">{r.notes}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 9 — LOGISTICS */}
+      <section className="bg-surface-2 border-y border-border">
+        <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="relative">
+            <img src={packing} alt="Mixed-format packing in container" className="rounded-xl border border-border shadow-xl object-cover w-full h-[400px]" />
+          </div>
+          <div>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Library Logistics</span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">Mix any SKU into one container.</h2>
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+              Sliding, swing, tub, fixed, and return-panel SKUs can ship together in a single 40' HQ container — carton, crate, and L-frame formats combined for maximum distributor utility.
+            </p>
+            <div className="mt-6">
+              <SendDrawingButton size="md" variant="solid" label="Plan a mixed container" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10 — PROGRAM CTA STRIP */}
+      <section className="container-rider py-16">
+        <div className="grid gap-5 md:grid-cols-3">
+          {[
+            { title: "Distributor", body: "Carton-packed standard SKUs ready for retail." },
+            { title: "OEM", body: "Map any SKU to your hardware system in 24 hours." },
+            { title: "Developer", body: "Repeat library geometry across multi-unit projects." },
+          ].map((c) => (
+            <div key={c.title} className="rounded-xl border border-border bg-card p-7 shadow-sm">
+              <h3 className="font-display text-xl font-bold text-primary">{c.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.body}</p>
+              <div className="mt-5">
+                <SendDrawingButton size="sm" variant="outline" label="Start program" defaultProgram={`${c.title} Program`} withIcon={false} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 11 — FAQ */}
+      <section className="container-rider pb-20">
+        <FAQ
+          items={[
+            { q: "Can I order a single SKU from the library?", a: "Library SKUs are program-supply oriented. Typical first runs start at one mixed 40' HQ container — combine multiple SKUs to fill it." },
+            { q: "What does the SKU code mean?", a: "RS = Rider Shower, the next two letters are the category, then dimensions in inches, then thickness in mm. Example: RS-SL-3076-08 = Sliding, 30\" × 76\", 8mm." },
+            { q: "Can a library SKU be private-labelled?", a: "Yes — silk-screen ceramic-frit branding is available on any RS-SKU during tempering." },
+            { q: "What if my size isn't listed?", a: "Send a drawing — engineering converts custom geometry into a Rider RS-SKU within 24 hours." },
+          ]}
+        />
+      </section>
+
+      {/* SECTION 12 — CTA */}
+      <section className="container-rider pb-24">
+        <CtaBand
+          title="Ready to plan a library order?"
+          intro="Send your shortlist of RS-SKUs, sizes, and quantities — a Rider program manager replies with a mixed-container quote within 24 hours."
+        />
+      </section>
+    </>
+  );
+}
+
+function SelectField({
+  label,
+  value,
+  onChange,
+  options,
+  suffix,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  suffix?: string;
+}) {
+  return (
+    <label className="flex flex-col gap-1.5 text-left">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm font-medium text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+      >
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt === "All" ? "All" : `${opt}${suffix ?? ""}`}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
