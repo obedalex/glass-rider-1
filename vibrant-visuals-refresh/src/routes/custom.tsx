@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createFileRoute } from "@tanstack/react-router";
 import custom from "@/assets/custom-hero.jpg";
 import customD1 from "@/assets/custom-detail-1.jpg";
