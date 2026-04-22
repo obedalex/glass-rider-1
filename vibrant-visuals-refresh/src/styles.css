@@ -8,31 +8,33 @@
 :root {
   --radius: 0.5rem;
 
-  /* Industrial palette: deep navy ink, electric blue, amber safety accent */
-  --background: oklch(0.985 0.005 240);
+  /* Page base */
+  --background: oklch(1 0 0);
   --foreground: oklch(0.18 0.04 255);
 
   --surface: oklch(1 0 0);
-  --surface-2: oklch(0.965 0.01 240);
+  --surface-2: oklch(0.96 0.005 245);
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.04 255);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.04 255);
 
-  /* Primary: electric engineering blue */
-  --primary: oklch(0.52 0.21 258);
-  --primary-foreground: oklch(0.99 0.005 240);
+  /* Primary — crimson red (CTA buttons, underlines, badges) */
+  --primary: oklch(0.45 0.21 27);
+  --primary-foreground: oklch(1 0 0);
 
-  /* Secondary: deep navy ink */
+  /* Secondary — dark charcoal hero section */
   --secondary: oklch(0.22 0.05 258);
-  --secondary-foreground: oklch(0.985 0.005 240);
+  --secondary-foreground: oklch(1 0 0);
 
-  --muted: oklch(0.95 0.012 240);
-  --muted-foreground: oklch(0.45 0.03 255);
+  /* Muted — light grey stat bar */
+  --muted: oklch(0.96 0.005 245);
+  --muted-foreground: oklch(0.48 0.02 258);
 
-  --accent: oklch(0.93 0.04 245);
-  --accent-foreground: oklch(0.22 0.05 258);
+  /* Accent — crimson red stat highlight (12,000+) */
+  --accent: oklch(0.45 0.21 27);
+  --accent-foreground: oklch(1 0 0);
 
   /* Amber: safety / industrial accent */
   --amber: oklch(0.78 0.165 75);
@@ -47,9 +49,9 @@
 
   --border: oklch(0.9 0.01 245);
   --input: oklch(0.9 0.01 245);
-  --ring: oklch(0.52 0.21 258);
+  --ring: oklch(0.45 0.21 27);
 
-  --chart-1: oklch(0.52 0.21 258);
+  --chart-1: oklch(0.45 0.21 27);
   --chart-2: oklch(0.78 0.165 75);
   --chart-3: oklch(0.6 0.12 200);
   --chart-4: oklch(0.45 0.18 258);

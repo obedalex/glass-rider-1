@@ -1,6 +1,7 @@
-import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+﻿import { Link } from "@tanstack/react-router";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 import { SendDrawingButton } from "./SendDrawingButton";
 
 const nav = [
@@ -16,13 +17,14 @@ const nav = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="container-rider flex h-16 items-center justify-between gap-6">
         <Link to="/" className="flex items-center gap-2.5 group">
           <div className="relative flex h-9 w-9 items-center justify-center rounded-md bg-secondary text-secondary-foreground">
             <span className="font-display text-lg font-bold leading-none">R</span>
-            <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-amber" />
+            <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-primary" />
           </div>
           <div className="flex flex-col leading-tight">
             <span className="font-display text-sm font-bold tracking-wide text-foreground">RIDER</span>
@@ -45,6 +47,13 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-foreground transition hover:bg-muted"
+          >
+            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
           <SendDrawingButton size="md" label="Send Drawing" />
         </div>
 
@@ -71,6 +80,13 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="mt-2 inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-foreground transition hover:bg-muted"
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
             <div className="mt-3" onClick={() => setOpen(false)}>
               <SendDrawingButton size="md" label="Send Drawing" className="w-full" />
             </div>

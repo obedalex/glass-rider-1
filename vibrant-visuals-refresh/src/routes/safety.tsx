@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ShieldCheck, FileCheck2, ClipboardCheck, Microscope, Beaker, FileSearch, ArrowRight } from "lucide-react";
 import sgcc from "@/assets/safety-stamp.jpg";
@@ -57,7 +57,7 @@ function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-amber/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               <ShieldCheck className="h-3.5 w-3.5" /> Compliance
             </span>
             <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance">
@@ -67,7 +67,7 @@ function Page() {
               Rider Shower Systems Glass is engineered to meet and exceed international safety glazing requirements. Every panel in our program is manufactured with full traceability for repeatable OEM and distributor supply.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <SendDrawingButton size="lg" variant="amber" label="Request Compliance Packet" />
+              <SendDrawingButton size="lg" variant="solid" label="Request Compliance Packet" />
               <a href="#certs" className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10">
                 View certifications <ArrowRight className="h-4 w-4" />
               </a>
@@ -111,7 +111,7 @@ function Page() {
       <section className="bg-surface-2 border-y border-border">
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal className="relative">
-            <div className="absolute -inset-4 rounded-2xl bg-amber/20 blur-2xl" />
+            <div className="absolute -inset-4 rounded-2xl bg-primary/20 blur-2xl" />
             <img src={sgcc} alt="SGCC traceability stamp etched into corner of tempered glass" loading="lazy" width={1200} height={900} className="relative rounded-xl border border-border shadow-xl object-cover h-[420px] w-full" />
           </Reveal>
           <Reveal>
@@ -147,7 +147,7 @@ function Page() {
       <section className="bg-secondary text-secondary-foreground">
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">Impact Testing</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Impact Testing</span>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">Sample panels tested per batch.</h2>
             <p className="mt-4 text-base opacity-85 leading-relaxed">
               Sample panels from every batch are pulled and impact-tested per ANSI Z97.1 and 16 CFR 1201 protocols. Test results are filed to the batch traceability record — available on request for any panel we ship.
@@ -160,14 +160,14 @@ function Page() {
                 "Per-batch test reports filed for 7 years",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-3">
-                  <ShieldCheck className="mt-0.5 h-5 w-5 text-amber flex-shrink-0" />
+                  <ShieldCheck className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
                   <span className="text-sm">{t}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div className="relative">
-            <div className="absolute -inset-4 rounded-2xl bg-amber/30 blur-3xl" />
+            <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
             <img src={safetyTest} alt="Impact testing tempered shower glass with drop bag" loading="lazy" className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full" />
           </div>
         </div>
@@ -251,7 +251,7 @@ function Page() {
       <section className="bg-secondary text-secondary-foreground">
         <div className="container-rider py-20">
           <Reveal className="mb-10 max-w-2xl">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">Compliance Timeline</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Compliance Timeline</span>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">From PO to packet — 24 hours.</h2>
           </Reveal>
           <div className="grid gap-5 md:grid-cols-4">
@@ -262,7 +262,7 @@ function Page() {
               { t: "Packet delivered", b: "PDF compliance dossier emailed within 24h of ship." },
             ].map((s, i) => (
               <div key={s.t} className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber text-[11px] font-bold text-amber-foreground">
+                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </div>
                 <h3 className="mt-3 font-display text-lg font-bold">{s.t}</h3>

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+﻿import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -108,7 +108,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => scrollTo(i)}
             className={`h-1.5 rounded-full bg-white/30 transition-all duration-500 ${
-              i === selected ? "w-10 bg-amber" : "w-4 hover:bg-white/60"
+              i === selected ? "w-10 bg-primary" : "w-4 hover:bg-white/60"
             }`}
           />
         ))}

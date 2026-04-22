@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Search, X, Ruler, ArrowRight, Filter, Layers3 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -134,7 +134,7 @@ function LibraryPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-amber/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               <Layers3 className="h-3.5 w-3.5" /> Format Library
             </span>
             <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance">
@@ -144,7 +144,7 @@ function LibraryPage() {
               Filter Rider's catalog of repeat-spec tempered glass panels by size, thickness, glass type, and hardware compatibility. Use this library as a starting point — every SKU is also available in private-label and custom variants.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <SendDrawingButton size="lg" variant="amber" label="Quote a SKU" />
+              <SendDrawingButton size="lg" variant="solid" label="Quote a SKU" />
               <a href="#filters" className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10">
                 Browse formats <ArrowRight className="h-4 w-4" />
               </a>
@@ -254,7 +254,7 @@ function LibraryPage() {
                         <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">{f.category}</div>
                         <div className="mt-1 font-display text-lg font-bold text-foreground">{f.sku}</div>
                       </div>
-                      <span className="inline-flex items-center rounded-full bg-amber/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-secondary">
+                      <span className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-secondary">
                         {f.thickness}mm
                       </span>
                     </div>
@@ -339,7 +339,7 @@ function LibraryPage() {
         <div className="container-rider py-20">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">Need a custom SKU?</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Need a custom SKU?</span>
               <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
                 Send a drawing — we'll add it to the library.
               </h2>
@@ -347,14 +347,14 @@ function LibraryPage() {
                 Every Rider RS-SKU started as a customer drawing. Send your CAD or PDF and engineering will return a feasibility, quote, and proposed RS-SKU code within 24 hours.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <SendDrawingButton size="lg" variant="amber" label="Send Drawing" />
+                <SendDrawingButton size="lg" variant="solid" label="Send Drawing" />
               </div>
             </div>
             <div className="lg:col-span-5">
               <StaggerGroup className="grid grid-cols-2 gap-3">
                 {["DWG", "DXF", "PDF", "STEP"].map((f) => (
                   <StaggerItem key={f} className="rounded-xl border border-white/15 bg-white/5 p-5 text-center backdrop-blur">
-                    <div className="font-display text-2xl font-bold text-amber">{f}</div>
+                    <div className="font-display text-2xl font-bold text-primary">{f}</div>
                     <div className="mt-1 text-[11px] uppercase tracking-wider opacity-70">accepted</div>
                   </StaggerItem>
                 ))}

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Layers, ShieldCheck, Microscope, PackageCheck, Factory, Ruler, Cog } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -79,19 +79,19 @@ function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-amber/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-amber backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber" /> B2B OEM &amp; Program Supply
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" /> B2B OEM &amp; Program Supply
             </span>
             <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] text-white text-balance">
               Shower system glass built for{" "}
-              <span className="text-amber">distributor</span> &amp;{" "}
-              <span className="text-amber">OEM programs</span>.
+              <span className="text-primary">distributor</span> &amp;{" "}
+              <span className="text-primary">OEM programs</span>.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
               Rider supplies hardware-ready tempered glass components for enclosure manufacturers requiring stable geometry, precision drilling, and repeat-spec supply across North American distribution platforms.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <SendDrawingButton size="lg" variant="amber" label="Send Drawing for Review" />
+              <SendDrawingButton size="lg" variant="solid" label="Send Drawing for Review" />
               <Link
                 to="/library"
                 className="inline-flex h-12 items-center gap-2 rounded-md border border-white/30 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
@@ -207,11 +207,11 @@ function Home() {
       <section className="bg-secondary text-secondary-foreground">
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="relative">
-            <div className="absolute -inset-4 rounded-2xl bg-amber/30 blur-3xl" />
+            <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
             <img src={custom} alt="CAD blueprint with tempered glass panel on workbench" loading="lazy" width={1200} height={900} className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full" />
           </div>
           <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">Technical Precision</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Technical Precision</span>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">From CAD to RS-SKU.</h2>
             <p className="mt-4 text-base leading-relaxed opacity-85">
               We convert proprietary CAD formats into repeatable RS-SKUs. Engineering support ensures hinge mapping and handle layouts align with standard North American hardware systems.
@@ -224,13 +224,13 @@ function Home() {
                 { icon: ShieldCheck, t: "Private-label silk-screen branding" },
               ].map(({ icon: I, t }) => (
                 <li key={t} className="flex items-start gap-3">
-                  <I className="mt-0.5 h-5 w-5 text-amber flex-shrink-0" />
+                  <I className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
                   <span className="text-sm">{t}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-7">
-              <SendDrawingButton size="md" variant="amber" label="Send a drawing" />
+              <SendDrawingButton size="md" variant="solid" label="Send a drawing" />
             </div>
           </div>
         </div>
@@ -300,7 +300,7 @@ function Home() {
       <section className="bg-secondary text-secondary-foreground">
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">Production Standards</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Production Standards</span>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">Compliance baked into every batch.</h2>
             <p className="mt-4 text-base opacity-85 leading-relaxed">
               Tempering lines use light-table technology and digital scanners to inspect panels for optical distortion, surface defects, and tempering consistency before packing.
@@ -313,11 +313,11 @@ function Home() {
                 "Full SGCC Batch Traceability",
               ].map((t) => (
                 <div key={t} className="flex items-center gap-2 rounded-md bg-white/5 border border-white/10 px-4 py-3 text-sm font-medium">
-                  <ShieldCheck className="h-4 w-4 text-amber" /> {t}
+                  <ShieldCheck className="h-4 w-4 text-primary" /> {t}
                 </div>
               ))}
             </div>
-            <Link to="/safety" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-amber hover:underline">
+            <Link to="/safety" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
               Read full compliance details <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

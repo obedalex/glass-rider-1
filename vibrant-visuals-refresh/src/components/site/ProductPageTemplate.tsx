@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "./Reveal";
 import { SendDrawingButton } from "./SendDrawingButton";
@@ -78,15 +78,15 @@ export function ProductPageTemplate(p: ProductPageProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-amber/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber" /> {p.eyebrow}
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" /> {p.eyebrow}
             </span>
             <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance">
               {p.title}
             </h1>
             <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed opacity-85">{p.intro}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <SendDrawingButton size="lg" variant="amber" defaultProgram={p.program} label="Send Drawing" />
+              <SendDrawingButton size="lg" variant="solid" defaultProgram={p.program} label="Send Drawing" />
               <a
                 href="#specs"
                 className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
@@ -97,7 +97,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
             <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium opacity-80">
               {certs.slice(0, 4).map((c) => (
                 <span key={c} className="inline-flex items-center gap-1.5">
-                  <ShieldCheck className="h-3.5 w-3.5 text-amber" /> {c}
+                  <ShieldCheck className="h-3.5 w-3.5 text-primary" /> {c}
                 </span>
               ))}
             </div>
@@ -219,7 +219,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
         <div className="container-rider py-12">
           <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-4">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber">Certified Program</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Certified Program</span>
               <h3 className="mt-2 font-display text-2xl font-bold text-balance">Compliance baked into every batch.</h3>
             </div>
             <div className="lg:col-span-8">
@@ -229,7 +229,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
                     key={c}
                     className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold backdrop-blur"
                   >
-                    <ShieldCheck className="h-4 w-4 text-amber" /> {c}
+                    <ShieldCheck className="h-4 w-4 text-primary" /> {c}
                   </span>
                 ))}
               </div>

@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SendDrawingProvider } from "@/components/site/SendDrawingProvider";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 function NotFoundComponent() {
   return (
@@ -32,14 +33,16 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <SendDrawingProvider>
-      <div className="flex min-h-screen flex-col bg-background">
-        <SiteHeader />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
-    </SendDrawingProvider>
+    <ThemeProvider>
+      <SendDrawingProvider>
+        <div className="flex min-h-screen flex-col bg-background">
+          <SiteHeader />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <SiteFooter />
+        </div>
+      </SendDrawingProvider>
+    </ThemeProvider>
   );
 }

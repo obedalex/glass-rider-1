@@ -1,4 +1,4 @@
-import { Upload, FileCheck2, X, FileText } from "lucide-react";
+﻿import { Upload, FileCheck2, X, FileText } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export function QuoteForm({
@@ -51,8 +51,8 @@ export function QuoteForm({
   return (
     <section className="rounded-2xl border border-border bg-card p-6 sm:p-10 shadow-sm">
       <div className="mx-auto max-w-3xl text-center">
-        <div className="inline-flex items-center gap-2 rounded-full bg-amber/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber" /> Engineering Intake
+        <div className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Engineering Intake
         </div>
         <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">{title}</h2>
         <p className="mt-3 text-sm sm:text-base text-muted-foreground">{intro}</p>

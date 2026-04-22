@@ -1,8 +1,8 @@
-import { ArrowRight, Upload } from "lucide-react";
+﻿import { ArrowRight, Upload } from "lucide-react";
 import { useSendDrawing } from "./SendDrawingProvider";
 import { cn } from "@/lib/utils";
 
-type Variant = "solid" | "outline" | "amber" | "ghost-light";
+type Variant = "solid" | "outline" | "ghost-light";
 type Size = "sm" | "md" | "lg";
 
 const sizeClasses: Record<Size, string> = {
@@ -16,8 +16,6 @@ const variantClasses: Record<Variant, string> = {
     "bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary/90",
   outline:
     "border border-border bg-background text-foreground hover:border-primary hover:text-primary",
-  amber:
-    "bg-amber text-amber-foreground hover:opacity-90",
   "ghost-light":
     "bg-white/10 text-white border border-white/20 backdrop-blur hover:bg-white/20",
 };

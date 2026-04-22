@@ -1,4 +1,4 @@
-import { CountUp } from "./CountUp";
+﻿import { CountUp } from "./CountUp";
 import { StaggerGroup, StaggerItem } from "./Reveal";
 
 export type Stat = {
@@ -17,7 +17,7 @@ export function StatBand({ stats, dark = false }: { stats: Stat[]; dark?: boolea
     >
       {stats.map((s) => (
         <StaggerItem key={s.label} className="text-center">
-          <div className={`font-display text-3xl sm:text-4xl font-bold ${dark ? "text-amber" : "text-primary"}`}>
+          <div className="font-display text-3xl sm:text-4xl font-bold text-primary">
             <CountUp to={s.value} decimals={s.decimals ?? 0} />
             {s.suffix ?? ""}
           </div>
