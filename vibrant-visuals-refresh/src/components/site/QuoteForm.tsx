@@ -19,6 +19,8 @@ export function QuoteForm({
   onSuccess?: () => void;
 }) {
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [dragOver, setDragOver] = useState(false);
   const [program, setProgram] = useState<string>(defaultProgram ?? programOptions[0] ?? "");
@@ -77,31 +79,54 @@ export function QuoteForm({
         </div>
       ) : (
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            setSubmitted(true);
-            onSuccess?.();
+            setErrorMsg(null);
+            setIsLoading(true);
+            const fd = new FormData(e.currentTarget);
+            try {
+              const res = await fetch("/api/quote", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: fd.get("name"),
+                  company: fd.get("company"),
+                  email: fd.get("email"),
+                  phone: fd.get("phone"),
+                  businessType: fd.get("businessType"),
+                  volume: fd.get("volume"),
+                  program,
+                  notes: fd.get("notes"),
+                }),
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error ?? "Submission failed");
+              setSubmitted(true);
+              onSuccess?.();
+            } catch (err) {
+              setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+            } finally {
+              setIsLoading(false);
+            }
           }}
           className="mx-auto mt-8 max-w-3xl"
         >
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="First & Last Name">
-              <input type="text" required placeholder="John Doe" className={input} />
+              <input name="name" type="text" required placeholder="John Doe" className={input} />
             </Field>
             <Field label="Company Name">
-              <input type="text" required placeholder="Enclosure Manufacturing Corp" className={input} />
+              <input name="company" type="text" required placeholder="Enclosure Manufacturing Corp" className={input} />
             </Field>
             <Field label="Business Email">
-              <input type="email" required placeholder="john@company.com" className={input} />
+              <input name="email" type="email" required placeholder="john@company.com" className={input} />
             </Field>
             <Field label="Phone (optional)">
-              <input type="tel" placeholder="+1 (555) 555-5555" className={input} />
+              <input name="phone" type="tel" placeholder="+1 (555) 555-5555" className={input} />
             </Field>
             <Field label="Business Type">
-              <select className={input} defaultValue="" required>
-                <option value="" disabled>
-                  Select...
-                </option>
+              <select name="businessType" className={input} defaultValue="" required>
+                <option value="" disabled>Select...</option>
                 <option>Manufacturer</option>
                 <option>Distributor</option>
                 <option>Developer</option>
@@ -109,10 +134,8 @@ export function QuoteForm({
               </select>
             </Field>
             <Field label="Estimated Annual Volume">
-              <select className={input} defaultValue="">
-                <option value="" disabled>
-                  Select...
-                </option>
+              <select name="volume" className={input} defaultValue="">
+                <option value="" disabled>Select...</option>
                 <option>Under 500 panels / yr</option>
                 <option>500 – 2,500 panels / yr</option>
                 <option>2,500 – 10,000 panels / yr</option>
@@ -132,22 +155,11 @@ export function QuoteForm({
 
             <Field label="Engineering Files (.DWG, .DXF, .PDF, .STEP — up to 25MB each)" full>
               <div
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  setDragOver(true);
-                }}
+                onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                 onDragLeave={() => setDragOver(false)}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  setDragOver(false);
-                  if (e.dataTransfer.files?.length) addFiles(e.dataTransfer.files);
-                }}
+                onDrop={(e) => { e.preventDefault(); setDragOver(false); if (e.dataTransfer.files?.length) addFiles(e.dataTransfer.files); }}
                 onClick={() => fileInputRef.current?.click()}
-                className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed px-6 py-8 text-center transition ${
-                  dragOver
-                    ? "border-primary bg-primary/10"
-                    : "border-primary/50 bg-primary/5 hover:bg-primary/10"
-                }`}
+                className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed px-6 py-8 text-center transition ${dragOver ? "border-primary bg-primary/10" : "border-primary/50 bg-primary/5 hover:bg-primary/10"}`}
               >
                 <Upload className="h-7 w-7 text-primary" />
                 <span className="mt-2 text-sm font-semibold text-primary">
@@ -161,32 +173,20 @@ export function QuoteForm({
                   type="file"
                   multiple
                   accept={acceptedExt.join(",")}
-                  onChange={(e) => {
-                    if (e.target.files?.length) addFiles(e.target.files);
-                    e.target.value = "";
-                  }}
+                  onChange={(e) => { if (e.target.files?.length) addFiles(e.target.files); e.target.value = ""; }}
                   className="hidden"
                 />
               </div>
-
               {files.length > 0 && (
                 <ul className="mt-3 space-y-2">
                   {files.map((f, i) => (
-                    <li
-                      key={`${f.name}-${i}`}
-                      className="flex items-center justify-between gap-3 rounded-md border border-border bg-surface-2 px-3 py-2"
-                    >
+                    <li key={`${f.name}-${i}`} className="flex items-center justify-between gap-3 rounded-md border border-border bg-surface-2 px-3 py-2">
                       <div className="flex min-w-0 items-center gap-2">
-                        <FileText className="h-4 w-4 flex-shrink-0 text-primary" />
+                        <FileText className="h-4 w-4 shrink-0 text-primary" />
                         <span className="truncate text-sm font-medium text-foreground">{f.name}</span>
-                        <span className="flex-shrink-0 text-xs text-muted-foreground">{formatBytes(f.size)}</span>
+                        <span className="shrink-0 text-xs text-muted-foreground">{formatBytes(f.size)}</span>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => removeFile(i)}
-                        className="rounded p-1 text-muted-foreground hover:bg-background hover:text-destructive"
-                        aria-label={`Remove ${f.name}`}
-                      >
+                      <button type="button" onClick={() => removeFile(i)} className="rounded p-1 text-muted-foreground hover:bg-background hover:text-destructive" aria-label={`Remove ${f.name}`}>
                         <X className="h-4 w-4" />
                       </button>
                     </li>
@@ -197,27 +197,33 @@ export function QuoteForm({
 
             <Field label="Project Notes / Specifications" full>
               <textarea
+                name="notes"
                 rows={4}
                 placeholder="Hardware platform, target dimensions, finish, target launch date, etc."
-                className={`${input} resize-y min-h-[110px]`}
+                className={`${input} resize-y min-h-27.5`}
               />
             </Field>
 
             <Field label="" full>
               <label className="flex items-start gap-2 text-xs text-muted-foreground">
                 <input type="checkbox" required className="mt-0.5 h-4 w-4 rounded border-input text-primary" />
-                <span>
-                  I confirm I'm authorized to share these files and agree to Rider's confidential review process.
-                </span>
+                <span>I confirm I'm authorized to share these files and agree to Rider's confidential review process.</span>
               </label>
             </Field>
           </div>
 
+          {errorMsg && (
+            <p className="mt-4 rounded-md border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive">
+              {errorMsg}
+            </p>
+          )}
+
           <button
             type="submit"
-            className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-md bg-primary px-6 text-base font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90"
+            disabled={isLoading}
+            className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-md bg-primary px-6 text-base font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Submit Requirements for Review
+            {isLoading ? "Sending…" : "Submit Requirements for Review"}
           </button>
         </form>
       )}

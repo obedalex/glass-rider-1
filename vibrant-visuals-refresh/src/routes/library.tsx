@@ -1,4 +1,5 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+﻿/* eslint-disable prettier/prettier */
+import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Search, X, Ruler, ArrowRight, Filter, Layers3 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -86,6 +87,33 @@ const THICKNESSES: Format["thickness"][] = [6, 8, 10, 12];
 const TYPES: GlassType[] = ["Clear", "Low-Iron", "Frosted", "Tinted Bronze", "Tinted Grey"];
 const HARDWARE: Hardware[] = ["Roller", "Pivot Hinge", "Wall Hinge", "Glass-to-Glass Hinge", "Clamp", "Channel"];
 
+type TopCategory = {
+  category: Category;
+  featuredSku: string;
+  description: string;
+  image?: string;
+};
+
+const TOP_CATEGORIES: TopCategory[] = [
+  { category: "Sliding", featuredSku: "RS-SL-3076-08", description: "Top-roller and bypass panels for standard alcove and walk-in configurations." },
+  { category: "Swing", featuredSku: "RS-SW-2878-12", description: "Frameless pivot and hinged doors compatible with all major wall and glass-to-glass hardware platforms." },
+  { category: "Tub", featuredSku: "RS-TB-5660-08", description: "Over-tub sliding enclosures in standard 48\"–60\" spans with clear and frosted options." },
+  { category: "Fixed", featuredSku: "RS-FX-4280-10", description: "Stationary panels for walk-in entries, clamp-mount and U-channel compatible." },
+  { category: "Return Panel", featuredSku: "RS-RP-1876-08", description: "Side returns for frameless walk-in enclosures, clamp and channel mount." },
+];
+
+// To add an image for a SKU:
+// 1. Add an import at the top: import mySku from "@/assets/skus/RS-SL-2476-08.jpg";
+// 2. Add an entry below:       "RS-SL-2476-08": mySku,
+const SKU_IMAGES: Partial<Record<string, string>> = {};
+
+const THICKNESS_COLORS: Record<number, string> = {
+  6:  "bg-sky-600 text-white",
+  8:  "bg-primary text-primary-foreground",
+  10: "bg-amber-600 text-white",
+  12: "bg-neutral-800 text-white",
+};
+
 function LibraryPage() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<Category | "All">("All");
@@ -123,7 +151,11 @@ function LibraryPage() {
       {/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden border-b border-border bg-secondary text-secondary-foreground">
         <div className="absolute inset-0">
-          <img src={libraryImg} alt="Industrial warehouse stacked with standard tempered shower glass formats" className="h-full w-full object-cover opacity-40" />
+          <img
+            src={libraryImg}
+            alt="Industrial warehouse stacked with standard tempered shower glass formats"
+            className="h-full w-full object-cover opacity-40"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/30" />
           <div className="absolute inset-0 grid-blueprint opacity-15" />
         </div>
@@ -137,15 +169,20 @@ function LibraryPage() {
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               <Layers3 className="h-3.5 w-3.5" /> Format Library
             </span>
-            <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance">
+            <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance max-w-[14ch]">
               Standard RS-SKU formats, ready for your program.
             </h1>
             <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed opacity-85">
-              Filter Rider's catalog of repeat-spec tempered glass panels by size, thickness, glass type, and hardware compatibility. Use this library as a starting point — every SKU is also available in private-label and custom variants.
+              Filter Rider's catalog of repeat-spec tempered glass panels by size, thickness, glass
+              type, and hardware compatibility. Use this library as a starting point — every SKU is
+              also available in private-label and custom variants.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SendDrawingButton size="lg" variant="solid" label="Quote a SKU" />
-              <a href="#filters" className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10">
+              <a
+                href="#filters"
+                className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
+              >
                 Browse formats <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -154,34 +191,42 @@ function LibraryPage() {
       </section>
 
       {/* SECTION 2 — STAT BAND */}
-      <section className="container-rider -mt-12 relative z-10">
+      {/* <section className="container-rider -mt-12 relative z-10">
         <StatBand
           stats={[
             { value: FORMATS.length, label: "Standard RS-SKUs" },
             { value: 5, label: "Categories" },
             { value: 4, label: "Thicknesses" },
-            { value: 6, label: "Hardware platforms" },
+            { value: 6, label: "Hardware platforms" }
           ]}
         />
-      </section>
+      </section> */}
 
       {/* SECTION 3 — INTRO */}
-      <section className="container-rider py-16">
+      {/* <section className="container-rider py-16">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
           <Reveal className="lg:col-span-7">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">What is the Library?</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              What is the Library?
+            </span>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
               Repeat-spec geometry. Identical batch after batch.
             </h2>
             <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-              Every entry below is a Rider RS-SKU — a locked specification with verified hardware mapping, polished safety edges, and SGCC certification. Pick a SKU and re-order forever, or send your own drawing to add a new RS-SKU to the library.
+              Every entry below is a Rider RS-SKU — a locked specification with verified hardware
+              mapping, polished safety edges, and SGCC certification. Pick a SKU and re-order
+              forever, or send your own drawing to add a new RS-SKU to the library.
             </p>
           </Reveal>
           <Reveal className="lg:col-span-5">
-            <img src={warehouse} alt="Warehouse stacked with standard formats" className="rounded-xl border border-border shadow-xl object-cover w-full h-64" />
+            <img
+              src={warehouse}
+              alt="Warehouse stacked with standard formats"
+              className="rounded-xl border border-border shadow-xl object-cover w-full h-64"
+            />
           </Reveal>
         </div>
-      </section>
+      </section> */}
 
       {/* SECTION 4 — FILTER + RESULTS */}
       <section id="filters" className="container-rider pb-12">
@@ -189,7 +234,9 @@ function LibraryPage() {
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-primary" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Filter Catalog</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+                Filter Catalog
+              </span>
             </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -201,16 +248,43 @@ function LibraryPage() {
                 className="w-full rounded-md border border-input bg-background py-2.5 pl-10 pr-10 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
               {query && (
-                <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" aria-label="Clear search">
+                <button
+                  onClick={() => setQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  aria-label="Clear search"
+                >
                   <X className="h-4 w-4" />
                 </button>
               )}
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <SelectField label="Category" value={category} onChange={(v) => setCategory(v as typeof category)} options={["All", ...CATEGORIES]} />
-              <SelectField label="Thickness" value={String(thickness)} onChange={(v) => setThickness(v === "All" ? "All" : (Number(v) as Format["thickness"]))} options={["All", ...THICKNESSES.map((t) => `${t}`)]} suffix="mm" />
-              <SelectField label="Glass Type" value={type} onChange={(v) => setType(v as typeof type)} options={["All", ...TYPES]} />
-              <SelectField label="Hardware" value={hardware} onChange={(v) => setHardware(v as typeof hardware)} options={["All", ...HARDWARE]} />
+              <SelectField
+                label="Category"
+                value={category}
+                onChange={(v) => setCategory(v as typeof category)}
+                options={["All", ...CATEGORIES]}
+              />
+              <SelectField
+                label="Thickness"
+                value={String(thickness)}
+                onChange={(v) =>
+                  setThickness(v === "All" ? "All" : (Number(v) as Format["thickness"]))
+                }
+                options={["All", ...THICKNESSES.map((t) => `${t}`)]}
+                suffix="mm"
+              />
+              <SelectField
+                label="Glass Type"
+                value={type}
+                onChange={(v) => setType(v as typeof type)}
+                options={["All", ...TYPES]}
+              />
+              <SelectField
+                label="Hardware"
+                value={hardware}
+                onChange={(v) => setHardware(v as typeof hardware)}
+                options={["All", ...HARDWARE]}
+              />
             </div>
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
               <div className="text-sm text-muted-foreground">
@@ -218,7 +292,10 @@ function LibraryPage() {
                 <span className="font-bold text-foreground">{FORMATS.length}</span> standard formats
               </div>
               {hasFilters && (
-                <button onClick={reset} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                <button
+                  onClick={reset}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                >
                   <X className="h-3.5 w-3.5" /> Reset filters
                 </button>
               )}
@@ -226,18 +303,62 @@ function LibraryPage() {
           </div>
         </div>
 
-        <div className="mt-8">
+        {/* Top Categories */}
+        <div className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">Top Categories</span>
+            <div className="flex-1 border-t border-border" />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {TOP_CATEGORIES.map((tc) => (
+              <div key={tc.category} className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg">
+                <div className="relative h-36 overflow-hidden bg-muted">
+                  {tc.image ? (
+                    <img src={tc.image} alt={tc.category} className="h-full w-full object-cover transition group-hover:scale-105" />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted to-surface-2">
+                      <Layers3 className="h-8 w-8 text-muted-foreground/40" />
+                    </div>
+                  )}
+                  <span className="absolute right-2 top-2 rounded bg-black/60 px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+                    {tc.featuredSku}
+                  </span>
+                </div>
+                <div className="p-3.5">
+                  <div className="font-display text-sm font-bold text-foreground">{tc.category}</div>
+                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-muted-foreground">{tc.description}</p>
+                  <div className="mt-3 flex gap-1.5">
+                    {[".DWG", ".DXF", ".STEP"].map((ext) => (
+                      <span key={ext} className="rounded border border-border px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+                        {ext}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* All Format Library */}
+        <div className="mt-12">
+          <div className="mb-6 flex items-center gap-3">
+            <h2 className="font-display text-xl font-bold text-foreground">All format Library</h2>
+            <div className="flex-1 border-t border-border" />
+          </div>
           {filtered.length === 0 ? (
             <div className="rounded-xl border border-dashed border-border bg-surface-2 py-16 text-center">
               <Layers3 className="mx-auto h-10 w-10 text-muted-foreground" />
               <p className="mt-4 font-semibold text-foreground">No matching formats</p>
-              <p className="mt-1 text-sm text-muted-foreground">Try adjusting your filters or send a drawing for a custom RS-SKU.</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Try adjusting your filters or send a drawing for a custom RS-SKU.
+              </p>
               <div className="mt-5">
                 <SendDrawingButton size="md" variant="solid" label="Request custom SKU" />
               </div>
             </div>
           ) : (
-            <motion.ul layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <motion.ul layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <AnimatePresence mode="popLayout">
                 {filtered.map((f, i) => (
                   <motion.li
@@ -247,42 +368,38 @@ function LibraryPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: 0.35, delay: Math.min(i * 0.02, 0.2), ease: [0.22, 1, 0.36, 1] }}
-                    className="group relative overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
+                    className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">{f.category}</div>
-                        <div className="mt-1 font-display text-lg font-bold text-foreground">{f.sku}</div>
-                      </div>
-                      <span className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-secondary">
-                        {f.thickness}mm
+                    <div className="relative h-44 overflow-hidden bg-muted">
+                      {SKU_IMAGES[f.sku] ? (
+                        <img src={SKU_IMAGES[f.sku]} alt={f.sku} className="h-full w-full object-cover transition group-hover:scale-105" />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted to-surface-2">
+                          <Ruler className="h-10 w-10 text-muted-foreground/30" />
+                        </div>
+                      )}
+                      <span className={`absolute left-2.5 top-2.5 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${THICKNESS_COLORS[f.thickness]}`}>
+                        {f.thickness}MM
                       </span>
                     </div>
-                    <div className="mt-4 flex items-center gap-2 rounded-md bg-surface-2 px-3 py-2.5">
-                      <Ruler className="h-4 w-4 text-primary" />
-                      <span className="text-sm font-semibold text-foreground">
-                        {f.width}" <span className="text-muted-foreground">W</span> × {f.height}"{" "}
-                        <span className="text-muted-foreground">H</span>
-                      </span>
-                    </div>
-                    <dl className="mt-3 space-y-2 text-xs">
-                      <div className="flex justify-between gap-3">
-                        <dt className="font-semibold uppercase tracking-wider text-muted-foreground">Glass Type</dt>
-                        <dd className="font-medium text-foreground">{f.type}</dd>
+                    <div className="p-4">
+                      <div className="font-display text-base font-bold text-foreground">{f.sku}</div>
+                      <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-primary">
+                        {f.category} &bull; {f.width}" &times; {f.height}"
                       </div>
-                      <div className="flex flex-col gap-1.5">
-                        <dt className="font-semibold uppercase tracking-wider text-muted-foreground">Compatible Hardware</dt>
-                        <dd className="flex flex-wrap gap-1.5">
-                          {f.hardware.map((h) => (
-                            <span key={h} className="inline-flex items-center rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium text-foreground">
-                              {h}
-                            </span>
-                          ))}
-                        </dd>
+                      <dl className="mt-3 space-y-1.5 text-xs">
+                        <div className="flex justify-between gap-2">
+                          <dt className="text-muted-foreground">Glass</dt>
+                          <dd className="text-right font-medium text-foreground">{f.type}</dd>
+                        </div>
+                        <div className="flex justify-between gap-2">
+                          <dt className="text-muted-foreground">Hardware</dt>
+                          <dd className="text-right font-medium text-foreground">{f.hardware.join(", ")}</dd>
+                        </div>
+                      </dl>
+                      <div className="mt-4">
+                        <SendDrawingButton size="sm" variant="outline" label="Quote SKU" defaultProgram={`Library SKU: ${f.sku}`} withIcon={false} />
                       </div>
-                    </dl>
-                    <div className="mt-5">
-                      <SendDrawingButton size="sm" variant="outline" label={`Quote ${f.sku}`} defaultProgram={`Library SKU: ${f.sku}`} withIcon={false} />
                     </div>
                   </motion.li>
                 ))}
@@ -296,15 +413,23 @@ function LibraryPage() {
       <section className="bg-surface-2 border-y border-border">
         <div className="container-rider py-20">
           <Reveal className="mb-10 max-w-2xl">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">SKU System</span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">How RS-SKU codes work.</h2>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              SKU System
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+              How RS-SKU codes work.
+            </h2>
           </Reveal>
           <div className="grid gap-5 md:grid-cols-4">
             {[
               { code: "RS", label: "Rider Shower", desc: "Brand prefix, present on every SKU." },
-              { code: "SL / SW / TB / FX / RP", label: "Category", desc: "Sliding, Swing, Tub, Fixed, Return Panel." },
+              {
+                code: "SL / SW / TB / FX / RP",
+                label: "Category",
+                desc: "Sliding, Swing, Tub, Fixed, Return Panel."
+              },
               { code: "30·76", label: "Dimensions", desc: "Width × Height in inches." },
-              { code: "08", label: "Thickness", desc: "Glass thickness in millimetres." },
+              { code: "08", label: "Thickness", desc: "Glass thickness in millimetres." }
             ].map((s) => (
               <div key={s.label} className="rounded-xl border border-border bg-card p-6 shadow-sm">
                 <div className="font-display text-lg font-bold text-primary">{s.code}</div>
@@ -319,8 +444,12 @@ function LibraryPage() {
       {/* SECTION 6 — GALLERY */}
       <section className="container-rider py-20">
         <Reveal className="mb-10 max-w-2xl">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">From the Floor</span>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">Standard formats in production.</h2>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            From the Floor
+          </span>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+            Standard formats in production.
+          </h2>
         </Reveal>
         <Gallery
           images={[
@@ -329,7 +458,7 @@ function LibraryPage() {
             { src: drilling, alt: "CNC drilling" },
             { src: qc, alt: "Light-table QC" },
             { src: lframes, alt: "L-frame transport" },
-            { src: port, alt: "Container shipping", span: "wide" },
+            { src: port, alt: "Container shipping", span: "wide" }
           ]}
         />
       </section>
@@ -339,12 +468,16 @@ function LibraryPage() {
         <div className="container-rider py-20">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Need a custom SKU?</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+                Need a custom SKU?
+              </span>
               <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
                 Send a drawing — we'll add it to the library.
               </h2>
               <p className="mt-4 text-base opacity-85 leading-relaxed">
-                Every Rider RS-SKU started as a customer drawing. Send your CAD or PDF and engineering will return a feasibility, quote, and proposed RS-SKU code within 24 hours.
+                Every Rider RS-SKU started as a customer drawing. Send your CAD or PDF and
+                engineering will return a feasibility, quote, and proposed RS-SKU code within 24
+                hours.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <SendDrawingButton size="lg" variant="solid" label="Send Drawing" />
@@ -353,9 +486,14 @@ function LibraryPage() {
             <div className="lg:col-span-5">
               <StaggerGroup className="grid grid-cols-2 gap-3">
                 {["DWG", "DXF", "PDF", "STEP"].map((f) => (
-                  <StaggerItem key={f} className="rounded-xl border border-white/15 bg-white/5 p-5 text-center backdrop-blur">
+                  <StaggerItem
+                    key={f}
+                    className="rounded-xl border border-white/15 bg-white/5 p-5 text-center backdrop-blur"
+                  >
                     <div className="font-display text-2xl font-bold text-primary">{f}</div>
-                    <div className="mt-1 text-[11px] uppercase tracking-wider opacity-70">accepted</div>
+                    <div className="mt-1 text-[11px] uppercase tracking-wider opacity-70">
+                      accepted
+                    </div>
                   </StaggerItem>
                 ))}
               </StaggerGroup>
@@ -367,7 +505,9 @@ function LibraryPage() {
       {/* SECTION 8 — COMPATIBILITY MATRIX */}
       <section className="container-rider py-20">
         <Reveal className="mb-10 max-w-2xl">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Compatibility</span>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            Compatibility
+          </span>
           <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
             Hardware platforms supported across the library.
           </h2>
@@ -384,9 +524,12 @@ function LibraryPage() {
             { hw: "Wall Hinge", cats: "Swing", notes: "Major North American platforms" },
             { hw: "Glass-to-Glass Hinge", cats: "Swing", notes: "Frameless 90° corner installs" },
             { hw: "Clamp", cats: "Fixed · Return Panel", notes: "Wall and glass-to-glass clamps" },
-            { hw: "Channel", cats: "Fixed · Tub", notes: "U-channel and wall-channel" },
+            { hw: "Channel", cats: "Fixed · Tub", notes: "U-channel and wall-channel" }
           ].map((r, i) => (
-            <div key={r.hw} className={`grid grid-cols-3 px-4 py-4 text-sm sm:px-6 ${i % 2 ? "bg-surface-2" : "bg-card"}`}>
+            <div
+              key={r.hw}
+              className={`grid grid-cols-3 px-4 py-4 text-sm sm:px-6 ${i % 2 ? "bg-surface-2" : "bg-card"}`}
+            >
               <div className="font-semibold text-foreground">{r.hw}</div>
               <div className="text-primary font-medium">{r.cats}</div>
               <div className="text-muted-foreground">{r.notes}</div>
@@ -399,13 +542,23 @@ function LibraryPage() {
       <section className="bg-surface-2 border-y border-border">
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="relative">
-            <img src={packing} alt="Mixed-format packing in container" className="rounded-xl border border-border shadow-xl object-cover w-full h-[400px]" />
+            <img
+              src={packing}
+              alt="Mixed-format packing in container"
+              className="rounded-xl border border-border shadow-xl object-cover w-full h-[400px]"
+            />
           </div>
           <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Library Logistics</span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">Mix any SKU into one container.</h2>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              Library Logistics
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+              Mix any SKU into one container.
+            </h2>
             <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-              Sliding, swing, tub, fixed, and return-panel SKUs can ship together in a single 40' HQ container — carton, crate, and L-frame formats combined for maximum distributor utility.
+              Sliding, swing, tub, fixed, and return-panel SKUs can ship together in a single 40' HQ
+              container — carton, crate, and L-frame formats combined for maximum distributor
+              utility.
             </p>
             <div className="mt-6">
               <SendDrawingButton size="md" variant="solid" label="Plan a mixed container" />
@@ -420,13 +573,19 @@ function LibraryPage() {
           {[
             { title: "Distributor", body: "Carton-packed standard SKUs ready for retail." },
             { title: "OEM", body: "Map any SKU to your hardware system in 24 hours." },
-            { title: "Developer", body: "Repeat library geometry across multi-unit projects." },
+            { title: "Developer", body: "Repeat library geometry across multi-unit projects." }
           ].map((c) => (
             <div key={c.title} className="rounded-xl border border-border bg-card p-7 shadow-sm">
               <h3 className="font-display text-xl font-bold text-primary">{c.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.body}</p>
               <div className="mt-5">
-                <SendDrawingButton size="sm" variant="outline" label="Start program" defaultProgram={`${c.title} Program`} withIcon={false} />
+                <SendDrawingButton
+                  size="sm"
+                  variant="outline"
+                  label="Start program"
+                  defaultProgram={`${c.title} Program`}
+                  withIcon={false}
+                />
               </div>
             </div>
           ))}
@@ -437,10 +596,22 @@ function LibraryPage() {
       <section className="container-rider pb-20">
         <FAQ
           items={[
-            { q: "Can I order a single SKU from the library?", a: "Library SKUs are program-supply oriented. Typical first runs start at one mixed 40' HQ container — combine multiple SKUs to fill it." },
-            { q: "What does the SKU code mean?", a: "RS = Rider Shower, the next two letters are the category, then dimensions in inches, then thickness in mm. Example: RS-SL-3076-08 = Sliding, 30\" × 76\", 8mm." },
-            { q: "Can a library SKU be private-labelled?", a: "Yes — silk-screen ceramic-frit branding is available on any RS-SKU during tempering." },
-            { q: "What if my size isn't listed?", a: "Send a drawing — engineering converts custom geometry into a Rider RS-SKU within 24 hours." },
+            {
+              q: "Can I order a single SKU from the library?",
+              a: "Library SKUs are program-supply oriented. Typical first runs start at one mixed 40' HQ container — combine multiple SKUs to fill it."
+            },
+            {
+              q: "What does the SKU code mean?",
+              a: 'RS = Rider Shower, the next two letters are the category, then dimensions in inches, then thickness in mm. Example: RS-SL-3076-08 = Sliding, 30" × 76", 8mm.'
+            },
+            {
+              q: "Can a library SKU be private-labelled?",
+              a: "Yes — silk-screen ceramic-frit branding is available on any RS-SKU during tempering."
+            },
+            {
+              q: "What if my size isn't listed?",
+              a: "Send a drawing — engineering converts custom geometry into a Rider RS-SKU within 24 hours."
+            }
           ]}
         />
       </section>

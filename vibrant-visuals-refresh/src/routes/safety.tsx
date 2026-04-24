@@ -1,18 +1,25 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+﻿/* eslint-disable prettier/prettier */
+import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ShieldCheck, FileCheck2, ClipboardCheck, Microscope, Beaker, FileSearch, ArrowRight } from "lucide-react";
+import {
+  ShieldCheck,
+  FileCheck2,
+  ClipboardCheck,
+  Microscope,
+  Beaker,
+  FileSearch,
+  ArrowRight,
+} from "lucide-react";
 import sgcc from "@/assets/safety-stamp.jpg";
+import batchTraceability from "@/assets/BatchTraceability.png";
 import safetyTest from "@/assets/safety-test.jpg";
 import qc from "@/assets/process-qc.jpg";
 import polishing from "@/assets/process-polishing.jpg";
-import factory from "@/assets/factory-floor.jpg";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
-import packing from "@/assets/process-packing.jpg";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
 import { SendDrawingButton } from "@/components/site/SendDrawingButton";
 import { StatBand } from "@/components/site/StatBand";
-import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { Gallery } from "@/components/site/Gallery";
 import { FAQ } from "@/components/site/FAQ";
 import { CtaBand } from "@/components/site/CtaBand";
@@ -22,9 +29,17 @@ export const Route = createFileRoute("/safety")({
   head: () => ({
     meta: [
       { title: "Safety & Compliance | ANSI · CFR · SGCC | Rider Shower Systems" },
-      { name: "description", content: "Rider tempered shower glass meets ANSI Z97.1, 16 CFR 1201, CAN/CGSB 12.1, and SGCC standards with full batch traceability and rigorous QC." },
+      {
+        name: "description",
+        content:
+          "Rider tempered shower glass meets ANSI Z97.1, 16 CFR 1201, CAN/CGSB 12.1, and SGCC standards with full batch traceability and rigorous QC.",
+      },
       { property: "og:title", content: "Safety & Compliance | Rider Shower Systems" },
-      { property: "og:description", content: "ANSI, 16 CFR 1201 Cat. II, CAN/CGSB 12.1, and SGCC certified tempered shower glass with full batch traceability." },
+      {
+        property: "og:description",
+        content:
+          "ANSI, 16 CFR 1201 Cat. II, CAN/CGSB 12.1, and SGCC certified tempered shower glass with full batch traceability.",
+      },
       { property: "og:image", content: safetyTest },
       { name: "twitter:image", content: safetyTest },
     ],
@@ -32,12 +47,36 @@ export const Route = createFileRoute("/safety")({
 });
 
 const certs = [
-  { code: "ANSI Z97.1", icon: ShieldCheck, desc: "American National Standard for Safety Glazing Materials — structural integrity and safe breakage patterns." },
-  { code: "16 CFR 1201", icon: FileCheck2, desc: "Category II US Federal safety standards for architectural glazing in high-traffic environments." },
-  { code: "CAN/CGSB 12.1", icon: ClipboardCheck, desc: "Safety glazing compliance for the Canadian construction market and architectural enclosure systems." },
-  { code: "SGCC Certified", icon: Microscope, desc: "Safety Glazing Certification Council — independent batch certification with permanent etched stamp." },
-  { code: "ASTM C1048", icon: Beaker, desc: "Standard for heat-strengthened and tempered flat glass — verified across every Rider production run." },
-  { code: "Full Batch Traceability", icon: FileSearch, desc: "Every panel ties to a tempering lot, QC record, and SGCC stamp — auditable for years." },
+  {
+    code: "ANSI Z97.1",
+    icon: ShieldCheck,
+    desc: "American National Standard for Safety Glazing Materials — structural integrity and safe breakage patterns.",
+  },
+  {
+    code: "16 CFR 1201",
+    icon: FileCheck2,
+    desc: "Category II US Federal safety standards for architectural glazing in high-traffic environments.",
+  },
+  {
+    code: "CAN/CGSB 12.1",
+    icon: ClipboardCheck,
+    desc: "Safety glazing compliance for the Canadian construction market and architectural enclosure systems.",
+  },
+  {
+    code: "SGCC Certified",
+    icon: Microscope,
+    desc: "Safety Glazing Certification Council — independent batch certification with permanent etched stamp.",
+  },
+  {
+    code: "ASTM C1048",
+    icon: Beaker,
+    desc: "Standard for heat-strengthened and tempered flat glass — verified across every Rider production run.",
+  },
+  {
+    code: "Full Batch Traceability",
+    icon: FileSearch,
+    desc: "Every panel ties to a tempering lot, QC record, and SGCC stamp — auditable for years.",
+  },
 ];
 
 function Page() {
@@ -46,7 +85,11 @@ function Page() {
       {/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden border-b border-border bg-secondary text-secondary-foreground">
         <div className="absolute inset-0">
-          <img src={safetyTest} alt="Impact testing tempered shower glass" className="h-full w-full object-cover opacity-40" />
+          <img
+            src={safetyTest}
+            alt="Impact testing tempered shower glass"
+            className="h-full w-full object-cover opacity-40"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/30" />
           <div className="absolute inset-0 grid-blueprint opacity-15" />
         </div>
@@ -64,11 +107,16 @@ function Page() {
               North American safety standards, baked into every batch.
             </h1>
             <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed opacity-85">
-              Rider Shower Systems Glass is engineered to meet and exceed international safety glazing requirements. Every panel in our program is manufactured with full traceability for repeatable OEM and distributor supply.
+              Rider Shower Systems Glass is engineered to meet and exceed international safety
+              glazing requirements. Every panel in our program is manufactured with full
+              traceability for repeatable OEM and distributor supply.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SendDrawingButton size="lg" variant="solid" label="Request Compliance Packet" />
-              <a href="#certs" className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10">
+              <a
+                href="#certs"
+                className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
+              >
                 View certifications <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -91,12 +139,19 @@ function Page() {
       {/* SECTION 3 — CERT GRID */}
       <section id="certs" className="container-rider py-20">
         <Reveal className="mb-10 max-w-2xl">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Certifications</span>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">Six standards. One panel.</h2>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            Certifications
+          </span>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+            Six standards. One panel.
+          </h2>
         </Reveal>
         <StaggerGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {certs.map(({ code, icon: Icon, desc }) => (
-            <StaggerItem key={code} className="rounded-xl border border-border bg-card p-7 text-center shadow-sm hover:shadow-md transition">
+            <StaggerItem
+              key={code}
+              className="rounded-xl border border-border bg-card p-7 text-center shadow-sm hover:shadow-md transition"
+            >
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <Icon className="h-7 w-7" />
               </div>
@@ -112,16 +167,30 @@ function Page() {
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal className="relative">
             <div className="absolute -inset-4 rounded-2xl bg-primary/20 blur-2xl" />
-            <img src={sgcc} alt="SGCC traceability stamp etched into corner of tempered glass" loading="lazy" width={1200} height={900} className="relative rounded-xl border border-border shadow-xl object-cover h-[420px] w-full" />
+            <img
+              src={batchTraceability}
+              alt="SGCC traceability stamp etched into corner of tempered glass"
+              loading="lazy"
+              width={1200}
+              height={900}
+              className="relative rounded-xl border border-border shadow-xl object-cover h-[420px] w-full"
+            />
           </Reveal>
           <Reveal>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Batch Traceability</span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">A permanent SGCC stamp on every panel.</h2>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              Batch Traceability
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+              A permanent SGCC stamp on every panel.
+            </h2>
             <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-              The SGCC stamp is etched into every panel at tempering. This guarantees enclosures meet North American building codes and protects your brand from compliance liabilities during installation.
+              The SGCC stamp is etched into every panel at tempering. This guarantees enclosures
+              meet North American building codes and protects your brand from compliance liabilities
+              during installation.
             </p>
             <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-              Every stamp ties back to a tempering lot, QC record, and shipment — auditable from the install site for years.
+              Every stamp ties back to a tempering lot, QC record, and shipment — auditable from the
+              install site for years.
             </p>
           </Reveal>
         </div>
@@ -130,31 +199,74 @@ function Page() {
       {/* SECTION 5 — QC PROCESS */}
       <section className="container-rider py-20">
         <Reveal className="mb-10 max-w-2xl">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Quality Control Process</span>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">Four QC checkpoints before any panel ships.</h2>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            Quality Control Process
+          </span>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+            Four QC checkpoints before any panel ships.
+          </h2>
         </Reveal>
-        <ProcessTimeline
-          steps={[
-            { step: "01", title: "Pre-Temper Inspection", desc: "Glass cleared for inclusions, scratches, and edge defects before entering the furnace.", image: factory },
-            { step: "02", title: "Tempering Witness", desc: "Inline temperature, cool-rate, and stress-pattern monitoring on every batch.", image: qc },
-            { step: "03", title: "Optical Light-Table", desc: "Every panel scanned for distortion and surface defects under polarised light.", image: polishing },
-            { step: "04", title: "Pack Witness", desc: "SGCC stamp, edge finish, and SKU label verified before crate seal.", image: packing },
-          ]}
-        />
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              step: "01",
+              title: "Pre-Temper Inspection",
+              desc: "Glass cleared for inclusions, scratches, and edge defects before entering the furnace.",
+            },
+            {
+              step: "02",
+              title: "Tempering Witness",
+              desc: "Inline temperature, cool-rate, and stress-pattern monitoring on every batch.",
+            },
+            {
+              step: "03",
+              title: "Optical Light-Table",
+              desc: "Every panel scanned for distortion and surface defects under polarised light.",
+            },
+            {
+              step: "04",
+              title: "Pack Witness",
+              desc: "SGCC stamp, edge finish, and SKU label verified before crate seal.",
+            },
+          ].map(({ step, title, desc }) => (
+            <StaggerItem key={step}>
+              <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col h-full">
+                {/* 16:9 placeholder — replace with <img src={yourImport} className="aspect-video w-full object-cover" alt="..." /> when ready */}
+                <div className="aspect-video bg-muted w-full" />
+                <div className="p-5 flex flex-col gap-3 flex-1">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-[11px] font-bold">
+                      {step}
+                    </span>
+                    <h3 className="font-display font-bold text-foreground text-sm uppercase tracking-wide">
+                      {title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
       </section>
 
       {/* SECTION 6 — IMPACT TESTING */}
       <section className="bg-secondary text-secondary-foreground">
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Impact Testing</span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">Sample panels tested per batch.</h2>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              Impact Testing
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
+              Compliance baked into every batch.
+            </h2>
             <p className="mt-4 text-base opacity-85 leading-relaxed">
-              Sample panels from every batch are pulled and impact-tested per ANSI Z97.1 and 16 CFR 1201 protocols. Test results are filed to the batch traceability record — available on request for any panel we ship.
+              Tempering lines use light-table technology and digital scanners to inspect panels for
+              optical distortion, surface defects, and tempering consistency before packing.{" "}
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Drop-bag impact test per ANSI Z97.1",
+                "Drawing-to-SKU conversion for repeat supply",
                 "Fragmentation analysis per 16 CFR 1201 Cat. II",
                 "Surface compression verification (≥10,000 psi)",
                 "Per-batch test reports filed for 7 years",
@@ -168,16 +280,33 @@ function Page() {
           </div>
           <div className="relative">
             <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
-            <img src={safetyTest} alt="Impact testing tempered shower glass with drop bag" loading="lazy" className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full" />
+            <img
+              src={safetyTest}
+              alt="Impact testing tempered shower glass with drop bag"
+              loading="lazy"
+              className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full"
+            />
           </div>
+        </div>
+        <div>
+          <a href="">
+            <p>Read full compliance details</p>
+          </a>
         </div>
       </section>
 
       {/* SECTION 7 — GALLERY */}
       <section className="container-rider py-20">
-        <Reveal className="mb-10 max-w-2xl">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Inside QC</span>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">From the inspection floor.</h2>
+        <Reveal className="mb-10">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            Production Gallery
+          </span>
+          <div className="mt-2 flex items-center justify-between gap-6">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+              From the inspection floor: Real fabrication and shipping
+            </h2>
+            <button className="shrink-0">Quote a batch</button>
+          </div>
         </Reveal>
         <Gallery
           images={[
@@ -196,10 +325,16 @@ function Page() {
         <div className="container-rider py-20">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <Reveal className="lg:col-span-5">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Documentation</span>
-              <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">A full compliance packet for your engineers.</h2>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+                Documentation
+              </span>
+              <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+                A full compliance packet for your engineers.
+              </h2>
               <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-                On request we ship your engineering team a complete compliance dossier — certifications, test reports, batch traceability records, and project-specific declarations.
+                On request we ship your engineering team a complete compliance dossier —
+                certifications, test reports, batch traceability records, and project-specific
+                declarations.
               </p>
               <div className="mt-6">
                 <SendDrawingButton size="md" variant="solid" label="Request Compliance Packet" />
@@ -214,11 +349,16 @@ function Page() {
                 "ASTM C1048 heat-treatment record",
                 "Per-batch traceability log",
               ].map((d) => (
-                <div key={d} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 shadow-sm">
+                <div
+                  key={d}
+                  className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 shadow-sm"
+                >
                   <FileCheck2 className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
                   <div>
                     <div className="text-sm font-semibold text-foreground">{d}</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">PDF · per-batch · auditable</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">
+                      PDF · per-batch · auditable
+                    </div>
                   </div>
                 </div>
               ))}
@@ -230,14 +370,27 @@ function Page() {
       {/* SECTION 9 — REGIONAL */}
       <section className="container-rider py-20">
         <Reveal className="mb-10 max-w-2xl">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Regional Compliance</span>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">Built for the markets you ship into.</h2>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            Regional Compliance
+          </span>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+            Built for the markets you ship into.
+          </h2>
         </Reveal>
         <div className="grid gap-5 md:grid-cols-3">
           {[
-            { region: "United States", body: "ANSI Z97.1 + 16 CFR 1201 Cat. II + SGCC. Stamp visible at install for inspector sign-off." },
-            { region: "Canada", body: "CAN/CGSB 12.1 conformance with bilingual documentation available on request." },
-            { region: "Project-Specific", body: "Hotel chains, multi-unit developers, and OEMs receive project-specific declarations on letterhead." },
+            {
+              region: "United States",
+              body: "ANSI Z97.1 + 16 CFR 1201 Cat. II + SGCC. Stamp visible at install for inspector sign-off.",
+            },
+            {
+              region: "Canada",
+              body: "CAN/CGSB 12.1 conformance with bilingual documentation available on request.",
+            },
+            {
+              region: "Project-Specific",
+              body: "Hotel chains, multi-unit developers, and OEMs receive project-specific declarations on letterhead.",
+            },
           ].map((r) => (
             <div key={r.region} className="rounded-xl border border-border bg-card p-7 shadow-sm">
               <h3 className="font-display text-xl font-bold text-primary">{r.region}</h3>
@@ -251,8 +404,12 @@ function Page() {
       <section className="bg-secondary text-secondary-foreground">
         <div className="container-rider py-20">
           <Reveal className="mb-10 max-w-2xl">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">Compliance Timeline</span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">From PO to packet — 24 hours.</h2>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              Compliance Timeline
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
+              From PO to packet — 24 hours.
+            </h2>
           </Reveal>
           <div className="grid gap-5 md:grid-cols-4">
             {[
@@ -261,7 +418,10 @@ function Page() {
               { t: "Pack & seal", b: "Witness sign-off on stamp, edge, and SKU label." },
               { t: "Packet delivered", b: "PDF compliance dossier emailed within 24h of ship." },
             ].map((s, i) => (
-              <div key={s.t} className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+              <div
+                key={s.t}
+                className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+              >
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </div>
@@ -276,11 +436,28 @@ function Page() {
       {/* SECTION 11 — FAQ */}
       <section className="container-rider py-20">
         <FAQ
+          centered
           items={[
-            { q: "Is every panel SGCC stamped?", a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program." },
-            { q: "Can I get test reports for a specific batch?", a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request." },
-            { q: "Do you support project-specific declarations?", a: "Yes. Hotel chains, multi-unit developers, and OEMs receive project-specific compliance letters on Rider letterhead." },
-            { q: "Are panels compliant in Canada?", a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request." },
+            {
+              q: "What file types do you accept?",
+              a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program.",
+            },
+            {
+              q: "Do you ship mixed format containers",
+              a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request.",
+            },
+            {
+              q: "Are panels SGCC containers certified",
+              a: "Yes. Hotel chains, multi-unit developers, and OEMs receive project-specific compliance letters on Rider letterhead.",
+            },
+            {
+              q: "Can you private-label the glass?",
+              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request.",
+            },
+            {
+              q: "What is the minimum order for OEM program?",
+              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request.",
+            },
           ]}
         />
       </section>
@@ -288,7 +465,7 @@ function Page() {
       {/* SECTION 12 — CTA */}
       <section className="container-rider pb-24">
         <CtaBand
-          title="Need a compliance packet for your engineers?"
+          title="Ready to Scale Your Production?"
           intro="Send us your project drawing — we'll ship the full compliance dossier alongside the engineering review."
         />
       </section>
