@@ -166,7 +166,7 @@ function LibraryPage() {
       </section> */}
 
       {/* SECTION 4 — FILTER + RESULTS */}
-      <section id="filters" className="container-rider pb-12">
+      <section id="filters" className="container-rider py-12">
         <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
@@ -505,7 +505,7 @@ function LibraryPage() {
       </section>
 
       {/* SECTION 10 — PROGRAM CTA STRIP */}
-      <section className="container-rider py-16">
+      {/* <section className="container-rider py-16">
         <div className="grid gap-5 md:grid-cols-3">
           {[
             { title: "Distributor", body: "Carton-packed standard SKUs ready for retail." },
@@ -527,34 +527,96 @@ function LibraryPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* SECTION 11 — FAQ */}
-      <section className="container-rider pb-20">
+      <section className="container-rider py-20">
         <FAQ
+          centered
           items={[
             {
-              q: "Can I order a single SKU from the library?",
-              a: "Library SKUs are program-supply oriented. Typical first runs start at one mixed 40' HQ container — combine multiple SKUs to fill it."
+              q: "What file types do you accept?",
+              a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program.",
             },
             {
-              q: "What does the SKU code mean?",
-              a: 'RS = Rider Shower, the next two letters are the category, then dimensions in inches, then thickness in mm. Example: RS-SL-3076-08 = Sliding, 30" × 76", 8mm.'
+              q: "Do you ship mixed format containers",
+              a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request.",
             },
             {
-              q: "Can a library SKU be private-labelled?",
-              a: "Yes — silk-screen ceramic-frit branding is available on any RS-SKU during tempering."
+              q: "Are panels SGCC containers certified",
+              a: "Yes. Hotel chains, multi-unit developers, and OEMs receive project-specific compliance letters on Rider letterhead.",
             },
             {
-              q: "What if my size isn't listed?",
-              a: "Send a drawing — engineering converts custom geometry into a Rider RS-SKU within 24 hours."
-            }
+              q: "Can you private-label the glass?",
+              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request.",
+            },
+            {
+              q: "What is the minimum order for OEM program?",
+              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request.",
+            },
           ]}
         />
       </section>
 
+      {/* SECTION 11b — B2B USE CASES */}
+      <section className="bg-surface-2 border-y border-border">
+        <div className="container-rider py-20">
+          <Reveal className="mb-10 max-w-2xl">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              B2B OEM Solutions
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+              Program-ready glass formats.
+            </h2>
+          </Reveal>
+          <StaggerGroup className="grid gap-6 sm:grid-cols-3">
+            {[
+              {
+                badge: "Hospitality",
+                title: "Hotel bath renovations",
+                desc: "Repeat sliding format across hundreds of identical bathrooms.",
+                program: "Hospitality Program",
+              },
+              {
+                badge: "OEM",
+                title: "Hardware-system OEMs",
+                desc: "Glass cut and drilled to your roller, guide, and handle spec.",
+                program: "OEM Program",
+              },
+              {
+                badge: "Distribution",
+                title: "Big-box distributors",
+                desc: "Carton-packed standard sizes ready for store shelving.",
+                program: "Distribution Program",
+              },
+            ].map((c) => (
+              <StaggerItem key={c.badge}>
+                <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg h-full flex flex-col">
+                  <div className="relative h-52 overflow-hidden bg-muted rounded-t-xl">
+                    <span className="absolute left-3 top-3 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                      {c.badge}
+                    </span>
+                  </div>
+                  <div className="flex flex-col flex-1 p-5 gap-3">
+                    <h3 className="font-display text-base font-bold text-foreground">{c.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{c.desc}</p>
+                    <SendDrawingButton
+                      size="sm"
+                      variant="outline"
+                      label="Request Quote"
+                      defaultProgram={c.program}
+                      withIcon={false}
+                    />
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
+
       {/* SECTION 12 — CTA */}
-      <section className="container-rider pb-24">
+      <section className="container-rider pt-20 pb-24">
         <CtaBand
           title="Ready to plan a library order?"
           intro="Send your shortlist of RS-SKUs, sizes, and quantities — a Rider program manager replies with a mixed-container quote within 24 hours."
