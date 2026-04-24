@@ -5,7 +5,6 @@ import { Search, X, Ruler, ArrowRight, Filter, Layers3 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import libraryImg from "@/assets/format-library.jpg";
-import warehouse from "@/assets/warehouse-rows.jpg";
 import factory from "@/assets/factory-floor.jpg";
 import packing from "@/assets/process-packing.jpg";
 import polishing from "@/assets/process-polishing.jpg";
@@ -13,6 +12,13 @@ import drilling from "@/assets/process-drilling.jpg";
 import qc from "@/assets/process-qc.jpg";
 import port from "@/assets/shipping-port.jpg";
 import lframes from "@/assets/logistics-lframes.jpg";
+
+import { TOP_CATEGORIES } from "./library.categories";
+import { FORMATS, SKU_IMAGES, CATEGORIES, THICKNESSES, TYPES, HARDWARE, THICKNESS_COLORS } from "./library.skus";
+import type { Category, GlassType, Hardware, Format } from "./library.skus";
+
+
+
 
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
 import { SendDrawingButton } from "@/components/site/SendDrawingButton";
@@ -43,76 +49,6 @@ export const Route = createFileRoute("/library")({
   }),
 });
 
-type GlassType = "Clear" | "Low-Iron" | "Frosted" | "Tinted Bronze" | "Tinted Grey";
-type Hardware = "Roller" | "Pivot Hinge" | "Wall Hinge" | "Glass-to-Glass Hinge" | "Clamp" | "Channel";
-type Category = "Sliding" | "Swing" | "Tub" | "Fixed" | "Return Panel";
-
-type Format = {
-  sku: string;
-  category: Category;
-  width: number;
-  height: number;
-  thickness: 6 | 8 | 10 | 12;
-  type: GlassType;
-  hardware: Hardware[];
-};
-
-const FORMATS: Format[] = [
-  { sku: "RS-SL-2476-08", category: "Sliding", width: 24, height: 76, thickness: 8, type: "Clear", hardware: ["Roller"] },
-  { sku: "RS-SL-2876-08", category: "Sliding", width: 28, height: 76, thickness: 8, type: "Clear", hardware: ["Roller"] },
-  { sku: "RS-SL-3076-08", category: "Sliding", width: 30, height: 76, thickness: 8, type: "Low-Iron", hardware: ["Roller"] },
-  { sku: "RS-SL-3278-10", category: "Sliding", width: 32, height: 78, thickness: 10, type: "Clear", hardware: ["Roller"] },
-  { sku: "RS-SL-3678-10", category: "Sliding", width: 36, height: 78, thickness: 10, type: "Low-Iron", hardware: ["Roller"] },
-  { sku: "RS-SW-2476-10", category: "Swing", width: 24, height: 76, thickness: 10, type: "Clear", hardware: ["Pivot Hinge", "Wall Hinge"] },
-  { sku: "RS-SW-2676-10", category: "Swing", width: 26, height: 76, thickness: 10, type: "Low-Iron", hardware: ["Pivot Hinge", "Glass-to-Glass Hinge"] },
-  { sku: "RS-SW-2878-12", category: "Swing", width: 28, height: 78, thickness: 12, type: "Clear", hardware: ["Wall Hinge", "Glass-to-Glass Hinge"] },
-  { sku: "RS-SW-3078-12", category: "Swing", width: 30, height: 78, thickness: 12, type: "Low-Iron", hardware: ["Wall Hinge"] },
-  { sku: "RS-SW-3280-12", category: "Swing", width: 32, height: 80, thickness: 12, type: "Frosted", hardware: ["Pivot Hinge"] },
-  { sku: "RS-TB-4858-06", category: "Tub", width: 48, height: 58, thickness: 6, type: "Clear", hardware: ["Roller", "Channel"] },
-  { sku: "RS-TB-5258-06", category: "Tub", width: 52, height: 58, thickness: 6, type: "Tinted Bronze", hardware: ["Roller"] },
-  { sku: "RS-TB-5660-08", category: "Tub", width: 56, height: 60, thickness: 8, type: "Clear", hardware: ["Roller"] },
-  { sku: "RS-TB-6060-08", category: "Tub", width: 60, height: 60, thickness: 8, type: "Frosted", hardware: ["Channel"] },
-  { sku: "RS-FX-3076-08", category: "Fixed", width: 30, height: 76, thickness: 8, type: "Clear", hardware: ["Clamp", "Channel"] },
-  { sku: "RS-FX-3678-10", category: "Fixed", width: 36, height: 78, thickness: 10, type: "Low-Iron", hardware: ["Clamp"] },
-  { sku: "RS-FX-4280-10", category: "Fixed", width: 42, height: 80, thickness: 10, type: "Clear", hardware: ["Clamp", "Channel"] },
-  { sku: "RS-FX-4880-12", category: "Fixed", width: 48, height: 80, thickness: 12, type: "Low-Iron", hardware: ["Clamp"] },
-  { sku: "RS-FX-6080-12", category: "Fixed", width: 60, height: 80, thickness: 12, type: "Tinted Grey", hardware: ["Clamp"] },
-  { sku: "RS-RP-1276-08", category: "Return Panel", width: 12, height: 76, thickness: 8, type: "Clear", hardware: ["Clamp"] },
-  { sku: "RS-RP-1876-08", category: "Return Panel", width: 18, height: 76, thickness: 8, type: "Clear", hardware: ["Clamp", "Channel"] },
-  { sku: "RS-RP-2478-10", category: "Return Panel", width: 24, height: 78, thickness: 10, type: "Low-Iron", hardware: ["Clamp"] },
-];
-
-const CATEGORIES: Category[] = ["Sliding", "Swing", "Tub", "Fixed", "Return Panel"];
-const THICKNESSES: Format["thickness"][] = [6, 8, 10, 12];
-const TYPES: GlassType[] = ["Clear", "Low-Iron", "Frosted", "Tinted Bronze", "Tinted Grey"];
-const HARDWARE: Hardware[] = ["Roller", "Pivot Hinge", "Wall Hinge", "Glass-to-Glass Hinge", "Clamp", "Channel"];
-
-type TopCategory = {
-  category: Category;
-  featuredSku: string;
-  description: string;
-  image?: string;
-};
-
-const TOP_CATEGORIES: TopCategory[] = [
-  { category: "Sliding", featuredSku: "RS-SL-3076-08", description: "Top-roller and bypass panels for standard alcove and walk-in configurations." },
-  { category: "Swing", featuredSku: "RS-SW-2878-12", description: "Frameless pivot and hinged doors compatible with all major wall and glass-to-glass hardware platforms." },
-  { category: "Tub", featuredSku: "RS-TB-5660-08", description: "Over-tub sliding enclosures in standard 48\"–60\" spans with clear and frosted options." },
-  { category: "Fixed", featuredSku: "RS-FX-4280-10", description: "Stationary panels for walk-in entries, clamp-mount and U-channel compatible." },
-  { category: "Return Panel", featuredSku: "RS-RP-1876-08", description: "Side returns for frameless walk-in enclosures, clamp and channel mount." },
-];
-
-// To add an image for a SKU:
-// 1. Add an import at the top: import mySku from "@/assets/skus/RS-SL-2476-08.jpg";
-// 2. Add an entry below:       "RS-SL-2476-08": mySku,
-const SKU_IMAGES: Partial<Record<string, string>> = {};
-
-const THICKNESS_COLORS: Record<number, string> = {
-  6:  "bg-sky-600 text-white",
-  8:  "bg-primary text-primary-foreground",
-  10: "bg-amber-600 text-white",
-  12: "bg-neutral-800 text-white",
-};
 
 function LibraryPage() {
   const [query, setQuery] = useState("");
@@ -124,6 +60,7 @@ function LibraryPage() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return FORMATS.filter((f) => {
+      if (!SKU_IMAGES[f.sku]) return false;
       if (category !== "All" && f.category !== category) return false;
       if (thickness !== "All" && f.thickness !== thickness) return false;
       if (type !== "All" && f.type !== type) return false;
@@ -289,7 +226,7 @@ function LibraryPage() {
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
               <div className="text-sm text-muted-foreground">
                 Showing <span className="font-bold text-foreground">{filtered.length}</span> of{" "}
-                <span className="font-bold text-foreground">{FORMATS.length}</span> standard formats
+                <span className="font-bold text-foreground">{Object.keys(SKU_IMAGES).length}</span> standard formats
               </div>
               {hasFilters && (
                 <button
