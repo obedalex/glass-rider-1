@@ -290,7 +290,7 @@ function Page() {
         </div>
         <div>
           <a href="">
-            <p>Read full compliance details</p>
+            <button>Read full compliance details</button>
           </a>
         </div>
       </section>
@@ -321,7 +321,7 @@ function Page() {
       </section>
 
       {/* SECTION 8 — DOCUMENTATION */}
-      <section className="bg-surface-2 border-y border-border">
+      <section className="bg-surface border-y border-border">
         <div className="container-rider py-20">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <Reveal className="lg:col-span-5">

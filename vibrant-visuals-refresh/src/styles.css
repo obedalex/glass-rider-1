@@ -10,7 +10,7 @@
   --radius: 0.5rem;
 
   /* Page base */
-  --background: oklch(1 0 0);
+  --background: oklch(0.97 0.004 240);
   --foreground: oklch(0.18 0.04 255);
 
   --surface: oklch(1 0 0);
@@ -22,7 +22,7 @@
   --popover-foreground: oklch(0.18 0.04 255);
 
   /* Primary — crimson red (CTA buttons, underlines, badges) */
-  --primary: oklch(0.45 0.21 27);
+  --primary: oklch(0.61 0.21 27);
   --primary-foreground: oklch(1 0 0);
 
   /* Secondary — dark charcoal hero section */

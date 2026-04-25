@@ -347,7 +347,7 @@ function LibraryPage() {
       </section>
 
       {/* SECTION 5 — SKU NAMING */}
-      <section className="bg-surface-2 border-y border-border">
+      <section className="bg-surface border-y border-border">
         <div className="container-rider py-20">
           <Reveal className="mb-10 max-w-2xl">
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
