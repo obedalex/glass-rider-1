@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 
 export type GalleryImage = {
@@ -51,6 +51,9 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
 
       <Dialog open={openIdx !== null} onOpenChange={(o) => !o && setOpenIdx(null)}>
         <DialogContent className="max-w-4xl border-0 bg-transparent p-0 shadow-none">
+          <DialogTitle className="sr-only">
+            {openIdx !== null ? images[openIdx].alt : "Image preview"}
+          </DialogTitle>
           {openIdx !== null && (
             <img
               src={images[openIdx].src}

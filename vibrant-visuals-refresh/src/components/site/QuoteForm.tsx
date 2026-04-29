@@ -1,4 +1,5 @@
-﻿import { Upload, FileCheck2, X, FileText } from "lucide-react";
+﻿/* eslint-disable prettier/prettier */
+import { Upload, FileCheck2, X, FileText } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export function QuoteForm({
@@ -82,23 +83,20 @@ export function QuoteForm({
           onSubmit={async (e) => {
             e.preventDefault();
             setErrorMsg(null);
+
+            const totalSize = files.reduce((sum, f) => sum + f.size, 0);
+            if (totalSize > 25 * 1024 * 1024) {
+              setErrorMsg("Total file size exceeds 25 MB. Please remove some files before submitting.");
+              return;
+            }
+
             setIsLoading(true);
             const fd = new FormData(e.currentTarget);
+            fd.set("program", program);
+            files.forEach((f) => fd.append("files", f));
+
             try {
-              const res = await fetch("/api/quote", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  name: fd.get("name"),
-                  company: fd.get("company"),
-                  email: fd.get("email"),
-                  phone: fd.get("phone"),
-                  businessType: fd.get("businessType"),
-                  volume: fd.get("volume"),
-                  program,
-                  notes: fd.get("notes"),
-                }),
-              });
+              const res = await fetch("/api/quote", { method: "POST", body: fd });
               const data = await res.json();
               if (!res.ok) throw new Error(data.error ?? "Submission failed");
               setSubmitted(true);

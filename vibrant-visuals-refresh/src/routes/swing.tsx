@@ -114,6 +114,9 @@ function Page() {
         { q: "Why does internal edge polish matter?", a: "Unpolished internal cut-outs concentrate stress when hinges are torqued, leading to delayed shattering. Polished edges remove the micro-fracture risk." },
         { q: "Can 12mm panels ship overseas safely?", a: "Yes — our heavy-duty wood crating with foam blocking and moisture wrap is engineered for trans-Pacific transit." },
       ]}
+      whyAfterHero
+      useCasesAfterProcess
+      comparisonAfterCerts
     />
   );
 }

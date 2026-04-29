@@ -2,7 +2,7 @@
 import { useSendDrawing } from "./SendDrawingProvider";
 import { cn } from "@/lib/utils";
 
-type Variant = "solid" | "outline" | "ghost-light";
+type Variant = "solid" | "outline" | "ghost-light" | "white";
 type Size = "sm" | "md" | "lg";
 
 const sizeClasses: Record<Size, string> = {
@@ -18,6 +18,8 @@ const variantClasses: Record<Variant, string> = {
     "border border-border bg-background text-foreground hover:border-primary hover:text-primary",
   "ghost-light":
     "bg-white/10 text-white border border-white/20 backdrop-blur hover:bg-white/20",
+  white:
+    "bg-white text-primary shadow-lg hover:bg-white/90",
 };
 
 export function SendDrawingButton({
@@ -47,9 +49,9 @@ export function SendDrawingButton({
         className,
       )}
     >
-      {withIcon && variant !== "solid" ? <Upload className="h-4 w-4" /> : null}
+      {withIcon && variant !== "solid" && variant !== "white" ? <Upload className="h-4 w-4" /> : null}
       {label}
-      {withIcon && variant === "solid" ? <ArrowRight className="h-4 w-4" /> : null}
+      {withIcon && (variant === "solid" || variant === "white") ? <ArrowRight className="h-4 w-4" /> : null}
     </button>
   );
 }

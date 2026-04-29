@@ -463,7 +463,7 @@ function Page() {
       </section>
 
       {/* SECTION 12 — CTA */}
-      <section className="container-rider pb-24">
+      <section className="flex-1 flex flex-col">
         <CtaBand
           title="Ready to Scale Your Production?"
           intro="Send us your project drawing — we'll ship the full compliance dossier alongside the engineering review."

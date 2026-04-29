@@ -616,7 +616,7 @@ function LibraryPage() {
       </section>
 
       {/* SECTION 12 — CTA */}
-      <section className="container-rider pt-20 pb-24">
+      <section className="pt-20 flex-1 flex flex-col">
         <CtaBand
           title="Ready to plan a library order?"
           intro="Send your shortlist of RS-SKUs, sizes, and quantities — a Rider program manager replies with a mixed-container quote within 24 hours."

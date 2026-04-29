@@ -107,11 +107,16 @@ function Page() {
         { label: "Mixed packing", rider: "Carton + crate + L-frame", standard: "Single format only" },
         { label: "SKU consistency", rider: "Drift-free batch to batch", standard: "Variable" },
       ]}
+      certsAfterHero
+      comparisonAfterCerts
+      processAfterComparison
+      hideUseCases
       faqs={[
-        { q: "Can you private-label the cartons?", a: "Yes — printed retail cartons with your brand artwork are a standard option for distributor programs." },
-        { q: "Do you support mixed-format containers?", a: "Yes. A single 40' HQ container can combine carton, crate, and L-frame packing across multiple SKUs to maximise distributor utility." },
-        { q: "What's the smallest order quantity?", a: "Typical first runs start at one mixed 40' HQ container. Ongoing program lots are sized to your forecast." },
-        { q: "Are the cartons retail-floor ready?", a: "Yes. Carton stock, label printing, and packing density are all engineered for big-box retail unboxing and shelving." },
+        { q: "What file types do you accept?", a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program." },
+        { q: "Do you ship mixed format containers", a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request." },
+        { q: "Are panels SGCC containers certified", a: "Yes. Hotel chains, multi-unit developers, and OEMs receive project-specific compliance letters on Rider letterhead." },
+        { q: "Can you private-label the glass?", a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request." },
+        { q: "What is the minimum order for OEM program?", a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request." },
       ]}
     />
   );

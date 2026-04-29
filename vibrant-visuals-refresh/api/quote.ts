@@ -1,5 +1,15 @@
 export const config = { runtime: "edge" };
 
+function bufferToBase64(buf: ArrayBuffer): string {
+  const bytes = new Uint8Array(buf);
+  let binary = "";
+  const chunk = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+  }
+  return btoa(binary);
+}
+
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 });
@@ -12,18 +22,34 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(JSON.stringify({ error: "Server misconfiguration" }), { status: 500 });
   }
 
-  let body: Record<string, string>;
+  let body: FormData;
   try {
-    body = await req.json();
+    body = await req.formData();
   } catch {
     return new Response(JSON.stringify({ error: "Invalid request body" }), { status: 400 });
   }
 
-  const { name, company, email, phone, businessType, volume, program, notes } = body;
+  const name = body.get("name") as string;
+  const company = body.get("company") as string;
+  const email = body.get("email") as string;
+  const phone = body.get("phone") as string;
+  const businessType = body.get("businessType") as string;
+  const volume = body.get("volume") as string;
+  const program = body.get("program") as string;
+  const notes = body.get("notes") as string;
 
   if (!name || !company || !email || !program) {
     return new Response(JSON.stringify({ error: "Missing required fields" }), { status: 400 });
   }
+
+  const fileEntries = body.getAll("files").filter((v): v is File => v instanceof File && v.size > 0);
+
+  const attachments = await Promise.all(
+    fileEntries.map(async (f) => {
+      const buf = await f.arrayBuffer();
+      return { filename: f.name, content: bufferToBase64(buf) };
+    })
+  );
 
   const html = `
     <h2 style="margin:0 0 16px;font-family:sans-serif;">New Quote Request — Rider Shower Systems</h2>
@@ -46,18 +72,28 @@ export default async function handler(req: Request): Promise<Response> {
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      from: "Rider Quote Form <noreply@yourdomain.com>",
+      from: "Rider Quote Form <onboarding@resend.dev>",
       to: [toEmail],
       reply_to: email,
       subject: `Quote Request from ${name} — ${company}`,
       html,
+      attachments,
     }),
   });
 
   if (!res.ok) {
-    const err = await res.text();
-    console.error("Resend error:", err);
-    return new Response(JSON.stringify({ error: "Failed to send email" }), { status: 500 });
+    const raw = await res.text();
+    let detail: unknown = raw;
+    try { detail = JSON.parse(raw); } catch { /* not JSON */ }
+    console.error("Resend error:", res.status, detail);
+    const message =
+      (detail && typeof detail === "object" && "message" in detail && typeof (detail as { message: unknown }).message === "string")
+        ? (detail as { message: string }).message
+        : raw || "Failed to send email";
+    return new Response(
+      JSON.stringify({ error: `Resend ${res.status}: ${message}` }),
+      { status: 500 }
+    );
   }
 
   return new Response(JSON.stringify({ ok: true }), { status: 200 });

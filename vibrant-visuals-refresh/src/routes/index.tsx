@@ -2,6 +2,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
+  CheckCircle2,
   Layers,
   ShieldCheck,
   Microscope,
@@ -43,9 +44,7 @@ import oneSupplyChain from "@/assets/one-supply-chain.png";
 
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
-import { CountUp } from "@/components/site/CountUp";
 import { SendDrawingButton } from "@/components/site/SendDrawingButton";
-import { StatBand } from "@/components/site/StatBand";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { Gallery } from "@/components/site/Gallery";
 import { UseCaseCards } from "@/components/site/UseCaseCards";
@@ -146,47 +145,100 @@ function Home() {
                 Browse Format Library <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-white/80">
-              <Stat
-                value={
-                  <>
-                    <CountUp to={50000} />+
-                  </>
-                }
-                l="Panels delivered"
-              />
-              <Stat
-                value={
-                  <>
-                    <CountUp to={120} />+
-                  </>
-                }
-                l="OEM partners"
-              />
-              <Stat
-                value={
-                  <>
-                    <CountUp to={24} />h
-                  </>
-                }
-                l="Drawing review"
-              />
-            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* SECTION 2 — STAT BAND */}
-      <section className="container-rider -mt-12 relative z-20">
-        <StatBand
-          stats={[
-            { value: 50000, suffix: "+", label: "Panels delivered" },
-            { value: 120, suffix: "+", label: "OEM partners" },
-            { value: 99.6, decimals: 1, suffix: "%", label: "On-time program ship rate" },
-            { value: 24, suffix: "h", label: "Engineering response" }
-          ]}
-        />
+      {/* SECTION — PROCESSING CAPABILITIES */}
+      <section className="bg-secondary text-secondary-foreground">
+        <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
+          <Reveal>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              Processing Capabilities
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
+              Processing Capabilities for Shower System Integration
+            </h2>
+            <p className="mt-4 text-base leading-relaxed opacity-85">
+              Rider Shower Systems glass panels are produced as installation-ready
+              components... Instead of supplying standard tempered panels, Rider
+              prepares each panel according to hardware layout and enclosure geometry
+              requirements used by shower system manufacturers.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {[
+                "Precision hinge cut-outs for frameless swing doors.",
+                "Roller slot preparation for sliding systems.",
+                "CNC-controlled hole positioning for repeatable assembly accuracy.",
+                "Permanent panel identification marking for full traceability.",
+                "Single-panel protective export packaging for OEM handling.",
+              ].map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-primary">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-sm leading-relaxed">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7">
+              <SendDrawingButton size="md" variant="solid" label="Send A Drawing" />
+            </div>
+          </Reveal>
+
+          {/* Image placeholder — replace this div with an <img> once you have the asset */}
+          <Reveal className="relative">
+            <div className="absolute -inset-4 rounded-2xl bg-primary/15 blur-2xl" aria-hidden />
+            <div className="relative rounded-xl border border-white/10 shadow-2xl overflow-hidden w-full h-105 bg-white/5" />
+          </Reveal>
+        </div>
       </section>
+
+      {/* SECTION 2 — TECHNICAL PRECISION
+      <section className="bg-secondary text-secondary-foreground">
+        <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
+            <img
+              src={custom}
+              alt="CAD blueprint with tempered glass panel on workbench"
+              loading="lazy"
+              width={1200}
+              height={900}
+              className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full"
+            />
+          </div>
+          <div>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              Technical Expertise
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
+              From CAD to RS-SKU.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed opacity-85">
+              We convert proprietary CAD formats into repeatable RS-SKUs. Engineering support
+              ensures hinge mapping and handle layouts align with standard North American hardware
+              systems.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {[
+                { icon: Factory, t: "Drawing-to-SKU conversion for repeat supply" },
+                { icon: Cog, t: "Precision U-cuts, corner notches, radius edges" },
+                { icon: Ruler, t: "Hinge mapping for major hardware platforms" },
+                { icon: ShieldCheck, t: "Private-label silk-screen branding" }
+              ].map(({ icon: I, t }) => (
+                <li key={t} className="flex items-start gap-3">
+                  <I className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="text-sm">{t}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7">
+              <SendDrawingButton size="md" variant="solid" label="Send a drawing" />
+            </div>
+          </div>
+        </div>
+      </section> */}
 
       {/* SECTION 3 — WHO THIS IS FOR */}
       <section className="container-rider py-20">
@@ -301,6 +353,56 @@ function Home() {
         </div>
       </section>
 
+      {/* SECTION 5 — WHY RIDER */}
+      <section className="container-rider py-20">
+        <div className="flex items-center justify-center">
+          <Reveal className="mb-12 max-w-2xl">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              Manufacturing Execellence{" "}
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground">
+              Engineering-first, program-ready.
+            </h2>
+          </Reveal>
+        </div>
+
+        <StaggerGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              icon: Boxes,
+              title: "Stable Geometry",
+              desc: "Precision alignment ensures structural integrity across thousands of repeat-spec panels."
+            },
+            {
+              icon: BadgeCheck,
+              title: "Safety Assured",
+              desc: "SGCC & ANSI Z97.1 certified tempered glass for uncompromising compliance."
+            },
+            {
+              icon: Eye,
+              title: "Rigorous QC",
+              desc: "Light-table inspection on every panel for optical perfection."
+            },
+            {
+              icon: PackageCheck,
+              title: "Program Ready",
+              desc: "Cartons, crates & L-frames built for distributor warehouse handling."
+            }
+          ].map(({ icon: Icon, title, desc }) => (
+            <StaggerItem
+              key={title}
+              className="rounded-xl bg-card border border-border p-6 hover:border-primary transition"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 font-display text-lg font-bold text-foreground">{title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{desc}</p>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
+
       {/* SECTION 10 — COMPLIANCE */}
       <section className="bg-secondary text-secondary-foreground">
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -354,102 +456,6 @@ function Home() {
         </div>
       </section>
 
-      {/* SECTION 5 — WHY RIDER */}
-      <section className="container-rider py-20">
-        <div className="flex items-center justify-center">
-          <Reveal className="mb-12 max-w-2xl">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-              Manufacturing Execellence{" "}
-            </span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground">
-              Engineering-first, program-ready.
-            </h2>
-          </Reveal>
-        </div>
-
-        <StaggerGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              icon: Boxes,
-              title: "Stable Geometry",
-              desc: "Precision alignment ensures structural integrity across thousands of repeat-spec panels."
-            },
-            {
-              icon: BadgeCheck,
-              title: "Safety Assured",
-              desc: "SGCC & ANSI Z97.1 certified tempered glass for uncompromising compliance."
-            },
-            {
-              icon: Eye,
-              title: "Rigorous QC",
-              desc: "Light-table inspection on every panel for optical perfection."
-            },
-            {
-              icon: PackageCheck,
-              title: "Program Ready",
-              desc: "Cartons, crates & L-frames built for distributor warehouse handling."
-            }
-          ].map(({ icon: Icon, title, desc }) => (
-            <StaggerItem
-              key={title}
-              className="rounded-xl bg-card border border-border p-6 hover:border-primary transition"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-4 font-display text-lg font-bold text-foreground">{title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
-      </section>
-
-      {/* SECTION 6 — TECHNICAL PRECISION */}
-      <section className="bg-secondary text-secondary-foreground">
-        <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="relative">
-            <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
-            <img
-              src={custom}
-              alt="CAD blueprint with tempered glass panel on workbench"
-              loading="lazy"
-              width={1200}
-              height={900}
-              className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full"
-            />
-          </div>
-          <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-              Technical Expertise
-            </span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
-              From CAD to RS-SKU.
-            </h2>
-            <p className="mt-4 text-base leading-relaxed opacity-85">
-              We convert proprietary CAD formats into repeatable RS-SKUs. Engineering support
-              ensures hinge mapping and handle layouts align with standard North American hardware
-              systems.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {[
-                { icon: Factory, t: "Drawing-to-SKU conversion for repeat supply" },
-                { icon: Cog, t: "Precision U-cuts, corner notches, radius edges" },
-                { icon: Ruler, t: "Hinge mapping for major hardware platforms" },
-                { icon: ShieldCheck, t: "Private-label silk-screen branding" }
-              ].map(({ icon: I, t }) => (
-                <li key={t} className="flex items-start gap-3">
-                  <I className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-sm">{t}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-7">
-              <SendDrawingButton size="md" variant="solid" label="Send a drawing" />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION 7 — PROCESS TIMELINE */}
       <section className="container-rider py-20">
         <Reveal className="mb-10 max-w-2xl">
@@ -488,6 +494,50 @@ function Home() {
             }
           ]}
         />
+      </section>
+
+      {/* SECTION — FROM CAD TO RS-SKU */}
+      <section className="bg-surface-2 border-y border-border">
+        <div className="container-rider py-20">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            {/* Image placeholder — replace this div with <img> once you have the asset */}
+            <Reveal className="relative">
+              <div className="absolute -inset-4 rounded-2xl bg-primary/15 blur-2xl" aria-hidden />
+              <div className="relative rounded-xl border border-border shadow-2xl overflow-hidden w-full h-105 bg-muted" />
+            </Reveal>
+            <Reveal>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+                Technical Expertise
+              </span>
+              <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+                From CAD to RS-SKU.
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                We convert proprietary CAD formats into repeatable RS-SKUs. Engineering
+                support ensures hinge mapping and handle layouts align with standard North
+                American hardware systems.
+              </p>
+              <ul className="mt-6 space-y-3">
+                {[
+                  "Drawing-to-SKU conversion for repeat supply",
+                  "Precision U-cuts, corner notches, radius edges",
+                  "Hinge mapping for major hardware platforms",
+                  "Private-label silk-screen branding",
+                ].map((b) => (
+                  <li key={b} className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-primary">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="text-sm text-foreground leading-relaxed">{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7">
+                <SendDrawingButton size="md" variant="solid" label="Send A Drawing" />
+              </div>
+            </Reveal>
+          </div>
+        </div>
       </section>
 
       {/* SECTION 8 — GALLERY */}
@@ -584,21 +634,12 @@ function Home() {
       </section>
 
       {/* SECTION 12 — CTA BAND */}
-      <section className="container-rider pb-24">
+      <section className="flex-1 flex flex-col">
         <CtaBand
           title="Ready to start your shower glass program?"
           intro="Send your CAD or PDF — a Rider engineer reviews every drawing within 24 hours and confirms feasibility, pricing, and lead time."
         />
       </section>
     </>
-  );
-}
-
-function Stat({ value, l }: { value: React.ReactNode; l: string }) {
-  return (
-    <div>
-      <div className="font-display text-2xl font-bold text-white">{value}</div>
-      <div className="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">{l}</div>
-    </div>
   );
 }

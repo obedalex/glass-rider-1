@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { QuoteForm } from "./QuoteForm";
 
 type Ctx = {
@@ -32,6 +32,7 @@ export function SendDrawingProvider({ children }: { children: ReactNode }) {
       {children}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-3xl p-0 max-h-[92vh] overflow-y-auto border-0 bg-transparent shadow-none sm:rounded-2xl">
+          <DialogTitle className="sr-only">Send Drawings for Engineering Review</DialogTitle>
           <QuoteForm
             defaultProgram={defaultProgram}
             onSuccess={() => {

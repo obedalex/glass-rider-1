@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createFileRoute } from "@tanstack/react-router";
 import sliding from "@/assets/sliding-hero.jpg";
 import slidingD1 from "@/assets/sliding-detail-1.jpg";
@@ -114,6 +115,14 @@ function Page() {
         { q: "Do you offer acid-etched privacy bands?", a: "Yes. Banding, full-panel acid etch, and silk-screen privacy patterns are all available as production-line options." },
         { q: "What's a typical lead time for a sliding program lot?", a: "After drawing approval, 25–35 days for production plus transit. First runs are scheduled into the next available tempering window." },
       ]}
+      skuExamples={[
+        { sku: "SD-3068-8C", label: "Standard Entry" },
+        { sku: "SD-3060-8C", label: "Compact Variant" },
+        { sku: "SD-2480-10C", label: "Architectural" },
+        { sku: "SD-3680-12C", label: "Heavy Duty" },
+      ]}
+      certsAfterWhy
+      comparisonAfterProcess
     />
   );
 }
