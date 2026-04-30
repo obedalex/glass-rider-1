@@ -7,6 +7,7 @@ import polishing from "@/assets/process-polishing.jpg";
 import qc from "@/assets/process-qc.jpg";
 import packing from "@/assets/process-packing.jpg";
 import crates from "@/assets/logistics-crates.jpg";
+import heavyDutyWood from "@/assets/heavy-duty-wood.png";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
 import factory from "@/assets/factory-floor.jpg";
@@ -99,7 +100,7 @@ function Page() {
         "Multi-point strap locking with foam blocking",
         "Forklift entry base supports for warehouse handling",
       ]}
-      logisticsImage={crates}
+      logisticsImage={heavyDutyWood}
       logisticsImageAlt="Heavy-duty wooden export crates for glass"
       comparison={[
         { label: "Internal cut-out polish", rider: "Every edge polished", standard: "Seamed only — fracture risk" },

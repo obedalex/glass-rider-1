@@ -2,6 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import tub from "@/assets/tub-hero.jpg";
 import tubD1 from "@/assets/tub-detail-1.jpg";
 import tubD2 from "@/assets/tub-detail-2.jpg";
+import oneSkuCarton from "@/assets/one-sku-carton.png";
+import logisticsTub from "@/assets/logistics-tub.png";
+import slidingTubSystem from "@/assets/sliding-tub-system.png";
+import shieldSystem from "@/assets/shield-system.png";
+import bypassSystem from "@/assets/bypass-system.png";
 import drilling from "@/assets/process-drilling.jpg";
 import polishing from "@/assets/process-polishing.jpg";
 import qc from "@/assets/process-qc.jpg";
@@ -13,6 +18,7 @@ import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
 import { ProductPageTemplate } from "@/components/site/ProductPageTemplate";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/tub")({
   component: Page,
@@ -69,7 +75,7 @@ function Page() {
         "Consistent geometry — no field re-measure required",
         "Mixed-pack containers combine multiple tub SKUs per ship",
       ]}
-      whyImage={tubD2}
+      whyImage={oneSkuCarton}
       whyImageAlt="Stack of retail-ready tub enclosure cartons"
       process={[
         { step: "01", title: "SKU Setup", desc: "Drawing approved once; the SKU runs identical for the life of the program.", image: factory },
@@ -98,7 +104,7 @@ function Page() {
         "L-frame bulk standard formats for OEM warehouse",
         "Single 40' HQ container can mix all three formats",
       ]}
-      logisticsImage={packing}
+      logisticsImage={logisticsTub}
       logisticsImageAlt="Mixed-format carton and crate packing in container"
       comparison={[
         { label: "Carton presentation", rider: "Printed retail-grade", standard: "Plain export carton" },
@@ -111,6 +117,47 @@ function Page() {
       comparisonAfterCerts
       processAfterComparison
       hideUseCases
+      afterComparison={
+        <section className="bg-secondary text-secondary-foreground">
+          <div className="container-rider py-20">
+            <Reveal className="mb-10">
+              <h2 className="font-display text-3xl sm:text-4xl font-bold uppercase tracking-wider">
+                Configurations
+              </h2>
+              <p className="mt-2 text-sm opacity-70">
+                Precision architectural layouts for standard and custom tub dimensions.
+              </p>
+            </Reveal>
+            <StaggerGroup className="grid gap-5 md:grid-cols-3">
+              {[
+                { title: "Sliding Tub System", sku: "RS-S100", rangeOfMotion: "180° Slide", mechanism: "Top-Hung Roller", image: slidingTubSystem },
+                { title: "Shield System", sku: "RS-SH45", rangeOfMotion: "Fixed Position", mechanism: "Profile Clamp", image: shieldSystem },
+                { title: "Bypass System", sku: "RS-BP200", rangeOfMotion: "Dual Sliding", mechanism: "Bottom Track", image: bypassSystem },
+              ].map((c) => (
+                <StaggerItem key={c.sku} className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+                  <img src={c.image} alt={c.title} loading="lazy" className="aspect-4/3 w-full object-cover" />
+                  <div className="p-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <h3 className="font-display text-lg font-bold text-foreground">{c.title}</h3>
+                      <span className="shrink-0 rounded bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">{c.sku}</span>
+                    </div>
+                    <div className="mt-4 space-y-2 border-t border-border pt-4">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-semibold uppercase tracking-wider text-muted-foreground">Range of Motion</span>
+                        <span className="font-bold uppercase tracking-wide text-foreground">{c.rangeOfMotion}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-semibold uppercase tracking-wider text-muted-foreground">Mechanism</span>
+                        <span className="font-bold uppercase tracking-wide text-foreground">{c.mechanism}</span>
+                      </div>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          </div>
+        </section>
+      }
       faqs={[
         { q: "What file types do you accept?", a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program." },
         { q: "Do you ship mixed format containers", a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request." },

@@ -26,6 +26,7 @@ import { StatBand } from "@/components/site/StatBand";
 import { Gallery } from "@/components/site/Gallery";
 import { FAQ } from "@/components/site/FAQ";
 import { CtaBand } from "@/components/site/CtaBand";
+import footer2 from "@/assets/footer2.png";
 import { motion as m } from "framer-motion";
 
 export const Route = createFileRoute("/library")({
@@ -620,6 +621,8 @@ function LibraryPage() {
         <CtaBand
           title="Ready to plan a library order?"
           intro="Send your shortlist of RS-SKUs, sizes, and quantities — a Rider program manager replies with a mixed-container quote within 24 hours."
+          image={footer2}
+          imageAlt="Rider glass program engineering"
         />
       </section>
     </>

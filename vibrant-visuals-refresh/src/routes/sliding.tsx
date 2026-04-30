@@ -10,9 +10,11 @@ import packing from "@/assets/process-packing.jpg";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
 import lframes from "@/assets/logistics-lframes.jpg";
+import engineeredStandardsSliding from "@/assets/engineered-standards-sliding.png";
 import factory from "@/assets/factory-floor.jpg";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
+import logisticsSliding from "@/assets/logistics-sliding.png"
 import residential from "@/assets/usecase-residential.jpg";
 import { ProductPageTemplate } from "@/components/site/ProductPageTemplate";
 
@@ -61,7 +63,7 @@ function Page() {
         "Polished safety edges for frameless install",
         "Optional acid-etched privacy bands",
       ]}
-      featureImage={slidingD1}
+      featureImage={engineeredStandardsSliding}
       featureImageAlt="Polished sliding door edge with drilled roller hole"
       whyTitle="Sliding glass that locks into your hardware on day one."
       whyBody="Most sliding-door warranty issues trace back to drilling tolerance. Our CNC drilling stays within ±0.5mm of your hardware spec across thousands of repeat-spec panels — so installers don't shim, file, or return."
@@ -100,7 +102,7 @@ function Page() {
         "Multi-layer foam separators between panels",
         "Humidity barrier wrapping for ocean transit",
       ]}
-      logisticsImage={lframes}
+      logisticsImage={logisticsSliding}
       logisticsImageAlt="Yellow L-frame transport with sliding door panels"
       comparison={[
         { label: "Roller-hole tolerance", rider: "±0.5mm CNC", standard: "Manual drill, ±2mm" },

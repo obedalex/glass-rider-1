@@ -14,7 +14,10 @@ import factory from "@/assets/factory-floor.jpg";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
+import engineeredCustom from "@/assets/engineered-standards-custom.png";
+import { Share2, Layers, SlidersHorizontal } from "lucide-react";
 import { ProductPageTemplate } from "@/components/site/ProductPageTemplate";
+import fromOneDrawing from "@/assets/from-one-drawing.png"
 
 export const Route = createFileRoute("/custom")({
   component: Page,
@@ -39,6 +42,31 @@ function Page() {
       intro="Rider produces custom glass panels based on project drawings for hotel installations, apartment developments, luxury villas, and private-label OEM hardware programs. We bridge custom engineering and long-term, repeatable program supply."
       heroImage={custom}
       heroAlt="CAD blueprint with tempered glass panel on workbench"
+      hideStats
+      hideGallery
+      hideUseCases
+      hideCerts
+      hideLogistics
+      hideComparison
+      whyNumbered
+      bespokeCapabilitiesTitle="Bespoke Capabilities"
+      bespokeCapabilities={[
+        {
+          icon: Share2,
+          title: "Complex Geometries",
+          desc: "Advanced 5-axis CNC machining allows for the production of non-Euclidean panel shapes and complex compound curves with micron-level precision.",
+        },
+        {
+          icon: Layers,
+          title: "Specialized Coatings",
+          desc: "Industry-leading surface treatments including chemical-resistant epoxies, antimicrobial finishes, and high-temperature thermal barriers.",
+        },
+        {
+          icon: SlidersHorizontal,
+          title: "Integrated Hardware",
+          desc: "Pre-installed electronic components, sensors, and structural mounting points designed to streamline on-site systems integration.",
+        },
+      ]}
       stats={[
         { value: 120, suffix: "+", label: "OEM partners" },
         { value: 24, suffix: "h", label: "CAD review" },
@@ -61,7 +89,7 @@ function Page() {
         "Private-label silk-screen branding (ceramic-frit)",
         "Matched-set packing across multi-panel assemblies",
       ]}
-      featureImage={customD1}
+      featureImage={engineeredCustom}
       featureImageAlt="Custom-cut tempered glass with notches and drilled holes"
       whyTitle="From one drawing to a SKU you can re-order forever."
       whyBody="Most factories quote your custom drawing as a one-off. Rider converts it into a Rider RS-SKU — locked geometry, locked hardware mapping, locked tolerance — so you can re-order the exact same panel on every program lot, year after year."
@@ -71,7 +99,7 @@ function Page() {
         "Private-label silk-screen branding with ceramic-frit ink",
         "Mixed-pack containers per OEM hardware program",
       ]}
-      whyImage={customD2}
+      whyImage={fromOneDrawing}
       whyImageAlt="Engineer reviewing CAD on screen with glass sample"
       process={[
         { step: "01", title: "Drawing Intake", desc: "Send CAD/PDF — engineering replies with feasibility & quote within 24h.", image: factory },

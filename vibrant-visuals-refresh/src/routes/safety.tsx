@@ -11,12 +11,18 @@ import {
   ArrowRight,
 } from "lucide-react";
 import sgcc from "@/assets/safety-stamp.jpg";
-import batchTraceability from "@/assets/BatchTraceability.png";
+import batchTraceability from "@/assets/batch-traceability2.png";
 import safetyTest from "@/assets/safety-test.jpg";
 import qc from "@/assets/process-qc.jpg";
 import polishing from "@/assets/process-polishing.jpg";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
+import complianceSafety from "@/assets/compliance-safety.png"
+import footer2 from "@/assets/footer2.png"
+import qc1 from "@/assets/4-qc-1.png"
+import qc2 from "@/assets/4-qc-2.png"
+import qc3 from "@/assets/4-qc-3.png"
+import qc4 from "@/assets/4-qc-4.png"
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
 import { SendDrawingButton } from "@/components/site/SendDrawingButton";
 import { StatBand } from "@/components/site/StatBand";
@@ -196,61 +202,7 @@ function Page() {
         </div>
       </section>
 
-      {/* SECTION 5 — QC PROCESS */}
-      <section className="container-rider py-20">
-        <Reveal className="mb-10 max-w-2xl">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            Quality Control Process
-          </span>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
-            Four QC checkpoints before any panel ships.
-          </h2>
-        </Reveal>
-        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              step: "01",
-              title: "Pre-Temper Inspection",
-              desc: "Glass cleared for inclusions, scratches, and edge defects before entering the furnace.",
-            },
-            {
-              step: "02",
-              title: "Tempering Witness",
-              desc: "Inline temperature, cool-rate, and stress-pattern monitoring on every batch.",
-            },
-            {
-              step: "03",
-              title: "Optical Light-Table",
-              desc: "Every panel scanned for distortion and surface defects under polarised light.",
-            },
-            {
-              step: "04",
-              title: "Pack Witness",
-              desc: "SGCC stamp, edge finish, and SKU label verified before crate seal.",
-            },
-          ].map(({ step, title, desc }) => (
-            <StaggerItem key={step}>
-              <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col h-full">
-                {/* 16:9 placeholder — replace with <img src={yourImport} className="aspect-video w-full object-cover" alt="..." /> when ready */}
-                <div className="aspect-video bg-muted w-full" />
-                <div className="p-5 flex flex-col gap-3 flex-1">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-[11px] font-bold">
-                      {step}
-                    </span>
-                    <h3 className="font-display font-bold text-foreground text-sm uppercase tracking-wide">
-                      {title}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                </div>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
-      </section>
-
-      {/* SECTION 6 — IMPACT TESTING */}
+      {/* SECTION 5 — IMPACT TESTING */}
       <section className="bg-secondary text-secondary-foreground">
         <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
@@ -281,7 +233,7 @@ function Page() {
           <div className="relative">
             <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
             <img
-              src={safetyTest}
+              src={complianceSafety}
               alt="Impact testing tempered shower glass with drop bag"
               loading="lazy"
               className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full"
@@ -295,7 +247,64 @@ function Page() {
         </div>
       </section>
 
-      {/* SECTION 7 — GALLERY */}
+      {/* SECTION 6 — QC PROCESS */}
+      <section className="container-rider py-20">
+        <Reveal className="mb-10 max-w-2xl">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+            Quality Control Process
+          </span>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+            Four QC checkpoints before any panel ships.
+          </h2>
+        </Reveal>
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              step: "01",
+              title: "Pre-Temper Inspection",
+              desc: "Glass cleared for inclusions, scratches, and edge defects before entering the furnace.",
+              image: qc1,
+            },
+            {
+              step: "02",
+              title: "Tempering Witness",
+              desc: "Inline temperature, cool-rate, and stress-pattern monitoring on every batch.",
+              image: qc2,
+            },
+            {
+              step: "03",
+              title: "Optical Light-Table",
+              desc: "Every panel scanned for distortion and surface defects under polarised light.",
+              image: qc3,
+            },
+            {
+              step: "04",
+              title: "Pack Witness",
+              desc: "SGCC stamp, edge finish, and SKU label verified before crate seal.",
+              image: qc4,
+            },
+          ].map(({ step, title, desc, image }) => (
+            <StaggerItem key={step}>
+              <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col h-full">
+                <img src={image} alt={title} loading="lazy" className="aspect-video w-full object-cover" />
+                <div className="p-5 flex flex-col gap-3 flex-1">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-[11px] font-bold">
+                      {step}
+                    </span>
+                    <h3 className="font-display font-bold text-foreground text-sm uppercase tracking-wide">
+                      {title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
+
+      {/* SECTION 7 — GALLERY
       <section className="container-rider py-20">
         <Reveal className="mb-10">
           <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
@@ -319,6 +328,7 @@ function Page() {
           ]}
         />
       </section>
+      */}
 
       {/* SECTION 8 — DOCUMENTATION */}
       <section className="bg-surface border-y border-border">
@@ -467,6 +477,8 @@ function Page() {
         <CtaBand
           title="Ready to Scale Your Production?"
           intro="Send us your project drawing — we'll ship the full compliance dossier alongside the engineering review."
+          image={footer2}
+          imageAlt="Rider glass program engineering"
         />
       </section>
     </>

@@ -1,5 +1,5 @@
-﻿/* eslint-disable prettier/prettier */
-import { Upload, FileCheck2, X, FileText } from "lucide-react";
+/* eslint-disable prettier/prettier */
+import { Upload, FileCheck2, X, FileText, Lock } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export function QuoteForm({
@@ -24,7 +24,7 @@ export function QuoteForm({
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [dragOver, setDragOver] = useState(false);
-  const [program, setProgram] = useState<string>(defaultProgram ?? programOptions[0] ?? "");
+  const [program, setProgram] = useState<string>(defaultProgram ?? "");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export function QuoteForm({
   }, [defaultProgram]);
 
   const acceptedExt = [".pdf", ".dwg", ".dxf", ".zip", ".step", ".stp", ".iges", ".igs"];
-  const maxSize = 25 * 1024 * 1024; // 25MB
+  const maxSize = 25 * 1024 * 1024;
 
   const addFiles = (incoming: FileList | File[]) => {
     const next: File[] = [];
@@ -54,10 +54,7 @@ export function QuoteForm({
   return (
     <section className="rounded-2xl border border-border bg-card p-6 sm:p-10 shadow-sm">
       <div className="mx-auto max-w-3xl text-center">
-        <div className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Engineering Intake
-        </div>
-        <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">{title}</h2>
+        <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">{title}</h2>
         <p className="mt-3 text-sm sm:text-base text-muted-foreground">{intro}</p>
       </div>
 
@@ -111,37 +108,38 @@ export function QuoteForm({
         >
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="First & Last Name">
-              <input name="name" type="text" required placeholder="John Doe" className={input} />
+              <input name="name" type="text" required placeholder="e.g. John Doe" className={input} />
             </Field>
             <Field label="Company Name">
-              <input name="company" type="text" required placeholder="Enclosure Manufacturing Corp" className={input} />
+              <input name="company" type="text" required placeholder="Engineering Solutions Inc." className={input} />
             </Field>
             <Field label="Business Email">
-              <input name="email" type="email" required placeholder="john@company.com" className={input} />
+              <input name="email" type="email" required placeholder="j.doe@company.com" className={input} />
             </Field>
-            <Field label="Phone (optional)">
-              <input name="phone" type="tel" placeholder="+1 (555) 555-5555" className={input} />
+            <Field label="Phone (Optional)">
+              <input name="phone" type="tel" placeholder="+1 (555) 000-0000" className={input} />
             </Field>
             <Field label="Business Type">
               <select name="businessType" className={input} defaultValue="" required>
-                <option value="" disabled>Select...</option>
+                <option value="" disabled>Select industry...</option>
                 <option>Manufacturer</option>
                 <option>Distributor</option>
                 <option>Developer</option>
                 <option>Hardware OEM</option>
               </select>
             </Field>
-            <Field label="Estimated Annual Volume">
+            <Field label="Annual Volume">
               <select name="volume" className={input} defaultValue="">
-                <option value="" disabled>Select...</option>
+                <option value="" disabled>Est. units/year</option>
                 <option>Under 500 panels / yr</option>
                 <option>500 – 2,500 panels / yr</option>
                 <option>2,500 – 10,000 panels / yr</option>
                 <option>10,000+ panels / yr</option>
               </select>
             </Field>
-            <Field label="What can we help you with?" full>
+            <Field label="Area of Inquiry" full>
               <select className={input} required value={program} onChange={(e) => setProgram(e.target.value)}>
+                <option value="" disabled>How can we help?</option>
                 {programOptions.map((o) => (
                   <option key={o}>{o}</option>
                 ))}
@@ -151,16 +149,16 @@ export function QuoteForm({
               </select>
             </Field>
 
-            <Field label="Engineering Files (.DWG, .DXF, .PDF, .STEP — up to 25MB each)" full>
+            <Field label="Technical Drawings / Engineering Files" full>
               <div
                 onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                 onDragLeave={() => setDragOver(false)}
                 onDrop={(e) => { e.preventDefault(); setDragOver(false); if (e.dataTransfer.files?.length) addFiles(e.dataTransfer.files); }}
                 onClick={() => fileInputRef.current?.click()}
-                className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed px-6 py-8 text-center transition ${dragOver ? "border-primary bg-primary/10" : "border-primary/50 bg-primary/5 hover:bg-primary/10"}`}
+                className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed px-6 py-8 text-center transition ${dragOver ? "border-primary bg-primary/10" : "border-border bg-muted hover:bg-surface-2"}`}
               >
-                <Upload className="h-7 w-7 text-primary" />
-                <span className="mt-2 text-sm font-semibold text-primary">
+                <Upload className="h-7 w-7 text-muted-foreground" />
+                <span className="mt-2 text-sm font-semibold text-foreground">
                   Click to upload or drag & drop engineering files
                 </span>
                 <span className="mt-1 text-xs text-muted-foreground">
@@ -197,15 +195,21 @@ export function QuoteForm({
               <textarea
                 name="notes"
                 rows={4}
-                placeholder="Hardware platform, target dimensions, finish, target launch date, etc."
+                placeholder="Detail specific tolerances, material requirements, or finishing instructions here..."
                 className={`${input} resize-y min-h-27.5`}
               />
             </Field>
 
             <Field label="" full>
               <label className="flex items-start gap-2 text-xs text-muted-foreground">
-                <input type="checkbox" required className="mt-0.5 h-4 w-4 rounded border-input text-primary" />
-                <span>I confirm I'm authorized to share these files and agree to Rider's confidential review process.</span>
+                <input type="checkbox" required className="mt-0.5 h-4 w-4 shrink-0 rounded border-input text-primary" />
+                <span>
+                  I confirm I'm authorized to share these files and agree to Rider's{" "}
+                  <span className="font-semibold text-primary underline underline-offset-2 cursor-pointer">
+                    confidential review process
+                  </span>
+                  . All technical data is handled in compliance with industrial security protocols.
+                </span>
               </label>
             </Field>
           </div>
@@ -216,13 +220,20 @@ export function QuoteForm({
             </p>
           )}
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-md bg-primary px-6 text-base font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {isLoading ? "Sending…" : "Submit Requirements for Review"}
-          </button>
+          {/* Submit footer — stacks on mobile (button top, security note below), row on desktop */}
+          <div className="mt-7 flex flex-col-reverse gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground sm:justify-start">
+              <Lock className="h-3.5 w-3.5 shrink-0" />
+              <span>End-to-End Encrypted Data Intake</span>
+            </div>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wide text-primary-foreground shadow-sm transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+            >
+              {isLoading ? "Sending…" : "Submit for Review →"}
+            </button>
+          </div>
         </form>
       )}
     </section>

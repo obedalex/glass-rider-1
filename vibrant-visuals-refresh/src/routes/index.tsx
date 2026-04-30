@@ -22,6 +22,8 @@ import hero2 from "@/assets/hero-2-tempering.jpg";
 import hero3 from "@/assets/hero-3-edge.jpg";
 import hero4 from "@/assets/hero-4-logistics.jpg";
 import hero5 from "@/assets/hero-5-engineering.jpg";
+import structuralImg from "@/assets/Structural glass details.png";
+import processingCapabilities from "@/assets/processing-capabilities-shower.png";
 
 import sliding from "@/assets/sliding-hero.jpg";
 import swing from "@/assets/swing-hero.jpg";
@@ -40,7 +42,25 @@ import safetyStamp from "@/assets/safety-stamp.jpg";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
-import oneSupplyChain from "@/assets/one-supply-chain.png";
+// import oneSupplyChain from "@/assets/one-supply-chain.png";
+import oneSupplyChain from "@/assets/one-supply-chain-2.png";
+import slidingDoorGlass from "@/assets/sliding-door-glass.png";
+import swingDoorGlass from "@/assets/swing-door-glass.png";
+import tubEnclosureGlass from "@/assets/tub-enclosure-glass.png";
+import fixedPanelGlass from "@/assets/fixed-panel-glass.png";
+import compliance from "@/assets/compliance.png";
+import edgeAndDrilling from "@/assets/edge-and-drilling.png";
+import technicalExpertise from "@/assets/technical-expertise.png";
+import realProduction1 from "@/assets/real-production-1.png"
+import realProduction2 from "@/assets/real-production-2.png"
+import realProduction3 from "@/assets/real-production-3.png"
+import realProduction4 from "@/assets/real-production-4.png"
+import realProduction5 from "@/assets/real-production-5.png"
+import realProduction6 from "@/assets/real-production-6.png"
+import homepageHero from "@/assets/homepage-hero.png"
+import hotelBathRenovations from "@/assets/hotel-bath-renovations.png"
+import hardwareSystemOEMs from "@/assets/hardware-system-OEMS.png"
+import bigBoxDistributors from "@/assets/big-box-distributors.png"
 
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
@@ -50,6 +70,7 @@ import { Gallery } from "@/components/site/Gallery";
 import { UseCaseCards } from "@/components/site/UseCaseCards";
 import { FAQ } from "@/components/site/FAQ";
 import { CtaBand } from "@/components/site/CtaBand";
+import footer2 from "@/assets/footer2.png";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -87,28 +108,28 @@ const products = [
     program: "Sliding Door Glass",
     title: "Sliding Door Glass",
     desc: "Roller-hole precision for inline & bypass enclosures.",
-    img: sliding
+    img: slidingDoorGlass
   },
   {
     to: "/swing",
     program: "Swing Door Glass",
     title: "Swing Door Glass",
     desc: "Polished hinge cut-outs on heavy 10–12mm glass.",
-    img: swing
+    img: swingDoorGlass
   },
   {
     to: "/tub",
     program: "Tub Enclosure Glass",
     title: "Tub Enclosure Glass",
     desc: "Standard program sizes, retail-ready cartons.",
-    img: tub
+    img: tubEnclosureGlass
   },
   {
     to: "/fixed",
     program: "Fixed Panel Glass",
     title: "Fixed Panel Glass",
     desc: "Walk-in screens, return panels, clamp-ready edges.",
-    img: fixed
+    img: fixedPanelGlass
   }
 ] as const;
 
@@ -160,10 +181,10 @@ function Home() {
               Processing Capabilities for Shower System Integration
             </h2>
             <p className="mt-4 text-base leading-relaxed opacity-85">
-              Rider Shower Systems glass panels are produced as installation-ready
-              components... Instead of supplying standard tempered panels, Rider
-              prepares each panel according to hardware layout and enclosure geometry
-              requirements used by shower system manufacturers.
+              Rider Shower Systems glass panels are produced as installation-ready components...
+              Instead of supplying standard tempered panels, Rider prepares each panel according to
+              hardware layout and enclosure geometry requirements used by shower system
+              manufacturers.
             </p>
             <ul className="mt-6 space-y-3">
               {[
@@ -171,7 +192,7 @@ function Home() {
                 "Roller slot preparation for sliding systems.",
                 "CNC-controlled hole positioning for repeatable assembly accuracy.",
                 "Permanent panel identification marking for full traceability.",
-                "Single-panel protective export packaging for OEM handling.",
+                "Single-panel protective export packaging for OEM handling."
               ].map((b) => (
                 <li key={b} className="flex items-start gap-3">
                   <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -188,8 +209,9 @@ function Home() {
 
           {/* Image placeholder — replace this div with an <img> once you have the asset */}
           <Reveal className="relative">
-            <div className="absolute -inset-4 rounded-2xl bg-primary/15 blur-2xl" aria-hidden />
-            <div className="relative rounded-xl border border-white/10 shadow-2xl overflow-hidden w-full h-105 bg-white/5" />
+            <img src={processingCapabilities} alt="" />
+            {/* <div className="absolute -inset-4 rounded-2xl bg-primary/15 blur-2xl" aria-hidden />
+            <div className="relative rounded-xl border border-white/10 shadow-2xl overflow-hidden w-full h-105 bg-white/5" /> */}
           </Reveal>
         </div>
       </section>
@@ -439,18 +461,12 @@ function Home() {
               Read full compliance details <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="h-full w-full">
             <img
-              src={safetyTest}
+              src={compliance}
               alt="Impact testing tempered glass"
               loading="lazy"
-              className="rounded-xl border border-white/10 object-cover h-64 w-full"
-            />
-            <img
-              src={safetyStamp}
-              alt="SGCC traceability stamp etched in glass"
-              loading="lazy"
-              className="rounded-xl border border-white/10 object-cover h-64 w-full mt-8"
+              className="rounded-xl border border-white/10 object-cover h-auto w-full"
             />
           </div>
         </div>
@@ -484,7 +500,7 @@ function Home() {
               step: "03",
               title: "Edge & Drilling",
               desc: "Precision polishing and CNC drilling matched to your hardware platform.",
-              image: drilling
+              image: edgeAndDrilling
             },
             {
               step: "04",
@@ -502,8 +518,7 @@ function Home() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             {/* Image placeholder — replace this div with <img> once you have the asset */}
             <Reveal className="relative">
-              <div className="absolute -inset-4 rounded-2xl bg-primary/15 blur-2xl" aria-hidden />
-              <div className="relative rounded-xl border border-border shadow-2xl overflow-hidden w-full h-105 bg-muted" />
+              <img src={technicalExpertise} alt="" />{" "}
             </Reveal>
             <Reveal>
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
@@ -513,16 +528,16 @@ function Home() {
                 From CAD to RS-SKU.
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                We convert proprietary CAD formats into repeatable RS-SKUs. Engineering
-                support ensures hinge mapping and handle layouts align with standard North
-                American hardware systems.
+                We convert proprietary CAD formats into repeatable RS-SKUs. Engineering support
+                ensures hinge mapping and handle layouts align with standard North American hardware
+                systems.
               </p>
               <ul className="mt-6 space-y-3">
                 {[
                   "Drawing-to-SKU conversion for repeat supply",
                   "Precision U-cuts, corner notches, radius edges",
                   "Hinge mapping for major hardware platforms",
-                  "Private-label silk-screen branding",
+                  "Private-label silk-screen branding"
                 ].map((b) => (
                   <li key={b} className="flex items-start gap-3">
                     <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -556,12 +571,12 @@ function Home() {
           </Reveal>
           <Gallery
             images={[
-              { src: factory, alt: "Inside the Rider factory floor", span: "wide" },
-              { src: polishing, alt: "Edge polishing line" },
-              { src: drilling, alt: "Roller-hole CNC drilling" },
-              { src: qc, alt: "Light-table optical QC" },
-              { src: warehouse, alt: "Warehouse rows of L-framed glass" },
-              { src: port, alt: "Loading containers at port", span: "wide" }
+              { src: realProduction1, alt: "Inside the Rider factory floor", span: "wide" },
+              { src: realProduction2, alt: "Edge polishing line" },
+              { src: realProduction3, alt: "Roller-hole CNC drilling" },
+              { src: realProduction4, alt: "Light-table optical QC" },
+              { src: realProduction5, alt: "Warehouse rows of L-framed glass" },
+              { src: realProduction6, alt: "Loading containers at port", span: "wide" }
             ]}
           />
         </div>
@@ -571,33 +586,33 @@ function Home() {
       <section className="container-rider py-20">
         <Reveal className="mb-10 max-w-2xl">
           <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            Programs We Run
+            B2B OEM Solutions
           </span>
           <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
-            Hardware OEMs, hospitality, and developers.
+            Program-ready glass formats
           </h2>
         </Reveal>
         <UseCaseCards
           items={[
             {
-              image: hotel,
+              image: hotelBathRenovations,
               tag: "Hospitality",
-              title: "Hotel & resort programs",
-              desc: "Multi-unit hotel renovations with one repeat geometry shipped over months.",
+              title: "Hotel bath renovations",
+              desc: "Repeat sliding format across hundreds of identical bathrooms.",
               defaultProgram: "Hotel / Multi-Unit Commercial"
             },
             {
-              image: oem,
+              image: hardwareSystemOEMs,
               tag: "OEM",
-              title: "Hardware OEM platforms",
-              desc: "Glass mapped to your hinge & roller spec across an entire enclosure line.",
+              title: "Hardware-system OEMs",
+              desc: "Glass cut and drilled to your roller, guide, and handle spec.",
               defaultProgram: "OEM Hardware Program"
             },
             {
-              image: residential,
-              tag: "Distributor",
-              title: "Residential distributors",
-              desc: "Carton-packed standard formats, retail-ready for warehouse pick-and-deliver.",
+              image: bigBoxDistributors,
+              tag: "Distribution",
+              title: "Big-box distributors",
+              desc: "Carton-packed standard sizes ready for store shelving.",
               defaultProgram: "Distributor Program"
             }
           ]}
@@ -611,24 +626,24 @@ function Home() {
           items={[
             {
               q: "What file types do you accept?",
-              a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program.",
+              a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program."
             },
             {
               q: "Do you ship mixed format containers",
-              a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request.",
+              a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request."
             },
             {
               q: "Are panels SGCC containers certified",
-              a: "Yes. Hotel chains, multi-unit developers, and OEMs receive project-specific compliance letters on Rider letterhead.",
+              a: "Yes. Hotel chains, multi-unit developers, and OEMs receive project-specific compliance letters on Rider letterhead."
             },
             {
               q: "Can you private-label the glass?",
-              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request.",
+              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request."
             },
             {
               q: "What is the minimum order for OEM program?",
-              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request.",
-            },
+              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request."
+            }
           ]}
         />
       </section>
@@ -638,6 +653,8 @@ function Home() {
         <CtaBand
           title="Ready to start your shower glass program?"
           intro="Send your CAD or PDF — a Rider engineer reviews every drawing within 24 hours and confirms feasibility, pricing, and lead time."
+          image={footer2}
+          imageAlt="Rider glass program engineering"
         />
       </section>
     </>

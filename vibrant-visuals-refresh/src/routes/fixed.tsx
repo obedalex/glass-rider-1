@@ -7,13 +7,17 @@ import polishing from "@/assets/process-polishing.jpg";
 import qc from "@/assets/process-qc.jpg";
 import packing from "@/assets/process-packing.jpg";
 import lframes from "@/assets/logistics-lframes.jpg";
+import lFrameTransport from "@/assets/l-frame-transport.png";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
 import factory from "@/assets/factory-floor.jpg";
+import structuralGlass from "@/assets/Structural glass details.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
+import womanDraw from "@/assets/woman-draw.png"
 import { ProductPageTemplate } from "@/components/site/ProductPageTemplate";
+import engineeredFixed from "@/assets/engineered-standards-fixed.png"
 
 export const Route = createFileRoute("/fixed")({
   component: Page,
@@ -44,6 +48,16 @@ function Page() {
         { value: 10000, suffix: "+", label: "Fixed panels / month" },
         { value: 24, suffix: "h", label: "Drawing review" },
       ]}
+      structuralIntegrityImage={structuralGlass}
+      structuralIntegrityImageAlt="Glass manufacturing facility floor"
+      structuralIntegrityTitle="Structural Integrity"
+      structuralIntegrityBody="Every component is stress-tested to exceed international building standards, ensuring long-term stability in high-traffic commercial environments."
+      structuralIntegrityBullets={[
+        { title: "Reinforced Framing", desc: "High-density extrusion for maximum lateral load resistance." },
+        { title: "Precision Miters", desc: "Zero-gap corner assemblies with internal alignment hardware." },
+        { title: "Acoustic Isolation", desc: "Dual-seal gasket technology providing up to 42 STC rating." },
+        { title: "Low-Profile Support", desc: "Minimalist visual footprint with hidden fastening systems." },
+      ]}
       specs={[
         { label: "Typical Thickness", value: "8 mm · 10 mm · 12 mm" },
         { label: "Typical Heights", value: '60" · 72" · 76" · 80"' },
@@ -52,6 +66,17 @@ function Page() {
         { label: "Edge Options", value: "Flat polished · Pencil polished · Arrissed" },
         { label: "Hardware", value: "Clamp · Wall-channel · U-channel" },
       ]}
+      hideWhy
+      hideCerts
+      hideUseCases
+      processAfterStructural
+      programDeskTitle="Ready to start your shower Glass program?"
+      programDeskBody="Connect with our engineering program desk for volume technical specifications and pricing structures."
+      programDeskHours="Mon-Fri: 06:00 - 18:00 EST"
+      programDeskResponseTime="< 2 Hours Guaranteed"
+      programDeskFileTypes={[".DWG", ".STEP", ".PDF", ".SKP"]}
+      programDeskImage={womanDraw}
+      programDeskImageAlt="Engineer reviewing glass panel drawings"
       featureTitle="Edge Processing & Surface Protection"
       features={[
         "Flat polished, pencil polished, or arrissed safety edges",
@@ -60,7 +85,7 @@ function Page() {
         "Humidity barrier wrapping & transport stabilization",
         "Optional radius corners or notching",
       ]}
-      featureImage={fixedD1}
+      featureImage={engineeredFixed}
       featureImageAlt="Polished safety edge on a fixed shower panel"
       whyTitle="Tall fixed panels that arrive flawless every time."
       whyBody="Fixed panels are unforgiving — a single chip or scratch retires the entire panel. Rider's edge processing, inter-panel separators, and L-frame transport are engineered to land tall walk-in glass on site without damage."
@@ -70,7 +95,7 @@ function Page() {
         "Inter-panel foam separators on every shipment",
         "L-frame transport stabilises tall heights against ocean roll",
       ]}
-      whyImage={fixedD2}
+      whyImage={womanDraw}
       whyImageAlt="Walk-in shower with tall fixed panel installed"
       process={[
         { step: "01", title: "Drawing Review", desc: "Heights, edges, and hardware compatibility verified against your spec.", image: factory },
@@ -99,7 +124,7 @@ function Page() {
         "Humidity barrier wrapping on all crates",
         "Forklift entry base supports for warehouse handling",
       ]}
-      logisticsImage={lframes}
+      logisticsImage={lFrameTransport}
       logisticsImageAlt="Yellow L-frames stacked with fixed shower panels"
       comparison={[
         { label: "Edge finish options", rider: "Flat / pencil / arrissed", standard: "Seamed only" },
