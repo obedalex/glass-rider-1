@@ -3,14 +3,13 @@ import swing from "@/assets/swing-hero.jpg";
 import swingD1 from "@/assets/swing-detail-1.jpg";
 import swingD2 from "@/assets/swing-detail-2.jpg";
 import drilling from "@/assets/process-drilling.jpg";
-import polishing from "@/assets/process-polishing.jpg";
-import qc from "@/assets/process-qc.jpg";
-import packing from "@/assets/process-packing.jpg";
 import crates from "@/assets/logistics-crates.jpg";
 import heavyDutyWood from "@/assets/heavy-duty-wood.png";
-import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
-import factory from "@/assets/factory-floor.jpg";
+import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
+import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
+import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
+import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
@@ -39,12 +38,6 @@ function Page() {
       intro="Heavy frameless swing panels with standard hinge cut-outs, offset positioning, and handle hole preparation. All internal cut-out edges are fully polished to prevent stress fractures during hardware torquing — engineered for thousands of OEM hinge platforms."
       heroImage={swing}
       heroAlt="Frameless swing shower door with chrome pivot hinges"
-      stats={[
-        { value: 8, suffix: "–12mm", label: "Heavy glass range" },
-        { value: 100, suffix: "%", label: "Edge polished" },
-        { value: 6500, suffix: "+", label: "Swing panels / month" },
-        { value: 24, suffix: "h", label: "Drawing review" },
-      ]}
       specs={[
         { label: "Typical Thickness", value: "8 mm · 10 mm · 12 mm" },
         { label: "Standard Door Widths", value: '24" · 26" · 28" · 30"' },
@@ -74,10 +67,10 @@ function Page() {
       whyImage={swingD2}
       whyImageAlt="Detail of swing door pivot hinge engaged on heavy glass"
       process={[
-        { step: "01", title: "Drawing Review", desc: "Hinge cut-outs and offset positions verified against your hardware spec.", image: factory },
-        { step: "02", title: "Tempering", desc: "Heavy 10–12mm tempering with SGCC stamp on every panel.", image: qc },
-        { step: "03", title: "Cut-out & Polish", desc: "CNC hinge cut-outs with internal edge polishing for stress relief.", image: polishing },
-        { step: "04", title: "Heavy Crating", desc: "Reinforced wood crates with foam blocking and forklift entry base.", image: crates },
+        { step: "01", title: "Drawing Review", desc: "Hinge cut-outs and offset positions verified against your hardware spec.", image: tubCheckpoint1 },
+        { step: "02", title: "Tempering", desc: "Heavy 10–12mm tempering with SGCC stamp on every panel.", image: tubCheckpoint2 },
+        { step: "03", title: "Cut-out & Polish", desc: "CNC hinge cut-outs with internal edge polishing for stress relief.", image: tubCheckpoint3 },
+        { step: "04", title: "Heavy Crating", desc: "Reinforced wood crates with foam blocking and forklift entry base.", image: tubCheckpoint4 },
       ]}
       gallery={[
         { src: swing, alt: "Frameless swing enclosure", span: "wide" },

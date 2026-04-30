@@ -1,16 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import fixed from "@/assets/fixed-hero.jpg";
-import fixedD1 from "@/assets/fixed-detail-1.jpg";
-import fixedD2 from "@/assets/fixed-detail-2.jpg";
-import drilling from "@/assets/process-drilling.jpg";
-import polishing from "@/assets/process-polishing.jpg";
-import qc from "@/assets/process-qc.jpg";
-import packing from "@/assets/process-packing.jpg";
-import lframes from "@/assets/logistics-lframes.jpg";
 import lFrameTransport from "@/assets/l-frame-transport.png";
-import warehouse from "@/assets/warehouse-rows.jpg";
-import port from "@/assets/shipping-port.jpg";
-import factory from "@/assets/factory-floor.jpg";
+import fromFloor2 from "@/assets/fromFloor2.png";
+import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
+import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
+import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
+import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
+import fromFloor3 from "@/assets/fromFloor3.png";
+import fromFloor4 from "@/assets/fromFloor4.png";
+import fromFloor5 from "@/assets/fromFloor5.png";
+import fromFloor6 from "@/assets/fromFloor6.png";
 import structuralGlass from "@/assets/Structural glass details.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
@@ -42,12 +41,6 @@ function Page() {
       intro="Produced for inline shower enclosures, walk-in shower layouts, return panels, and side-screen installations. Supplied with polished safety edges and optional clamp-compatible processing for frameless and semi-frameless systems."
       heroImage={fixed}
       heroAlt="Tall fixed glass panel for walk-in shower"
-      stats={[
-        { value: 8, suffix: "–12mm", label: "Heavy panel range" },
-        { value: 80, suffix: '"', label: "Max standard height" },
-        { value: 10000, suffix: "+", label: "Fixed panels / month" },
-        { value: 24, suffix: "h", label: "Drawing review" },
-      ]}
       structuralIntegrityImage={structuralGlass}
       structuralIntegrityImageAlt="Glass manufacturing facility floor"
       structuralIntegrityTitle="Structural Integrity"
@@ -98,18 +91,18 @@ function Page() {
       whyImage={womanDraw}
       whyImageAlt="Walk-in shower with tall fixed panel installed"
       process={[
-        { step: "01", title: "Drawing Review", desc: "Heights, edges, and hardware compatibility verified against your spec.", image: factory },
-        { step: "02", title: "Tempering", desc: "Heavy 10–12mm tempering with SGCC stamp on every panel.", image: qc },
-        { step: "03", title: "Edge Finishing", desc: "Flat, pencil, or arrissed polishing for clamp and channel install.", image: polishing },
-        { step: "04", title: "L-frame Pack", desc: "Yellow steel L-frames stabilise tall walk-in panels for ocean transit.", image: packing },
+        { step: "01", title: "Drawing Review", desc: "Heights, edges, and hardware compatibility verified against your spec.", image: tubCheckpoint1 },
+        { step: "02", title: "Tempering", desc: "Heavy 10–12mm tempering with SGCC stamp on every panel.", image: tubCheckpoint2 },
+        { step: "03", title: "Edge Finishing", desc: "Flat, pencil, or arrissed polishing for clamp and channel install.", image: tubCheckpoint3 },
+        { step: "04", title: "L-frame Pack", desc: "Yellow steel L-frames stabilise tall walk-in panels for ocean transit.", image: tubCheckpoint4 },
       ]}
       gallery={[
         { src: fixed, alt: "Walk-in shower with fixed panel", span: "wide" },
-        { src: fixedD1, alt: "Polished panel edge close-up" },
-        { src: fixedD2, alt: "Walk-in installed in modern bath" },
-        { src: lframes, alt: "L-frames with separated glass sheets" },
-        { src: warehouse, alt: "Warehouse rows of fixed panels" },
-        { src: port, alt: "Container loading at port", span: "wide" },
+        { src: fromFloor2, alt: "CNC roller-hole drilling" },
+        { src: fromFloor3, alt: "Edge polishing line" },
+        { src: fromFloor4, alt: "Panels on yellow L-frames" },
+        { src: fromFloor5, alt: "Warehouse rows of fixed panels" },
+        { src: fromFloor6, alt: "Containers loaded at port", span: "wide" },
       ]}
       useCases={[
         { image: hotel, tag: "Hospitality", title: "Hotel walk-in showers", desc: "Tall fixed panels across resort suite renovations.", defaultProgram: "Fixed — Hospitality" },

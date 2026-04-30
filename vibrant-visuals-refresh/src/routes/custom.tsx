@@ -1,16 +1,15 @@
 /* eslint-disable prettier/prettier */
 import { createFileRoute } from "@tanstack/react-router";
-import custom from "@/assets/custom-hero.jpg";
+import custom from "@/assets/custom-hero-2.png";
 import customD1 from "@/assets/custom-detail-1.jpg";
 import customD2 from "@/assets/custom-detail-2.jpg";
 import drilling from "@/assets/process-drilling.jpg";
 import polishing from "@/assets/process-polishing.jpg";
-import qc from "@/assets/process-qc.jpg";
-import packing from "@/assets/process-packing.jpg";
 import crates from "@/assets/logistics-crates.jpg";
-import warehouse from "@/assets/warehouse-rows.jpg";
-import port from "@/assets/shipping-port.jpg";
-import factory from "@/assets/factory-floor.jpg";
+import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
+import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
+import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
+import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
@@ -42,12 +41,14 @@ function Page() {
       intro="Rider produces custom glass panels based on project drawings for hotel installations, apartment developments, luxury villas, and private-label OEM hardware programs. We bridge custom engineering and long-term, repeatable program supply."
       heroImage={custom}
       heroAlt="CAD blueprint with tempered glass panel on workbench"
+      heroOverlayColor="#262121"
       hideStats
       hideGallery
       hideUseCases
       hideCerts
       hideLogistics
       hideComparison
+      hideProcess
       whyNumbered
       bespokeCapabilitiesTitle="Bespoke Capabilities"
       bespokeCapabilities={[
@@ -66,12 +67,6 @@ function Page() {
           title: "Integrated Hardware",
           desc: "Pre-installed electronic components, sensors, and structural mounting points designed to streamline on-site systems integration.",
         },
-      ]}
-      stats={[
-        { value: 120, suffix: "+", label: "OEM partners" },
-        { value: 24, suffix: "h", label: "CAD review" },
-        { value: 100, suffix: "%", label: "Drawings reviewed by engineering" },
-        { value: 50000, suffix: "+", label: "Custom panels delivered" },
       ]}
       specs={[
         { label: "File Types", value: ".DWG · .DXF · .PDF · .STEP · .ZIP" },
@@ -102,10 +97,10 @@ function Page() {
       whyImage={fromOneDrawing}
       whyImageAlt="Engineer reviewing CAD on screen with glass sample"
       process={[
-        { step: "01", title: "Drawing Intake", desc: "Send CAD/PDF — engineering replies with feasibility & quote within 24h.", image: factory },
-        { step: "02", title: "RS-SKU Creation", desc: "Approved drawing becomes a locked Rider RS-SKU for repeat supply.", image: qc },
-        { step: "03", title: "Custom Fabrication", desc: "U-cuts, notches, drilling, radius edges — all CNC-controlled.", image: drilling },
-        { step: "04", title: "Program Crating", desc: "Heavy-duty crates engineered for the panel mix in your program.", image: crates },
+        { step: "01", title: "Drawing Intake", desc: "Send CAD/PDF — engineering replies with feasibility & quote within 24h.", image: tubCheckpoint1 },
+        { step: "02", title: "RS-SKU Creation", desc: "Approved drawing becomes a locked Rider RS-SKU for repeat supply.", image: tubCheckpoint2 },
+        { step: "03", title: "Custom Fabrication", desc: "U-cuts, notches, drilling, radius edges — all CNC-controlled.", image: tubCheckpoint3 },
+        { step: "04", title: "Program Crating", desc: "Heavy-duty crates engineered for the panel mix in your program.", image: tubCheckpoint4 },
       ]}
       gallery={[
         { src: custom, alt: "CAD blueprint with glass panel", span: "wide" },

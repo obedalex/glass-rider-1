@@ -12,12 +12,13 @@ import {
 } from "lucide-react";
 import sgcc from "@/assets/safety-stamp.jpg";
 import batchTraceability from "@/assets/batch-traceability2.png";
+import safetyHero from "@/assets/safety-hero.png";
 import safetyTest from "@/assets/safety-test.jpg";
 import qc from "@/assets/process-qc.jpg";
 import polishing from "@/assets/process-polishing.jpg";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
-import complianceSafety from "@/assets/compliance-safety.png"
+import complianceSafety from "@/assets/compliance-safety-2.png"
 import footer2 from "@/assets/footer2.png"
 import qc1 from "@/assets/4-qc-1.png"
 import qc2 from "@/assets/4-qc-2.png"
@@ -25,7 +26,6 @@ import qc3 from "@/assets/4-qc-3.png"
 import qc4 from "@/assets/4-qc-4.png"
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
 import { SendDrawingButton } from "@/components/site/SendDrawingButton";
-import { StatBand } from "@/components/site/StatBand";
 import { Gallery } from "@/components/site/Gallery";
 import { FAQ } from "@/components/site/FAQ";
 import { CtaBand } from "@/components/site/CtaBand";
@@ -92,11 +92,11 @@ function Page() {
       <section className="relative overflow-hidden border-b border-border bg-secondary text-secondary-foreground">
         <div className="absolute inset-0">
           <img
-            src={safetyTest}
+            src={safetyHero}
             alt="Impact testing tempered shower glass"
             className="h-full w-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/30" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #272626 0%, #272626d9 45%, #27262699 100%)" }} />
           <div className="absolute inset-0 grid-blueprint opacity-15" />
         </div>
         <div className="container-rider relative grid gap-10 py-20 sm:py-28 lg:grid-cols-12 lg:items-center">
@@ -130,17 +130,6 @@ function Page() {
         </div>
       </section>
 
-      {/* SECTION 2 — STAT BAND */}
-      <section className="container-rider -mt-12 relative z-10">
-        <StatBand
-          stats={[
-            { value: 100, suffix: "%", label: "Panels SGCC stamped" },
-            { value: 99.6, decimals: 1, suffix: "%", label: "QC pass rate" },
-            { value: 6, label: "Compliance standards met" },
-            { value: 0, label: "Open recalls (lifetime)" },
-          ]}
-        />
-      </section>
 
       {/* SECTION 3 — CERT GRID */}
       <section id="certs" className="container-rider py-20">

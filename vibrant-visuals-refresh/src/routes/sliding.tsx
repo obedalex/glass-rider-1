@@ -2,18 +2,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import sliding from "@/assets/sliding-hero.jpg";
 import slidingD1 from "@/assets/sliding-detail-1.jpg";
-import slidingD2 from "@/assets/sliding-detail-2.jpg";
-import drilling from "@/assets/process-drilling.jpg";
-import polishing from "@/assets/process-polishing.jpg";
-import qc from "@/assets/process-qc.jpg";
-import packing from "@/assets/process-packing.jpg";
-import warehouse from "@/assets/warehouse-rows.jpg";
-import port from "@/assets/shipping-port.jpg";
-import lframes from "@/assets/logistics-lframes.jpg";
 import engineeredStandardsSliding from "@/assets/engineered-standards-sliding.png";
-import factory from "@/assets/factory-floor.jpg";
+import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
+import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
+import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
+import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
+import slidingGlass from "@/assets/sliding-glass.png"
+import fromFloor2 from "@/assets/fromFloor2.png"
+import fromFloor3 from "@/assets/fromFloor3.png"
+import fromFloor4 from "@/assets/fromFloor4.png"
+import fromFloor5 from "@/assets/fromFloor5.png"
+import fromFloor6 from "@/assets/fromFloor6.png"
 import logisticsSliding from "@/assets/logistics-sliding.png"
 import residential from "@/assets/usecase-residential.jpg";
 import { ProductPageTemplate } from "@/components/site/ProductPageTemplate";
@@ -41,12 +42,6 @@ function Page() {
       intro="Rider sliding panels are produced for inline and bypass enclosure systems requiring precise roller-hole positioning, guide alignment drilling, and polished safety edges. Supplied installation-ready for distributors, manufacturers, and OEM door system suppliers."
       heroImage={sliding}
       heroAlt="Sliding shower door with precision-drilled roller hardware"
-      stats={[
-        { value: 6, suffix: "–10mm", label: "Tempered range" },
-        { value: 0.5, decimals: 1, suffix: "mm", label: "Roller-hole tolerance" },
-        { value: 12000, suffix: "+", label: "Sliding panels / month" },
-        { value: 24, suffix: "h", label: "Drawing review" },
-      ]}
       specs={[
         { label: "Typical Thickness", value: "6 mm · 8 mm · 10 mm" },
         { label: "Common Heights", value: '68" · 76" · 78"' },
@@ -73,21 +68,21 @@ function Page() {
         "Polished safety edges minimise stress fractures during torquing",
         "Mixed-pack containers combine sliding + tub + return panels per ship",
       ]}
-      whyImage={slidingD2}
+      whyImage={slidingGlass}
       whyImageAlt="Detail of sliding door roller hardware engaged on glass"
       process={[
-        { step: "01", title: "Drawing Review", desc: "Engineers verify roller-hole spacing & handle layout against your hardware spec.", image: factory },
-        { step: "02", title: "Tempering", desc: "Inline tempering with SGCC stamp; optical scanning for distortion.", image: qc },
-        { step: "03", title: "Drilling & Polishing", desc: "CNC roller holes + flat-polished safety edges, panel-by-panel inspection.", image: drilling },
-        { step: "04", title: "Mixed Packing", desc: "L-frame, carton, or crate — sized to your warehouse handling.", image: packing },
+        { step: "01", title: "Drawing Review", desc: "Engineers verify roller-hole spacing & handle layout against your hardware spec.", image: tubCheckpoint1 },
+        { step: "02", title: "Tempering", desc: "Inline tempering with SGCC stamp; optical scanning for distortion.", image: tubCheckpoint2 },
+        { step: "03", title: "Drilling & Polishing", desc: "CNC roller holes + flat-polished safety edges, panel-by-panel inspection.", image: tubCheckpoint3 },
+        { step: "04", title: "Mixed Packing", desc: "L-frame, carton, or crate — sized to your warehouse handling.", image: tubCheckpoint4 },
       ]}
       gallery={[
         { src: slidingD1, alt: "Sliding panel with polished edge close-up", span: "wide" },
-        { src: drilling, alt: "CNC roller-hole drilling" },
-        { src: polishing, alt: "Edge polishing line" },
-        { src: lframes, alt: "Sliding panels on yellow L-frames" },
-        { src: warehouse, alt: "Warehouse rows of sliding panels" },
-        { src: port, alt: "Containers loaded at port", span: "wide" },
+        { src: fromFloor2, alt: "CNC roller-hole drilling" },
+        { src: fromFloor3, alt: "Edge polishing line" },
+        { src: fromFloor4, alt: "Sliding panels on yellow L-frames" },
+        { src: fromFloor5, alt: "Warehouse rows of sliding panels" },
+        { src: fromFloor6, alt: "Containers loaded at port", span: "wide" },
       ]}
       useCases={[
         { image: hotel, tag: "Hospitality", title: "Hotel bath renovations", desc: "Repeat sliding format across hundreds of identical bathrooms.", defaultProgram: "Sliding — Hotel Program" },
@@ -123,6 +118,7 @@ function Page() {
         { sku: "SD-2480-10C", label: "Architectural" },
         { sku: "SD-3680-12C", label: "Heavy Duty" },
       ]}
+      whyNumbered
       certsAfterWhy
       comparisonAfterProcess
     />

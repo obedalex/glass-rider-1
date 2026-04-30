@@ -19,9 +19,9 @@ import { motion } from "framer-motion";
 
 import hero1 from "@/assets/hero-1-enclosure.jpg";
 import hero2 from "@/assets/hero-2-tempering.jpg";
-import hero3 from "@/assets/hero-3-edge.jpg";
-import hero4 from "@/assets/hero-4-logistics.jpg";
 import hero5 from "@/assets/hero-5-engineering.jpg";
+import homepageHero1 from "@/assets/homepage-hero-1.png";
+import homepageHero2 from "@/assets/homepage-hero-2.png";
 import structuralImg from "@/assets/Structural glass details.png";
 import processingCapabilities from "@/assets/processing-capabilities-shower.png";
 
@@ -95,11 +95,8 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
-  { src: hero1, alt: "Premium frameless shower enclosure", caption: "Frameless Enclosures" },
-  { src: hero2, alt: "Tempering furnace at the Rider factory", caption: "Inline Tempering" },
-  { src: hero3, alt: "CNC edge polishing close-up", caption: "Edge & Polish Precision" },
-  { src: hero4, alt: "Mixed packing in container", caption: "Program Logistics" },
-  { src: hero5, alt: "Engineer reviewing CAD over panel", caption: "Engineering Intake" }
+  { src: homepageHero1, alt: "Premium frameless shower enclosure", caption: "Frameless Enclosures" },
+  { src: homepageHero2, alt: "Tempering furnace at the Rider factory", caption: "Inline Tempering" },
 ];
 
 const products = [

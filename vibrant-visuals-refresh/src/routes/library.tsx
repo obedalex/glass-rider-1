@@ -22,11 +22,13 @@ import type { Category, GlassType, Hardware, Format } from "./library.skus";
 
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
 import { SendDrawingButton } from "@/components/site/SendDrawingButton";
-import { StatBand } from "@/components/site/StatBand";
 import { Gallery } from "@/components/site/Gallery";
 import { FAQ } from "@/components/site/FAQ";
 import { CtaBand } from "@/components/site/CtaBand";
 import footer2 from "@/assets/footer2.png";
+import programLibrary1 from "@/assets/program-library-1.png";
+import programLibrary2 from "@/assets/program-library-2.png";
+import programLibrary3 from "@/assets/program-library-3.png";
 import { motion as m } from "framer-motion";
 
 export const Route = createFileRoute("/library")({
@@ -128,17 +130,6 @@ function LibraryPage() {
         </div>
       </section>
 
-      {/* SECTION 2 — STAT BAND */}
-      {/* <section className="container-rider -mt-12 relative z-10">
-        <StatBand
-          stats={[
-            { value: FORMATS.length, label: "Standard RS-SKUs" },
-            { value: 5, label: "Categories" },
-            { value: 4, label: "Thicknesses" },
-            { value: 6, label: "Hardware platforms" }
-          ]}
-        />
-      </section> */}
 
       {/* SECTION 3 — INTRO */}
       {/* <section className="container-rider py-16">
@@ -242,7 +233,7 @@ function LibraryPage() {
         </div>
 
         {/* Top Categories */}
-        <div className="mt-10">
+        {/* <div className="mt-10">
           <div className="mb-4 flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">Top Categories</span>
             <div className="flex-1 border-t border-border" />
@@ -276,7 +267,7 @@ function LibraryPage() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* All Format Library */}
         <div className="mt-12">
@@ -577,23 +568,27 @@ function LibraryPage() {
                 title: "Hotel bath renovations",
                 desc: "Repeat sliding format across hundreds of identical bathrooms.",
                 program: "Hospitality Program",
+                image: programLibrary1,
               },
               {
                 badge: "OEM",
                 title: "Hardware-system OEMs",
                 desc: "Glass cut and drilled to your roller, guide, and handle spec.",
                 program: "OEM Program",
+                image: programLibrary2,
               },
               {
                 badge: "Distribution",
                 title: "Big-box distributors",
                 desc: "Carton-packed standard sizes ready for store shelving.",
                 program: "Distribution Program",
+                image: programLibrary3,
               },
             ].map((c) => (
               <StaggerItem key={c.badge}>
                 <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg h-full flex flex-col">
                   <div className="relative h-52 overflow-hidden bg-muted rounded-t-xl">
+                    <img src={c.image} alt={c.title} className="h-full w-full object-cover transition group-hover:scale-105" />
                     <span className="absolute left-3 top-3 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
                       {c.badge}
                     </span>
@@ -617,7 +612,7 @@ function LibraryPage() {
       </section>
 
       {/* SECTION 12 — CTA */}
-      <section className="pt-20 flex-1 flex flex-col">
+      <section className="flex-1 flex flex-col">
         <CtaBand
           title="Ready to plan a library order?"
           intro="Send your shortlist of RS-SKUs, sizes, and quantities — a Rider program manager replies with a mixed-container quote within 24 hours."

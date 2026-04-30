@@ -5,7 +5,6 @@ import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "./Reveal";
 import { SendDrawingButton } from "./SendDrawingButton";
 import { SpecBox } from "./SpecBox";
-import { StatBand, type Stat } from "./StatBand";
 import { ProcessTimeline, type ProcessStep } from "./ProcessTimeline";
 import { Gallery, type GalleryImage } from "./Gallery";
 import { UseCaseCards, type UseCase } from "./UseCaseCards";
@@ -20,8 +19,6 @@ export type ProductPageProps = {
   intro: string;
   heroImage: string;
   heroAlt: string;
-  // Section 2: at-a-glance stats
-  stats: Stat[];
   // Section 2b: structural integrity split (optional)
   structuralIntegrityTitle?: string;
   structuralIntegrityBody?: string;
@@ -92,7 +89,10 @@ export type ProductPageProps = {
   hideWhy?: boolean;
   // Render the "Why" section as a numbered-bullet layout (screenshot variant)
   whyNumbered?: boolean;
+  // Hide the process timeline section entirely
+  hideProcess?: boolean;
   // Hide the stat band entirely
+  heroOverlayColor?: string;
   hideStats?: boolean;
   // Hide the certifications strip entirely
   hideCerts?: boolean;
@@ -485,7 +485,11 @@ export function ProductPageTemplate(p: ProductPageProps) {
             className="h-full w-full object-cover opacity-40"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/40" />
+          {p.heroOverlayColor ? (
+            <div className="absolute inset-0" style={{ background: `linear-gradient(to right, ${p.heroOverlayColor} 0%, ${p.heroOverlayColor}d9 45%, ${p.heroOverlayColor}99 100%)` }} />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/40" />
+          )}
           <div className="absolute inset-0 grid-blueprint opacity-15" />
         </div>
         <div className="container-rider relative grid gap-10 py-20 sm:py-28 lg:grid-cols-12 lg:items-center">
@@ -531,24 +535,17 @@ export function ProductPageTemplate(p: ProductPageProps) {
 
       {p.whyAfterHero && !p.hideWhy && (p.whyNumbered ? whyNumberedSection : whySection)}
 
-      {/* SECTION 2 — STAT BAND */}
-      {!p.hideStats && (
-        <section className="container-rider -mt-12 relative z-10">
-          <StatBand stats={p.stats} />
-        </section>
-      )}
-
       {/* SECTION 2b — STRUCTURAL INTEGRITY (optional) */}
       {structuralIntegritySection}
-      {p.processAfterStructural && processSection}
+      {p.processAfterStructural && !p.hideProcess && processSection}
 
       {/* SECTION 2c — BESPOKE CAPABILITIES (optional) */}
       {bespokeCapabilitiesSection}
 
       {p.certsAfterHero && !p.hideCerts && certsSection}
       {p.certsAfterHero && !p.hideCerts && p.comparisonAfterCerts && comparisonSection}
-      {p.certsAfterHero && !p.hideCerts && p.comparisonAfterCerts && p.processAfterComparison && processSection}
       {p.certsAfterHero && p.afterComparison}
+      {p.certsAfterHero && !p.hideCerts && p.comparisonAfterCerts && p.processAfterComparison && !p.hideProcess && processSection}
 
       {/* SECTION 3 — SPECS + FEATURES */}
       <section id="specs" className="container-rider py-20">
@@ -626,11 +623,11 @@ export function ProductPageTemplate(p: ProductPageProps) {
 
       {p.certsAfterWhy && !p.hideCerts && certsSection}
       {p.certsAfterWhy && !p.hideCerts && p.comparisonAfterCerts && comparisonSection}
-      {p.certsAfterWhy && !p.hideCerts && p.comparisonAfterCerts && p.processAfterComparison && processSection}
+      {p.certsAfterWhy && !p.hideCerts && p.comparisonAfterCerts && p.processAfterComparison && !p.hideProcess && processSection}
       {p.certsAfterWhy && p.afterComparison}
 
       {/* SECTION 5 — PROCESS TIMELINE */}
-      {!p.processAfterComparison && !p.processAfterStructural && processSection}
+      {!p.processAfterComparison && !p.processAfterStructural && !p.hideProcess && processSection}
 
       {p.comparisonAfterProcess && comparisonSection}
       {p.useCasesAfterProcess && !p.hideUseCases && useCasesSection}

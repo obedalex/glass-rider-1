@@ -14,6 +14,10 @@ import packing from "@/assets/process-packing.jpg";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
 import factory from "@/assets/factory-floor.jpg";
+import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
+import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
+import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
+import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
@@ -43,12 +47,6 @@ function Page() {
       intro="Standard program sizes for sliding bathtub shower door systems and compact bathroom installations. Supplied with installation-ready drilling layouts, polished safety edges, and retail-ready export packing for distributor warehouse handling."
       heroImage={tub}
       heroAlt="Modern bathtub with sliding glass shower screen"
-      stats={[
-        { value: 6, suffix: "–8mm", label: "Standard thickness" },
-        { value: 18000, suffix: "+", label: "Tub panels / month" },
-        { value: 99.4, decimals: 1, suffix: "%", label: "Retail carton on-time" },
-        { value: 24, suffix: "h", label: "Drawing review" },
-      ]}
       specs={[
         { label: "Common Formats", value: '30" × 55" · 30" × 60" · 30" × 68"' },
         { label: "Typical Thickness", value: "6 mm · 8 mm" },
@@ -78,10 +76,10 @@ function Page() {
       whyImage={oneSkuCarton}
       whyImageAlt="Stack of retail-ready tub enclosure cartons"
       process={[
-        { step: "01", title: "SKU Setup", desc: "Drawing approved once; the SKU runs identical for the life of the program.", image: factory },
-        { step: "02", title: "Tempering", desc: "6mm and 8mm tempering with SGCC stamp.", image: qc },
-        { step: "03", title: "Drill & Polish", desc: "Roller and handle holes drilled, all edges flat-polished.", image: drilling },
-        { step: "04", title: "Retail Carton", desc: "Foam-separated retail cartons, mixed-pack containers.", image: packing },
+        { step: "01", title: "SKU Setup", desc: "Drawing approved once; the SKU runs identical for the life of the program.", image: tubCheckpoint1 },
+        { step: "02", title: "Tempering", desc: "6mm and 8mm tempering with SGCC stamp.", image: tubCheckpoint2 },
+        { step: "03", title: "Drill & Polish", desc: "Roller and handle holes drilled, all edges flat-polished.", image: tubCheckpoint3 },
+        { step: "04", title: "Retail Carton", desc: "Foam-separated retail cartons, mixed-pack containers.", image: tubCheckpoint4 },
       ]}
       gallery={[
         { src: tub, alt: "Tub enclosure with sliding screen", span: "wide" },
