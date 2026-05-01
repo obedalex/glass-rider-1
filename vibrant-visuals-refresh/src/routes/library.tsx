@@ -159,7 +159,8 @@ function LibraryPage() {
 
       {/* SECTION 4 — FILTER + RESULTS */}
       <section id="filters" className="container-rider py-12">
-        <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
+        {/* Filter Catalog — hidden */}
+        {/* <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-primary" />
@@ -230,7 +231,7 @@ function LibraryPage() {
               )}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Top Categories */}
         {/* <div className="mt-10">

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import fixed from "@/assets/fixed-hero.jpg";
+import fixed from "@/assets/fixed-hero-2.png";
 import lFrameTransport from "@/assets/l-frame-transport.png";
 import fromFloor2 from "@/assets/fromFloor2.png";
 import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
@@ -41,6 +41,8 @@ function Page() {
       intro="Produced for inline shower enclosures, walk-in shower layouts, return panels, and side-screen installations. Supplied with polished safety edges and optional clamp-compatible processing for frameless and semi-frameless systems."
       heroImage={fixed}
       heroAlt="Tall fixed glass panel for walk-in shower"
+      heroNoOverlay
+      heroBoxed
       structuralIntegrityImage={structuralGlass}
       structuralIntegrityImageAlt="Glass manufacturing facility floor"
       structuralIntegrityTitle="Structural Integrity"

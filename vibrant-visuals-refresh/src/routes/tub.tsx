@@ -1,19 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import tub from "@/assets/tub-hero.jpg";
 import tubD1 from "@/assets/tub-detail-1.jpg";
-import tubD2 from "@/assets/tub-detail-2.jpg";
 import oneSkuCarton from "@/assets/one-sku-carton.png";
 import logisticsTub from "@/assets/logistics-tub.png";
 import slidingTubSystem from "@/assets/sliding-tub-system.png";
 import shieldSystem from "@/assets/shield-system.png";
 import bypassSystem from "@/assets/bypass-system.png";
-import drilling from "@/assets/process-drilling.jpg";
-import polishing from "@/assets/process-polishing.jpg";
-import qc from "@/assets/process-qc.jpg";
-import packing from "@/assets/process-packing.jpg";
-import warehouse from "@/assets/warehouse-rows.jpg";
-import port from "@/assets/shipping-port.jpg";
-import factory from "@/assets/factory-floor.jpg";
+import fromFloorTub1 from "@/assets/fromFloor-tub-1.png";
+import fromFloorTub2 from "@/assets/fromFloor-tub-2.png";
+import fromFloorTub3 from "@/assets/fromFloor-tub-3.png";
+import fromFloorTub4 from "@/assets/fromFloor-tub-4.png";
+import fromFloorTub5 from "@/assets/fromFloor-tub-5.png";
+import fromFloorTub6 from "@/assets/fromFloor-tub-6.png";
 import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
 import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
 import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
@@ -47,6 +45,8 @@ function Page() {
       intro="Standard program sizes for sliding bathtub shower door systems and compact bathroom installations. Supplied with installation-ready drilling layouts, polished safety edges, and retail-ready export packing for distributor warehouse handling."
       heroImage={tub}
       heroAlt="Modern bathtub with sliding glass shower screen"
+      heroNoOverlay
+      heroBoxed
       specs={[
         { label: "Common Formats", value: '30" × 55" · 30" × 60" · 30" × 68"' },
         { label: "Typical Thickness", value: "6 mm · 8 mm" },
@@ -82,12 +82,12 @@ function Page() {
         { step: "04", title: "Retail Carton", desc: "Foam-separated retail cartons, mixed-pack containers.", image: tubCheckpoint4 },
       ]}
       gallery={[
-        { src: tub, alt: "Tub enclosure with sliding screen", span: "wide" },
-        { src: tubD1, alt: "Polished tub panel edge" },
-        { src: tubD2, alt: "Carton-packed tub panels" },
-        { src: polishing, alt: "Edge polishing line" },
-        { src: warehouse, alt: "Warehouse rows of cartons" },
-        { src: port, alt: "Container shipping at port", span: "wide" },
+        { src: fromFloorTub1, alt: "Tub enclosure production — frame 1", span: "wide" },
+        { src: fromFloorTub2, alt: "Tub enclosure production — frame 2" },
+        { src: fromFloorTub3, alt: "Tub enclosure production — frame 3" },
+        { src: fromFloorTub4, alt: "Tub enclosure production — frame 4" },
+        { src: fromFloorTub5, alt: "Tub enclosure production — frame 5" },
+        { src: fromFloorTub6, alt: "Tub enclosure production — frame 6", span: "wide" },
       ]}
       useCases={[
         { image: residential, tag: "Distributor", title: "Big-box retail", desc: "Carton-packed standard tub sizes for store shelving and DIY pickup.", defaultProgram: "Tub — Retail Distributor" },
@@ -114,6 +114,7 @@ function Page() {
       certsAfterHero
       comparisonAfterCerts
       processAfterComparison
+      whyNumbered
       hideUseCases
       afterComparison={
         <section className="bg-secondary text-secondary-foreground">

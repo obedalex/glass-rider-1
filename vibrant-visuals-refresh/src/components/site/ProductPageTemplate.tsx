@@ -93,6 +93,10 @@ export type ProductPageProps = {
   hideProcess?: boolean;
   // Hide the stat band entirely
   heroOverlayColor?: string;
+  // Wrap the hero text content in a dark, translucent rounded box for extra contrast
+  heroBoxed?: boolean;
+  // Show the hero image at full opacity with no gradient/grid overlay
+  heroNoOverlay?: boolean;
   hideStats?: boolean;
   // Hide the certifications strip entirely
   hideCerts?: boolean;
@@ -482,19 +486,24 @@ export function ProductPageTemplate(p: ProductPageProps) {
           <img
             src={p.heroImage}
             alt={p.heroAlt}
-            className="h-full w-full object-cover opacity-40"
+            className={`h-full w-full object-cover ${p.heroNoOverlay ? "" : "opacity-40"}`}
             loading="eager"
           />
-          {p.heroOverlayColor ? (
-            <div className="absolute inset-0" style={{ background: `linear-gradient(to right, ${p.heroOverlayColor} 0%, ${p.heroOverlayColor}d9 45%, ${p.heroOverlayColor}99 100%)` }} />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/40" />
-          )}
-          <div className="absolute inset-0 grid-blueprint opacity-15" />
+          {!p.heroNoOverlay &&
+            (p.heroOverlayColor ? (
+              <div className="absolute inset-0" style={{ background: `linear-gradient(to right, ${p.heroOverlayColor} 0%, ${p.heroOverlayColor}d9 45%, ${p.heroOverlayColor}99 100%)` }} />
+            ) : (
+              <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/40" />
+            ))}
+          {!p.heroNoOverlay && <div className="absolute inset-0 grid-blueprint opacity-15" />}
         </div>
         <div className="container-rider relative grid gap-10 py-20 sm:py-28 lg:grid-cols-12 lg:items-center">
           <motion.div
-            className="lg:col-span-7"
+            className={
+              p.heroBoxed
+                ? "lg:col-span-9 rounded-2xl border border-white/15 bg-black/35 p-8 sm:p-10 backdrop-blur-md shadow-2xl"
+                : "lg:col-span-7"
+            }
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}

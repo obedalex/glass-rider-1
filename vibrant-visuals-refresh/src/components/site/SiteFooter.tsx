@@ -1,19 +1,22 @@
 ﻿import { Link } from "@tanstack/react-router";
 import { Mail, Phone, ShieldCheck } from "lucide-react";
 import { SendDrawingButton } from "./SendDrawingButton";
+import logo from "@/assets/logo-1.png";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-secondary text-secondary-foreground">
       <div className="container-rider py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-1">
-          <div className="flex items-center gap-2.5">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <span className="font-display text-lg font-bold leading-none">R</span>
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="font-display text-base font-bold">RIDER</span>
-              <span className="text-[11px] uppercase tracking-[0.18em] opacity-70">Shower Systems</span>
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Rider Iron & Steel Ghana Ltd" className="h-12 w-auto" />
+            <div className="flex flex-col leading-[1.05]">
+              <span className="font-display text-base font-extrabold tracking-tight">
+                RIDER IRON &amp; STEEL
+              </span>
+              <span className="font-display text-base font-extrabold tracking-tight">
+                GHANA LTD
+              </span>
             </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed opacity-80">

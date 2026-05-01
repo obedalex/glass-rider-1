@@ -94,14 +94,12 @@ function Page() {
           <img
             src={safetyHero}
             alt="Impact testing tempered shower glass"
-            className="h-full w-full object-cover opacity-40"
+            className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #272626 0%, #272626d9 45%, #27262699 100%)" }} />
-          <div className="absolute inset-0 grid-blueprint opacity-15" />
         </div>
         <div className="container-rider relative grid gap-10 py-20 sm:py-28 lg:grid-cols-12 lg:items-center">
           <motion.div
-            className="lg:col-span-7"
+            className="lg:col-span-9 rounded-2xl border border-white/15 bg-black/55 p-8 sm:p-10 backdrop-blur-md shadow-2xl"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}

@@ -2,10 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import swing from "@/assets/swing-hero.jpg";
 import swingD1 from "@/assets/swing-detail-1.jpg";
 import swingD2 from "@/assets/swing-detail-2.jpg";
-import drilling from "@/assets/process-drilling.jpg";
-import crates from "@/assets/logistics-crates.jpg";
 import heavyDutyWood from "@/assets/heavy-duty-wood.png";
-import port from "@/assets/shipping-port.jpg";
+import fromFloorSwing1 from "@/assets/fromFloor-swing-1.png";
+import fromFloorSwing2 from "@/assets/fromFloor-swing-2.png";
+import fromFloorSwing3 from "@/assets/fromFloor-swing-3.png";
+import fromFloorSwing4 from "@/assets/fromFloor-swing-4.png";
+import fromFloorSwing5 from "@/assets/fromFloor-swing-5.png";
+import fromFloorSwing6 from "@/assets/fromFloor-swing-6.png";
 import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
 import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
 import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
@@ -38,6 +41,7 @@ function Page() {
       intro="Heavy frameless swing panels with standard hinge cut-outs, offset positioning, and handle hole preparation. All internal cut-out edges are fully polished to prevent stress fractures during hardware torquing — engineered for thousands of OEM hinge platforms."
       heroImage={swing}
       heroAlt="Frameless swing shower door with chrome pivot hinges"
+      heroNoOverlay
       specs={[
         { label: "Typical Thickness", value: "8 mm · 10 mm · 12 mm" },
         { label: "Standard Door Widths", value: '24" · 26" · 28" · 30"' },
@@ -73,12 +77,12 @@ function Page() {
         { step: "04", title: "Heavy Crating", desc: "Reinforced wood crates with foam blocking and forklift entry base.", image: tubCheckpoint4 },
       ]}
       gallery={[
-        { src: swing, alt: "Frameless swing enclosure", span: "wide" },
-        { src: swingD1, alt: "Polished hinge cut-out detail" },
-        { src: swingD2, alt: "Pivot hinge on glass" },
-        { src: drilling, alt: "Handle-hole CNC drilling" },
-        { src: crates, alt: "Heavy wood crating for swing panels" },
-        { src: port, alt: "Ocean-bound containers", span: "wide" },
+        { src: fromFloorSwing1, alt: "Swing door production — frame 1", span: "wide" },
+        { src: fromFloorSwing2, alt: "Swing door production — frame 2" },
+        { src: fromFloorSwing3, alt: "Swing door production — frame 3" },
+        { src: fromFloorSwing4, alt: "Swing door production — frame 4" },
+        { src: fromFloorSwing5, alt: "Swing door production — frame 5" },
+        { src: fromFloorSwing6, alt: "Swing door production — frame 6", span: "wide" },
       ]}
       useCases={[
         { image: hotel, tag: "Hospitality", title: "Luxury hotel suites", desc: "Heavy frameless swing programs across resort renovations.", defaultProgram: "Swing — Hospitality" },
@@ -109,8 +113,10 @@ function Page() {
         { q: "Can 12mm panels ship overseas safely?", a: "Yes — our heavy-duty wood crating with foam blocking and moisture wrap is engineered for trans-Pacific transit." },
       ]}
       whyAfterHero
+      whyNumbered
       useCasesAfterProcess
       comparisonAfterCerts
+      heroBoxed
     />
   );
 }

@@ -512,43 +512,40 @@ function Home() {
       {/* SECTION — FROM CAD TO RS-SKU */}
       <section className="bg-surface-2 border-y border-border">
         <div className="container-rider py-20">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            {/* Image placeholder — replace this div with <img> once you have the asset */}
-            <Reveal className="relative">
-              <img src={technicalExpertise} alt="" />{" "}
-            </Reveal>
-            <Reveal>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-                Technical Expertise
-              </span>
-              <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
-                From CAD to RS-SKU.
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                We convert proprietary CAD formats into repeatable RS-SKUs. Engineering support
-                ensures hinge mapping and handle layouts align with standard North American hardware
-                systems.
-              </p>
-              <ul className="mt-6 space-y-3">
-                {[
-                  "Drawing-to-SKU conversion for repeat supply",
-                  "Precision U-cuts, corner notches, radius edges",
-                  "Hinge mapping for major hardware platforms",
-                  "Private-label silk-screen branding"
-                ].map((b) => (
-                  <li key={b} className="flex items-start gap-3">
-                    <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-primary">
-                      <CheckCircle2 className="h-3.5 w-3.5" />
-                    </span>
-                    <span className="text-sm text-foreground leading-relaxed">{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-7">
-                <SendDrawingButton size="md" variant="solid" label="Send A Drawing" />
-              </div>
-            </Reveal>
-          </div>
+          <Reveal className="mx-auto max-w-3xl">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              Technical Expertise
+            </span>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
+              From CAD to RS-SKU.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              We convert proprietary CAD formats into repeatable RS-SKUs. Engineering support
+              ensures hinge mapping and handle layouts align with standard North American hardware
+              systems.
+            </p>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+              {[
+                "Drawing-to-SKU conversion for repeat supply",
+                "Precision U-cuts, corner notches, radius edges",
+                "Hinge mapping for major hardware platforms",
+                "Private-label silk-screen branding"
+              ].map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-primary">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-sm text-foreground leading-relaxed">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7">
+              <SendDrawingButton size="md" variant="solid" label="Send A Drawing" />
+            </div>
+          </Reveal>
+          <Reveal className="mt-12">
+            <img src={technicalExpertise} alt="" className="w-full" />
+          </Reveal>
         </div>
       </section>
 

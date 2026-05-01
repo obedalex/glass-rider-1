@@ -42,6 +42,8 @@ function Page() {
       intro="Rider sliding panels are produced for inline and bypass enclosure systems requiring precise roller-hole positioning, guide alignment drilling, and polished safety edges. Supplied installation-ready for distributors, manufacturers, and OEM door system suppliers."
       heroImage={sliding}
       heroAlt="Sliding shower door with precision-drilled roller hardware"
+      heroNoOverlay
+      heroBoxed
       specs={[
         { label: "Typical Thickness", value: "6 mm · 8 mm · 10 mm" },
         { label: "Common Heights", value: '68" · 76" · 78"' },
