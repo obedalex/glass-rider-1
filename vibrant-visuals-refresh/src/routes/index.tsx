@@ -20,8 +20,8 @@ import { motion } from "framer-motion";
 import hero1 from "@/assets/hero-1-enclosure.jpg";
 import hero2 from "@/assets/hero-2-tempering.jpg";
 import hero5 from "@/assets/hero-5-engineering.jpg";
-import homepageHero1 from "@/assets/homepage-hero-1.png";
-import homepageHero2 from "@/assets/homepage-hero-2.png";
+import homepageHero1 from "@/assets/homepage-hero-1.webp";
+import homepageHero2 from "@/assets/homepage-hero-2.webp";
 import structuralImg from "@/assets/Structural glass details.png";
 import processingCapabilities from "@/assets/processing-capabilities-shower.png";
 
@@ -134,7 +134,7 @@ function Home() {
   return (
     <>
       {/* SECTION 1 — HERO with carousel */}
-      <section className="relative h-[680px] overflow-hidden border-b border-border">
+      <section className="relative h-[520px] sm:h-[600px] lg:h-[680px] overflow-hidden border-b border-border">
         <HeroCarousel slides={slides} />
         <div className="container-rider relative z-10 grid h-full items-center">
           <motion.div
@@ -146,7 +146,7 @@ function Home() {
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" /> B2B OEM &amp; Program Supply
             </span>
-            <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] text-white text-balance">
+            <h1 className="mt-6 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] text-white text-balance">
               Shower system glass built for distributor &amp;OEM programs
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
@@ -169,7 +169,7 @@ function Home() {
 
       {/* SECTION — PROCESSING CAPABILITIES */}
       <section className="bg-secondary text-secondary-foreground">
-        <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="container-rider py-14 sm:py-16 lg:py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               Processing Capabilities
@@ -215,7 +215,7 @@ function Home() {
 
       {/* SECTION 2 — TECHNICAL PRECISION
       <section className="bg-secondary text-secondary-foreground">
-        <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="container-rider py-14 sm:py-16 lg:py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="relative">
             <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
             <img
@@ -260,8 +260,8 @@ function Home() {
       </section> */}
 
       {/* SECTION 3 — WHO THIS IS FOR */}
-      <section className="container-rider py-20">
-        <div className="flex justify-between items-center mb-[20px]">
+      <section className="container-rider py-14 sm:py-16 lg:py-20">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6 mb-[20px]">
           <Reveal className="mb-10 max-w-2xl">
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               Built For
@@ -272,7 +272,7 @@ function Home() {
           </Reveal>
           <img
             src={oneSupplyChain}
-            className="w-100.5 h-45.75"
+            className="w-full max-w-sm md:w-[400px] md:h-[180px] object-contain"
             alt="One Supply image on the right side"
           />
         </div>
@@ -323,7 +323,7 @@ function Home() {
 
       {/* SECTION 4 — PRODUCT CATEGORIES */}
       <section className=" border-y border-border bg-surface">
-        <div className="container-rider py-20">
+        <div className="container-rider py-14 sm:py-16 lg:py-20">
           <Reveal className="mb-10 flex items-end justify-between gap-6 flex-wrap">
             <div>
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
@@ -373,7 +373,7 @@ function Home() {
       </section>
 
       {/* SECTION 5 — WHY RIDER */}
-      <section className="container-rider py-20">
+      <section className="container-rider py-14 sm:py-16 lg:py-20">
         <div className="flex items-center justify-center">
           <Reveal className="mb-12 max-w-2xl">
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
@@ -424,7 +424,7 @@ function Home() {
 
       {/* SECTION 10 — COMPLIANCE */}
       <section className="bg-secondary text-secondary-foreground">
-        <div className="container-rider py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="container-rider py-14 sm:py-16 lg:py-20 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               Production Standards
@@ -470,7 +470,7 @@ function Home() {
       </section>
 
       {/* SECTION 7 — PROCESS TIMELINE */}
-      <section className="container-rider py-20">
+      <section className="container-rider py-14 sm:py-16 lg:py-20">
         <Reveal className="mb-10 max-w-2xl">
           <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
             From Drawing to Delivery
@@ -511,7 +511,7 @@ function Home() {
 
       {/* SECTION — FROM CAD TO RS-SKU */}
       <section className="bg-surface-2 border-y border-border">
-        <div className="container-rider py-20">
+        <div className="container-rider py-14 sm:py-16 lg:py-20">
           <Reveal className="mx-auto max-w-3xl">
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               Technical Expertise
@@ -551,7 +551,7 @@ function Home() {
 
       {/* SECTION 8 — GALLERY */}
       <section className="bg-surface border-y border-border">
-        <div className="container-rider py-20">
+        <div className="container-rider py-14 sm:py-16 lg:py-20">
           <Reveal className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
@@ -577,7 +577,7 @@ function Home() {
       </section>
 
       {/* SECTION 9 — USE CASES */}
-      <section className="container-rider py-20">
+      <section className="container-rider py-14 sm:py-16 lg:py-20">
         <Reveal className="mb-10 max-w-2xl">
           <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
             B2B OEM Solutions
@@ -614,7 +614,7 @@ function Home() {
       </section>
 
       {/* SECTION 11 — FAQ */}
-      <section className="container-rider py-20">
+      <section className="container-rider py-14 sm:py-16 lg:py-20">
         <FAQ
           centered
           items={[

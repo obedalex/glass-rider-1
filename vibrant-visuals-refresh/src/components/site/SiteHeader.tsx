@@ -1,6 +1,18 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
-import { useState } from "react";
+import {
+  Bath,
+  ChevronDown,
+  DoorOpen,
+  Menu,
+  Moon,
+  MoveHorizontal,
+  RectangleVertical,
+  Sun,
+  Tent,
+  X,
+  type LucideIcon,
+} from "lucide-react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
 import { SendDrawingButton } from "./SendDrawingButton";
@@ -36,9 +48,22 @@ const programPaths = ["/sliding", "/swing", "/tub", "/fixed"];
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [programsOpen, setProgramsOpen] = useState(false);
+  const [programsHover, setProgramsHover] = useState(false);
+  const programsHoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { theme, toggleTheme } = useTheme();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isProgramActive = programPaths.includes(pathname);
+
+  const openProgramsHover = () => {
+    if (programsHoverTimeout.current) {
+      clearTimeout(programsHoverTimeout.current);
+      programsHoverTimeout.current = null;
+    }
+    setProgramsHover(true);
+  };
+  const closeProgramsHover = () => {
+    programsHoverTimeout.current = setTimeout(() => setProgramsHover(false), 120);
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
@@ -68,7 +93,24 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ) : (
-              <ProgramsDropdown key={item.label} item={item} isActive={isProgramActive} />
+              <button
+                key={item.label}
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={programsHover}
+                onMouseEnter={openProgramsHover}
+                onMouseLeave={closeProgramsHover}
+                className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
+                  isProgramActive ? "text-primary" : "text-ink-soft"
+                }`}
+              >
+                {item.label}
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-transform ${
+                    programsHover ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
             )
           )}
         </nav>
@@ -155,57 +197,144 @@ export function SiteHeader() {
           </div>
         </div>
       )}
-    </header>
-  );
-}
 
-function ProgramsDropdown({ item, isActive }: { item: NavGroup; isActive: boolean }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <button
-        type="button"
-        aria-haspopup="menu"
-        aria-expanded={hovered}
-        className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-          isActive ? "text-primary" : "text-ink-soft"
-        }`}
-      >
-        {item.label}
-        <ChevronDown
-          className={`h-3.5 w-3.5 transition-transform ${hovered ? "rotate-180" : ""}`}
-        />
-      </button>
+      {/* Desktop full-width mega menu (Our Programs) */}
       <AnimatePresence>
-        {hovered && (
+        {programsHover && (
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-1/2 top-full -translate-x-1/2 pt-2 min-w-55"
+            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute left-0 right-0 top-full hidden lg:block"
+            onMouseEnter={openProgramsHover}
+            onMouseLeave={closeProgramsHover}
             role="menu"
           >
-            <div className="rounded-xl border border-border bg-background/95 p-2 shadow-xl backdrop-blur-md">
-              {item.children.map((c) => (
-                <Link
-                  key={c.to}
-                  to={c.to}
-                  role="menuitem"
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-muted hover:text-primary"
-                  activeProps={{ className: "text-primary bg-muted" }}
-                >
-                  {c.label}
-                </Link>
-              ))}
+            <div className="container-rider pt-2">
+              <div className="overflow-hidden rounded-xl border border-border bg-background/95 shadow-2xl backdrop-blur-md">
+                <div className="grid grid-cols-12">
+                  {/* Left: blank image slot — image to be provided */}
+                  <div className="relative col-span-4 min-h-[300px] overflow-hidden bg-muted">
+                    {/* <img className="absolute inset-0 h-full w-full object-cover" /> goes here */}
+                  </div>
+
+                  {/* Middle: Shower Systems — 2 cols × 2 rows */}
+                  <div className="col-span-4 p-6">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+                      Shower Systems
+                    </span>
+                    <div className="mt-4 grid grid-cols-2 gap-3">
+                      {showerSystems.map(({ to, label, desc, Icon }) => (
+                        <Link
+                          key={to}
+                          to={to}
+                          role="menuitem"
+                          onClick={() => setProgramsHover(false)}
+                          className="group flex items-start gap-3 rounded-md p-2 -m-2 transition-colors hover:bg-muted"
+                          activeProps={{ className: "bg-muted" }}
+                        >
+                          <span className="mt-0.5 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md border border-border text-foreground transition-colors group-hover:border-primary group-hover:text-primary">
+                            <Icon className="h-4 w-4" strokeWidth={1.75} />
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block text-sm font-bold text-foreground transition-colors group-hover:text-primary">
+                              {label}
+                            </span>
+                            <span className="mt-1 block text-[11px] leading-relaxed text-muted-foreground">
+                              {desc}
+                            </span>
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right: Future Programs — 2 cols (3 items, 2-1 fill) */}
+                  <div className="col-span-4 border-l border-border bg-surface-2/40 p-6">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+                      Future Programs
+                    </span>
+                    <div className="mt-4 grid grid-cols-2 gap-3">
+                      {futurePrograms.map(({ label, desc, abbr, Icon }) => (
+                        <div key={label} className="flex items-start gap-3">
+                          <span className="mt-0.5 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md border border-border text-foreground">
+                            {abbr ? (
+                              <span className="text-[10px] font-bold tracking-tight">{abbr}</span>
+                            ) : Icon ? (
+                              <Icon className="h-4 w-4" strokeWidth={1.75} />
+                            ) : null}
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block text-sm font-bold text-foreground">
+                              {label}{" "}
+                              <span className="text-[11px] font-semibold text-primary">
+                                (Coming Soon)
+                              </span>
+                            </span>
+                            <span className="mt-1 block text-[11px] leading-relaxed text-muted-foreground">
+                              {desc}
+                            </span>
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 }
+
+type ShowerSystem = { to: string; label: string; desc: string; Icon: LucideIcon };
+type FutureProgram = { label: string; desc: string; abbr?: string; Icon?: LucideIcon };
+
+const showerSystems: ShowerSystem[] = [
+  {
+    to: "/sliding",
+    label: "Sliding",
+    desc: "Precision-engineered roller systems for bypass and inline enclosures.",
+    Icon: MoveHorizontal,
+  },
+  {
+    to: "/swing",
+    label: "Swing",
+    desc: "Heavy-duty pivot and hinge systems for frameless glass doors.",
+    Icon: DoorOpen,
+  },
+  {
+    to: "/tub",
+    label: "Tub",
+    desc: "Water-tight enclosure systems designed for high-traffic hospitality use.",
+    Icon: Bath,
+  },
+  {
+    to: "/fixed",
+    label: "Fixed",
+    desc: "Structural glass panels with reinforced U-channel architectural support.",
+    Icon: RectangleVertical,
+  },
+];
+
+const futurePrograms: FutureProgram[] = [
+  {
+    label: "Cabinet & Wardrobe Glass",
+    desc: "Specialized thin-gauge tempered glass for high-end millwork integration.",
+    abbr: "CWG",
+  },
+  {
+    label: "Furniture Glass",
+    desc: "Impact-resistant surfaces with custom edge profiles for commercial interiors.",
+    abbr: "FG",
+  },
+  {
+    label: "Outdoor Structures Glass",
+    desc: "Weather-hardened panels for architectural canopies and glass balustrades.",
+    Icon: Tent,
+  },
+];
+

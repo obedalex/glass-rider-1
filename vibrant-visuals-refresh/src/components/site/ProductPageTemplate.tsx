@@ -11,6 +11,21 @@ import { UseCaseCards, type UseCase } from "./UseCaseCards";
 import { FAQ, type FAQItem } from "./FAQ";
 import { CtaBand } from "./CtaBand";
 import footer2 from "@/assets/footer2.png";
+import sgccStamp from "@/assets/sgcc-stamp-1.png";
+import ansiStamp from "@/assets/ansi-stamp-1.png";
+import igccIgmaStamp from "@/assets/igcc-igma-stamp.png";
+import cgsbStamp from "@/assets/cgsb.png";
+import usConsumerStamp from "@/assets/us-consumer-stamp.png";
+import certifiedIsoStamp from "@/assets/certified-iso.png";
+
+const certStamps = [
+  { src: sgccStamp, alt: "SGCC Certified" },
+  { src: ansiStamp, alt: "ANSI" },
+  { src: igccIgmaStamp, alt: "IGCC / IGMA" },
+  { src: cgsbStamp, alt: "CGSB" },
+  { src: usConsumerStamp, alt: "U.S. Consumer Product Safety" },
+  { src: certifiedIsoStamp, alt: "ISO Certified" },
+];
 
 export type ProductPageProps = {
   program: string;
@@ -135,7 +150,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
               loading="lazy"
               width={1200}
               height={900}
-              className="relative rounded-xl border border-border shadow-2xl object-cover w-full h-[420px]"
+              className="relative rounded-xl border border-border shadow-2xl object-cover w-full h-[260px] sm:h-[340px] lg:h-[420px]"
             />
           </Reveal>
           <Reveal>
@@ -240,10 +255,10 @@ export function ProductPageTemplate(p: ProductPageProps) {
                   src={p.structuralIntegrityImage}
                   alt={p.structuralIntegrityImageAlt ?? ""}
                   loading="lazy"
-                  className="h-full w-full object-cover min-h-[420px] rounded-xl"
+                  className="h-full w-full object-cover min-h-[260px] sm:min-h-[340px] lg:min-h-[420px] rounded-xl"
                 />
               ) : (
-                <div className="bg-surface-2 rounded-xl border border-border min-h-[420px]" />
+                <div className="bg-surface-2 rounded-xl border border-border min-h-[260px] sm:min-h-[340px] lg:min-h-[420px]" />
               )}
             </Reveal>
             <Reveal>
@@ -374,10 +389,10 @@ export function ProductPageTemplate(p: ProductPageProps) {
                 src={p.programDeskImage}
                 alt={p.programDeskImageAlt ?? ""}
                 loading="lazy"
-                className="h-full w-full object-cover min-h-[420px] rounded-xl"
+                className="h-full w-full object-cover min-h-[260px] sm:min-h-[340px] lg:min-h-[420px] rounded-xl"
               />
             ) : (
-              <div className="bg-surface-2 rounded-xl border border-border min-h-[420px]" />
+              <div className="bg-surface-2 rounded-xl border border-border min-h-[260px] sm:min-h-[340px] lg:min-h-[420px]" />
             )}
           </Reveal>
         </div>
@@ -411,7 +426,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
           </h2>
         </Reveal>
         <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-          <div className="grid grid-cols-3 border-b border-border bg-surface-2 px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:px-6">
+          <div className="hidden sm:grid sm:grid-cols-3 border-b border-border bg-surface-2 px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:px-6">
             <div>Attribute</div>
             <div className="text-primary">Rider Program</div>
             <div>Standard Spot-Buy</div>
@@ -420,13 +435,22 @@ export function ProductPageTemplate(p: ProductPageProps) {
             {p.comparison.map((row, i) => (
               <StaggerItem
                 key={row.label}
-                className={`grid grid-cols-3 px-4 py-4 text-sm sm:px-6 ${
+                className={`flex flex-col gap-2 border-b border-border px-4 py-4 text-sm sm:grid sm:grid-cols-3 sm:gap-0 sm:border-b-0 sm:px-6 last:border-b-0 ${
                   i % 2 ? "bg-surface-2" : "bg-card"
                 }`}
               >
-                <div className="font-semibold text-foreground">{row.label}</div>
-                <div className="font-medium text-primary">{row.rider}</div>
-                <div className="text-muted-foreground">{row.standard}</div>
+                <div className="font-semibold text-foreground">
+                  <span className="mr-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground sm:hidden">Attribute</span>
+                  {row.label}
+                </div>
+                <div className="font-medium text-primary">
+                  <span className="mr-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground sm:hidden">Rider Program</span>
+                  {row.rider}
+                </div>
+                <div className="text-muted-foreground">
+                  <span className="mr-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground sm:hidden">Standard Spot-Buy</span>
+                  {row.standard}
+                </div>
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -448,14 +472,15 @@ export function ProductPageTemplate(p: ProductPageProps) {
             </h3>
           </div>
           <div className="lg:col-span-8">
-            <div className="flex flex-wrap gap-3">
-              {certs.map((c) => (
-                <span
-                  key={c}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold backdrop-blur"
-                >
-                  <ShieldCheck className="h-4 w-4 text-primary" /> {c}
-                </span>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:gap-x-8">
+              {certStamps.map((s) => (
+                <img
+                  key={s.alt}
+                  src={s.src}
+                  alt={s.alt}
+                  loading="lazy"
+                  className="h-14 w-auto object-contain sm:h-16"
+                />
               ))}
             </div>
           </div>

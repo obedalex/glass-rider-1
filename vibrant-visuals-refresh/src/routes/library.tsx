@@ -443,7 +443,7 @@ function LibraryPage() {
           </h2>
         </Reveal>
         <div className="overflow-hidden rounded-xl border border-border bg-card">
-          <div className="grid grid-cols-3 border-b border-border bg-surface-2 px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:px-6">
+          <div className="hidden sm:grid sm:grid-cols-3 border-b border-border bg-surface-2 px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:px-6">
             <div>Hardware</div>
             <div>Categories</div>
             <div>Notes</div>
@@ -458,11 +458,20 @@ function LibraryPage() {
           ].map((r, i) => (
             <div
               key={r.hw}
-              className={`grid grid-cols-3 px-4 py-4 text-sm sm:px-6 ${i % 2 ? "bg-surface-2" : "bg-card"}`}
+              className={`flex flex-col gap-2 border-b border-border px-4 py-4 text-sm sm:grid sm:grid-cols-3 sm:gap-0 sm:border-b-0 sm:px-6 last:border-b-0 ${i % 2 ? "bg-surface-2" : "bg-card"}`}
             >
-              <div className="font-semibold text-foreground">{r.hw}</div>
-              <div className="text-primary font-medium">{r.cats}</div>
-              <div className="text-muted-foreground">{r.notes}</div>
+              <div className="font-semibold text-foreground">
+                <span className="mr-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground sm:hidden">Hardware</span>
+                {r.hw}
+              </div>
+              <div className="font-medium text-primary">
+                <span className="mr-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground sm:hidden">Categories</span>
+                {r.cats}
+              </div>
+              <div className="text-muted-foreground">
+                <span className="mr-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground sm:hidden">Notes</span>
+                {r.notes}
+              </div>
             </div>
           ))}
         </div>

@@ -42,7 +42,7 @@ export function PageHero({
         >
           <div className="absolute -inset-4 rounded-2xl bg-primary/15 blur-2xl" />
           <div className="relative overflow-hidden rounded-2xl border border-border shadow-2xl">
-            <img src={image} alt={imageAlt} className="h-[420px] w-full object-cover" loading="lazy" width={1200} height={900} />
+            <img src={image} alt={imageAlt} className="h-[260px] sm:h-[340px] lg:h-[420px] w-full object-cover" loading="lazy" width={1200} height={900} />
           </div>
         </motion.div>
       </div>
