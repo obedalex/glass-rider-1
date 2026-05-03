@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { createFileRoute } from "@tanstack/react-router";
 import custom from "@/assets/custom-hero-2.png";
+import customHeroWebp from "@/assets/custom-hero-2.webp";
+import customHeroMobileWebp from "@/assets/custom-hero-2-mobile.webp";
 import customD1 from "@/assets/custom-detail-1.jpg";
 import customD2 from "@/assets/custom-detail-2.jpg";
 import drilling from "@/assets/process-drilling.jpg";
@@ -40,6 +42,11 @@ function Page() {
       title="Custom shower system glass, engineered for repeat supply."
       intro="Rider produces custom glass panels based on project drawings for hotel installations, apartment developments, luxury villas, and private-label OEM hardware programs. We bridge custom engineering and long-term, repeatable program supply."
       heroImage={custom}
+      heroImageSources={[
+        { media: "(max-width: 767px)", srcSet: customHeroMobileWebp, type: "image/webp", sizes: "100vw" },
+        { srcSet: customHeroWebp, type: "image/webp", sizes: "100vw" },
+      ]}
+      heroImageSizes="100vw"
       heroAlt="CAD blueprint with tempered glass panel on workbench"
       heroOverlayColor="#262121"
       hideStats

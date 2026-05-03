@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import fixed from "@/assets/fixed-hero-2.png";
-import fixedHeroBg from "@/assets/fixed-hero-bg.png";
+import fixedHero from "@/assets/fixed-hero-2.png";
+import fixedHeroWebp from "@/assets/fixed-hero-2.webp";
+import fixedHeroMobileWebp from "@/assets/fixed-hero-2-mobile.webp";
 import lFrameTransport from "@/assets/l-frame-transport.png";
 import fromFloorFixed1 from "@/assets/fromFloor-fixed-1.png";
 import fromFloorFixed2 from "@/assets/fromFloor-fixed-2.png";
@@ -28,8 +29,8 @@ export const Route = createFileRoute("/fixed")({
       { name: "description", content: "Walk-in screens, return panels, and side-screens with polished safety edges and clamp-compatible processing for frameless and semi-frameless enclosures." },
       { property: "og:title", content: "Fixed Shower Panel Glass | Rider Shower Systems" },
       { property: "og:description", content: "Walk-in panels, return panels, and side-screens with clamp-ready edges and L-frame transport." },
-      { property: "og:image", content: fixed },
-      { name: "twitter:image", content: fixed },
+      { property: "og:image", content: fixedHero },
+      { name: "twitter:image", content: fixedHero },
     ],
   }),
 });
@@ -41,10 +42,16 @@ function Page() {
       eyebrow="Fixed Panel Program"
       title="Fixed shower panel glass — walk-in, return & side-screen."
       intro="Produced for inline shower enclosures, walk-in shower layouts, return panels, and side-screen installations. Supplied with polished safety edges and optional clamp-compatible processing for frameless and semi-frameless systems."
-      heroImage={fixedHeroBg}
+      heroImage={fixedHero}
+      heroImageSources={[
+        { media: "(max-width: 767px)", srcSet: fixedHeroMobileWebp, type: "image/webp", sizes: "100vw" },
+        { srcSet: fixedHeroWebp, type: "image/webp", sizes: "100vw" },
+      ]}
+      heroImageSizes="100vw"
       heroAlt="Tall fixed glass panel for walk-in shower"
       heroNoOverlay
       heroBoxed
+      heroContentCentered
       structuralIntegrityImage={structuralGlass}
       structuralIntegrityImageAlt="Glass manufacturing facility floor"
       structuralIntegrityTitle="Structural Integrity"

@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import swing from "@/assets/swing-hero.jpg";
 import swingHeroBg from "@/assets/swing-hero-bg.png";
+import swingHeroBgWebp from "@/assets/swing-hero-bg.webp";
+import swingHeroBgMobileWebp from "@/assets/swing-hero-bg-mobile.webp";
 import swingD1 from "@/assets/swing-detail-1.jpg";
 import swingD2 from "@/assets/swing-detail-2.jpg";
 import heavyDutyWood from "@/assets/heavy-duty-wood.png";
@@ -41,6 +43,11 @@ function Page() {
       title="Heavy frameless swing glass with surgical hinge cut-outs."
       intro="Heavy frameless swing panels with standard hinge cut-outs, offset positioning, and handle hole preparation. All internal cut-out edges are fully polished to prevent stress fractures during hardware torquing — engineered for thousands of OEM hinge platforms."
       heroImage={swingHeroBg}
+      heroImageSources={[
+        { media: "(max-width: 767px)", srcSet: swingHeroBgMobileWebp, type: "image/webp", sizes: "100vw" },
+        { srcSet: swingHeroBgWebp, type: "image/webp", sizes: "100vw" },
+      ]}
+      heroImageSizes="100vw"
       heroAlt="Frameless swing shower door with chrome pivot hinges"
       heroNoOverlay
       specs={[

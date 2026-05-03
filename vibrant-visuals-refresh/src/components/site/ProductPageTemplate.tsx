@@ -17,6 +17,7 @@ import igccIgmaStamp from "@/assets/igcc-igma-stamp.png";
 import cgsbStamp from "@/assets/cgsb.png";
 import usConsumerStamp from "@/assets/us-consumer-stamp.png";
 import certifiedIsoStamp from "@/assets/certified-iso.png";
+import { cn } from "@/lib/utils";
 
 const certStamps = [
   { src: sgccStamp, alt: "SGCC Certified" },
@@ -27,12 +28,21 @@ const certStamps = [
   { src: certifiedIsoStamp, alt: "ISO Certified" },
 ];
 
+type ResponsiveImageSource = {
+  media?: string;
+  sizes?: string;
+  srcSet: string;
+  type?: string;
+};
+
 export type ProductPageProps = {
   program: string;
   eyebrow: string;
   title: string;
   intro: string;
   heroImage: string;
+  heroImageSources?: ResponsiveImageSource[];
+  heroImageSizes?: string;
   heroAlt: string;
   // Section 2b: structural integrity split (optional)
   structuralIntegrityTitle?: string;
@@ -110,11 +120,15 @@ export type ProductPageProps = {
   heroOverlayColor?: string;
   // Wrap the hero text content in a dark, translucent rounded box for extra contrast
   heroBoxed?: boolean;
+  // Center the hero copy block and CTA row for single-column hero variants
+  heroContentCentered?: boolean;
   // Show the hero image at full opacity with no gradient/grid overlay
   heroNoOverlay?: boolean;
   // Split-hero variant: dedicated background + right-side foreground image alongside the text
   heroSplit?: boolean;
   heroBgImage?: string;
+  heroBgImageSources?: ResponsiveImageSource[];
+  heroBgImageSizes?: string;
   heroBgColor?: string;
   heroBgOpacity?: number;
   heroFgImage?: string;
@@ -141,6 +155,30 @@ export type ProductPageProps = {
 };
 
 export function ProductPageTemplate(p: ProductPageProps) {
+  const heroDisplayImage = p.heroSplit && p.heroBgImage ? p.heroBgImage : p.heroImage;
+  const heroDisplaySources = p.heroSplit && p.heroBgImage ? p.heroBgImageSources : p.heroImageSources;
+  const heroDisplaySizes = p.heroSplit && p.heroBgImage ? p.heroBgImageSizes : p.heroImageSizes;
+
+  const heroContentClassName = cn(
+    p.heroSplit
+      ? "lg:col-span-7"
+      : p.heroBoxed
+        ? "rounded-2xl border border-white/15 bg-black/35 p-8 sm:p-10 backdrop-blur-md shadow-2xl"
+        : "lg:col-span-7",
+    !p.heroSplit && p.heroBoxed && (p.heroContentCentered ? "lg:col-span-10 lg:col-start-2" : "lg:col-span-9"),
+    !p.heroSplit && !p.heroBoxed && p.heroContentCentered && "lg:col-span-8 lg:col-start-3",
+    p.heroContentCentered && "mx-auto text-center",
+  );
+
+  const heroIntroClassName = cn(
+    "mt-6 max-w-2xl text-base sm:text-lg leading-relaxed opacity-85",
+    p.heroContentCentered && "mx-auto",
+  );
+
+  const heroActionsClassName = cn(
+    "mt-8 flex flex-wrap gap-3",
+    p.heroContentCentered && "justify-center",
+  );
 
   const whySection = (
     <section className="bg-surface-2 border-y border-border">
@@ -552,21 +590,35 @@ export function ProductPageTemplate(p: ProductPageProps) {
       >
         <div className="absolute inset-0">
           {!(p.heroSplit && p.heroBgColor) && (
-            <img
-              src={p.heroSplit && p.heroBgImage ? p.heroBgImage : p.heroImage}
-              alt={p.heroAlt}
-              className={`h-full w-full object-cover ${
-                p.heroBgOpacity === undefined
-                  ? p.heroSplit
-                    ? "opacity-30"
-                    : p.heroNoOverlay
-                      ? ""
-                      : "opacity-40"
-                  : ""
-              }`}
-              style={p.heroBgOpacity !== undefined ? { opacity: p.heroBgOpacity / 100 } : undefined}
-              loading="eager"
-            />
+            <picture>
+              {heroDisplaySources?.map((source) => (
+                <source
+                  key={`${source.type ?? "default"}-${source.media ?? "all"}-${source.srcSet}`}
+                  media={source.media}
+                  sizes={source.sizes ?? heroDisplaySizes}
+                  srcSet={source.srcSet}
+                  type={source.type}
+                />
+              ))}
+              <img
+                src={heroDisplayImage}
+                alt={p.heroAlt}
+                sizes={heroDisplaySizes}
+                className={`h-full w-full object-cover ${
+                  p.heroBgOpacity === undefined
+                    ? p.heroSplit
+                      ? "opacity-30"
+                      : p.heroNoOverlay
+                        ? ""
+                        : "opacity-40"
+                    : ""
+                }`}
+                style={p.heroBgOpacity !== undefined ? { opacity: p.heroBgOpacity / 100 } : undefined}
+                loading="eager"
+                decoding="sync"
+                fetchPriority="high"
+              />
+            </picture>
           )}
           {p.heroSplit ? (
             <>
@@ -600,13 +652,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
         </div>
         <div className="container-rider relative grid gap-10 py-20 sm:py-28 lg:grid-cols-12 lg:items-center">
           <motion.div
-            className={
-              p.heroSplit
-                ? "lg:col-span-7"
-                : p.heroBoxed
-                  ? "lg:col-span-9 rounded-2xl border border-white/15 bg-black/35 p-8 sm:p-10 backdrop-blur-md shadow-2xl"
-                  : "lg:col-span-7"
-            }
+            className={heroContentClassName}
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -617,10 +663,10 @@ export function ProductPageTemplate(p: ProductPageProps) {
             <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance">
               {p.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed opacity-85">
+            <p className={heroIntroClassName}>
               {p.intro}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className={heroActionsClassName}>
               <SendDrawingButton
                 size="lg"
                 variant="solid"
@@ -655,6 +701,8 @@ export function ProductPageTemplate(p: ProductPageProps) {
                   src={p.heroFgImage}
                   alt={p.heroFgAlt ?? ""}
                   loading="eager"
+                  decoding="async"
+                  fetchPriority="low"
                   className="relative h-auto w-full object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.45)]"
                 />
               </div>

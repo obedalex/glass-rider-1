@@ -13,6 +13,8 @@ import {
 import sgcc from "@/assets/safety-stamp.jpg";
 import batchTraceability from "@/assets/batch-traceability2.png";
 import safetyHero from "@/assets/safety-hero-2.png";
+import safetyHeroWebp from "@/assets/safety-hero-2.webp";
+import safetyHeroMobileWebp from "@/assets/safety-hero-2-mobile.webp";
 import safetyTest from "@/assets/safety-test.jpg";
 import qc from "@/assets/process-qc.jpg";
 import polishing from "@/assets/process-polishing.jpg";
@@ -92,11 +94,27 @@ function Page() {
       {/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden border-b border-border bg-secondary text-secondary-foreground">
         <div className="absolute inset-0">
-          <img
-            src={safetyHero}
-            alt="Impact testing tempered shower glass"
-            className="h-full w-full object-cover"
-          />
+          <picture>
+            <source
+              media="(max-width: 767px)"
+              sizes="100vw"
+              srcSet={safetyHeroMobileWebp}
+              type="image/webp"
+            />
+            <source
+              sizes="100vw"
+              srcSet={safetyHeroWebp}
+              type="image/webp"
+            />
+            <img
+              src={safetyHero}
+              alt="Impact testing tempered shower glass"
+              className="h-full w-full object-cover"
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+            />
+          </picture>
         </div>
         <div className="container-rider relative grid gap-10 py-20 sm:py-28 lg:grid-cols-12 lg:items-center">
           <motion.div

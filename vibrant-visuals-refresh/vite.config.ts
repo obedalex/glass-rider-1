@@ -54,7 +54,9 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
     plugins: [
-      TanStackRouterVite(),
+      TanStackRouterVite({
+        autoCodeSplitting: true,
+      }),
       react(),
       tailwindcss(),
       tsConfigPaths(),
