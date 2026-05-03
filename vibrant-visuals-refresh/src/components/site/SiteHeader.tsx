@@ -17,6 +17,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
 import { SendDrawingButton } from "./SendDrawingButton";
 import logo from "@/assets/logo-1.png";
+import popoverImage from "@/assets/popover-2.png";
 
 type NavLink = { type: "link"; to: string; label: string };
 type NavGroup = {
@@ -214,9 +215,22 @@ export function SiteHeader() {
             <div className="container-rider pt-2">
               <div className="overflow-hidden rounded-xl border border-border bg-background/95 shadow-2xl backdrop-blur-md">
                 <div className="grid grid-cols-12">
-                  {/* Left: blank image slot — image to be provided */}
+                  {/* Left: branded image with overlay copy */}
                   <div className="relative col-span-4 min-h-[300px] overflow-hidden bg-muted">
-                    {/* <img className="absolute inset-0 h-full w-full object-cover" /> goes here */}
+                    <img
+                      src={popoverImage}
+                      alt="Rider Iron & Steel — precision engineering"
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/45" aria-hidden />
+                    <div className="relative flex h-full flex-col justify-end p-6">
+                      <h1 className="font-display text-2xl font-bold leading-tight text-white text-balance">
+                        Fresh Perspectives, Unmatched Solutions
+                      </h1>
+                      <p className="mt-2 text-sm leading-relaxed text-white/85">
+                        Revolutionising the industrial landscape through precision engineering and tactical innovation
+                      </p>
+                    </div>
                   </div>
 
                   {/* Middle: Shower Systems — 2 cols × 2 rows */}

@@ -1,12 +1,14 @@
 /* eslint-disable prettier/prettier */
 import { createFileRoute } from "@tanstack/react-router";
 import sliding from "@/assets/sliding-hero.jpg";
+import slidingHeroBg from "@/assets/sliding-hero-bg.png";
+import slidingHeroFg from "@/assets/sliding-hero-fg.png";
 import slidingD1 from "@/assets/sliding-detail-1.jpg";
 import engineeredStandardsSliding from "@/assets/engineered-standards-sliding.png";
 import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
 import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
 import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
-import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
+import mixedPacking from "@/assets/mixed-packing.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import slidingGlass from "@/assets/sliding-glass.png"
@@ -42,8 +44,12 @@ function Page() {
       intro="Rider sliding panels are produced for inline and bypass enclosure systems requiring precise roller-hole positioning, guide alignment drilling, and polished safety edges. Supplied installation-ready for distributors, manufacturers, and OEM door system suppliers."
       heroImage={sliding}
       heroAlt="Sliding shower door with precision-drilled roller hardware"
+      heroSplit
+      heroBgImage={slidingHeroBg}
+      heroBgOpacity={100}
       heroNoOverlay
-      heroBoxed
+      heroFgImage={slidingHeroFg}
+      heroFgAlt="Sliding shower door panel"
       specs={[
         { label: "Typical Thickness", value: "6 mm · 8 mm · 10 mm" },
         { label: "Common Heights", value: '68" · 76" · 78"' },
@@ -76,7 +82,7 @@ function Page() {
         { step: "01", title: "Drawing Review", desc: "Engineers verify roller-hole spacing & handle layout against your hardware spec.", image: tubCheckpoint1 },
         { step: "02", title: "Tempering", desc: "Inline tempering with SGCC stamp; optical scanning for distortion.", image: tubCheckpoint2 },
         { step: "03", title: "Drilling & Polishing", desc: "CNC roller holes + flat-polished safety edges, panel-by-panel inspection.", image: tubCheckpoint3 },
-        { step: "04", title: "Mixed Packing", desc: "L-frame, carton, or crate — sized to your warehouse handling.", image: tubCheckpoint4 },
+        { step: "04", title: "Mixed Packing", desc: "L-frame, carton, or crate — sized to your warehouse handling.", image: mixedPacking },
       ]}
       gallery={[
         { src: slidingD1, alt: "Sliding panel with polished edge close-up", span: "wide" },

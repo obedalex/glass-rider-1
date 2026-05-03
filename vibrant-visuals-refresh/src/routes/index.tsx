@@ -33,7 +33,7 @@ import custom from "@/assets/custom-hero.jpg";
 import qc from "@/assets/process-qc.jpg";
 import polishing from "@/assets/process-polishing.jpg";
 import drilling from "@/assets/process-drilling.jpg";
-import packing from "@/assets/process-packing.jpg";
+import mixedPacking from "@/assets/mixed-packing.png";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
 import factory from "@/assets/factory-floor.jpg";
@@ -58,9 +58,9 @@ import realProduction4 from "@/assets/real-production-4.png"
 import realProduction5 from "@/assets/real-production-5.png"
 import realProduction6 from "@/assets/real-production-6.png"
 import homepageHero from "@/assets/homepage-hero.png"
-import hotelBathRenovations from "@/assets/hotel-bath-renovations.png"
-import hardwareSystemOEMs from "@/assets/hardware-system-OEMS.png"
-import bigBoxDistributors from "@/assets/big-box-distributors.png"
+import hotelBath from "@/assets/hotel-bath.png"
+import hardwareSystemOEMs from "@/assets/hardware-system-3.png"
+import bigBox from "@/assets/big-box.png"
 
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
@@ -332,6 +332,9 @@ function Home() {
               <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground">
                 Program-ready glass formats
               </h2>
+              <p className="mt-3 max-w-xl text-sm text-muted-foreground">
+                Standard enclosure formats available with repeatable SKU program structures for distributor inventory systems.
+              </p>
             </div>
             <Link
               to="/library"
@@ -503,7 +506,7 @@ function Home() {
               step: "04",
               title: "Mixed Packing",
               desc: "Cartons, crates, and L-frames packed for warehouse or store handling.",
-              image: packing
+              image: mixedPacking
             }
           ]}
         />
@@ -580,16 +583,16 @@ function Home() {
       <section className="container-rider py-14 sm:py-16 lg:py-20">
         <Reveal className="mb-10 max-w-2xl">
           <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            B2B OEM Solutions
+            Programs we run
           </span>
           <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
-            Program-ready glass formats
+            Hardware OEMs, hospitality, and developers.
           </h2>
         </Reveal>
         <UseCaseCards
           items={[
             {
-              image: hotelBathRenovations,
+              image: hotelBath,
               tag: "Hospitality",
               title: "Hotel bath renovations",
               desc: "Repeat sliding format across hundreds of identical bathrooms.",
@@ -603,7 +606,7 @@ function Home() {
               defaultProgram: "OEM Hardware Program"
             },
             {
-              image: bigBoxDistributors,
+              image: bigBox,
               tag: "Distribution",
               title: "Big-box distributors",
               desc: "Carton-packed standard sizes ready for store shelving.",

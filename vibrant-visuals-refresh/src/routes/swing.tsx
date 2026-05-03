@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import swing from "@/assets/swing-hero.jpg";
+import swingHeroBg from "@/assets/swing-hero-bg.png";
 import swingD1 from "@/assets/swing-detail-1.jpg";
 import swingD2 from "@/assets/swing-detail-2.jpg";
 import heavyDutyWood from "@/assets/heavy-duty-wood.png";
@@ -12,7 +13,7 @@ import fromFloorSwing6 from "@/assets/fromFloor-swing-6.png";
 import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
 import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
 import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
-import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
+import mixedPacking from "@/assets/mixed-packing.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
@@ -39,7 +40,7 @@ function Page() {
       eyebrow="Swing Door Program"
       title="Heavy frameless swing glass with surgical hinge cut-outs."
       intro="Heavy frameless swing panels with standard hinge cut-outs, offset positioning, and handle hole preparation. All internal cut-out edges are fully polished to prevent stress fractures during hardware torquing — engineered for thousands of OEM hinge platforms."
-      heroImage={swing}
+      heroImage={swingHeroBg}
       heroAlt="Frameless swing shower door with chrome pivot hinges"
       heroNoOverlay
       specs={[
@@ -74,7 +75,7 @@ function Page() {
         { step: "01", title: "Drawing Review", desc: "Hinge cut-outs and offset positions verified against your hardware spec.", image: tubCheckpoint1 },
         { step: "02", title: "Tempering", desc: "Heavy 10–12mm tempering with SGCC stamp on every panel.", image: tubCheckpoint2 },
         { step: "03", title: "Cut-out & Polish", desc: "CNC hinge cut-outs with internal edge polishing for stress relief.", image: tubCheckpoint3 },
-        { step: "04", title: "Heavy Crating", desc: "Reinforced wood crates with foam blocking and forklift entry base.", image: tubCheckpoint4 },
+        { step: "04", title: "Heavy Crating", desc: "Reinforced wood crates with foam blocking and forklift entry base.", image: mixedPacking },
       ]}
       gallery={[
         { src: fromFloorSwing1, alt: "Swing door production — frame 1", span: "wide" },

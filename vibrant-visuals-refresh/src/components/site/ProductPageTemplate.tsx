@@ -1,7 +1,7 @@
 ﻿/* eslint-disable prettier/prettier */
 import type { ElementType, ReactNode } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "./Reveal";
 import { SendDrawingButton } from "./SendDrawingButton";
 import { SpecBox } from "./SpecBox";
@@ -112,12 +112,23 @@ export type ProductPageProps = {
   heroBoxed?: boolean;
   // Show the hero image at full opacity with no gradient/grid overlay
   heroNoOverlay?: boolean;
+  // Split-hero variant: dedicated background + right-side foreground image alongside the text
+  heroSplit?: boolean;
+  heroBgImage?: string;
+  heroBgColor?: string;
+  heroBgOpacity?: number;
+  heroFgImage?: string;
+  heroFgAlt?: string;
   hideStats?: boolean;
   // Hide the certifications strip entirely
   hideCerts?: boolean;
   // Section 2c: bespoke capabilities card grid (optional, renders after stat band)
   bespokeCapabilitiesTitle?: string;
   bespokeCapabilities?: { icon: ElementType; title: string; desc: string }[];
+  // Custom process — minimal 4-column dark section (renders after Why)
+  customProcessTitle?: string;
+  customProcessBody?: string;
+  customProcessSteps?: { step: string; title: string; desc: string }[];
   // Program desk / contact section (optional, renders after specs)
   programDeskTitle?: string;
   programDeskBody?: string;
@@ -130,13 +141,6 @@ export type ProductPageProps = {
 };
 
 export function ProductPageTemplate(p: ProductPageProps) {
-  const certs = p.certifications ?? [
-    "ANSI Z97.1",
-    "16 CFR 1201 Cat. II",
-    "CAN/CGSB 12.1",
-    "SGCC Certified",
-    "ASTM C1048"
-  ];
 
   const whySection = (
     <section className="bg-surface-2 border-y border-border">
@@ -201,7 +205,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
                 src={p.whyImage}
                 alt={p.whyImageAlt ?? ""}
                 loading="lazy"
-                className="mt-6 h-full w-full object-cover min-h-[320px] rounded-xl"
+                className="mt-6 h-[260px] sm:h-[340px] lg:h-full lg:min-h-[320px] w-full object-cover rounded-xl"
               />
             ) : (
               <div className="mt-6 bg-surface-2 rounded-xl border border-border min-h-[320px]" />
@@ -218,14 +222,14 @@ export function ProductPageTemplate(p: ProductPageProps) {
                   "var(--chart-4)",
                 ];
                 return (
-                  <li key={b} className="flex items-center gap-4 rounded-xl border border-border bg-muted px-4 py-3">
+                  <li key={b} className="flex items-start gap-4 rounded-xl border border-border bg-muted px-4 py-3">
                     <span
-                      className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
+                      className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
                       style={{ backgroundColor: circleColors[i % circleColors.length] }}
                     >
                       {i + 1}
                     </span>
-                    <span className="text-sm text-foreground">{b}</span>
+                    <span className="flex-1 min-w-0 text-sm leading-relaxed text-foreground">{b}</span>
                   </li>
                 );
               })}
@@ -503,31 +507,105 @@ export function ProductPageTemplate(p: ProductPageProps) {
     </section>
   );
 
+  const customProcessSection =
+    p.customProcessSteps && p.customProcessSteps.length > 0 ? (
+      <section className="bg-secondary text-secondary-foreground">
+        <div className="container-rider py-20">
+          <Reveal className="max-w-2xl">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-balance">
+              {p.customProcessTitle ?? "The Custom Process"}
+            </h2>
+            {p.customProcessBody && (
+              <p className="mt-4 text-base leading-relaxed text-secondary-foreground/70">
+                {p.customProcessBody}
+              </p>
+            )}
+          </Reveal>
+          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            {p.customProcessSteps.map((s) => (
+              <Reveal
+                key={s.step}
+                className="border-t border-secondary-foreground/15 pt-6"
+              >
+                <span className="font-display text-3xl sm:text-4xl font-bold text-primary">
+                  {s.step}
+                </span>
+                <h3 className="mt-6 text-base font-bold text-secondary-foreground">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-secondary-foreground/70">
+                  {s.desc}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+    ) : null;
+
   return (
     <>
       {/* SECTION 1 — HERO */}
-      <section className="relative overflow-hidden border-b border-border bg-secondary text-secondary-foreground">
+      <section
+        className="relative overflow-hidden border-b border-border bg-secondary text-secondary-foreground"
+        style={p.heroSplit && p.heroBgColor ? { backgroundColor: p.heroBgColor } : undefined}
+      >
         <div className="absolute inset-0">
-          <img
-            src={p.heroImage}
-            alt={p.heroAlt}
-            className={`h-full w-full object-cover ${p.heroNoOverlay ? "" : "opacity-40"}`}
-            loading="eager"
-          />
-          {!p.heroNoOverlay &&
-            (p.heroOverlayColor ? (
-              <div className="absolute inset-0" style={{ background: `linear-gradient(to right, ${p.heroOverlayColor} 0%, ${p.heroOverlayColor}d9 45%, ${p.heroOverlayColor}99 100%)` }} />
-            ) : (
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/40" />
-            ))}
-          {!p.heroNoOverlay && <div className="absolute inset-0 grid-blueprint opacity-15" />}
+          {!(p.heroSplit && p.heroBgColor) && (
+            <img
+              src={p.heroSplit && p.heroBgImage ? p.heroBgImage : p.heroImage}
+              alt={p.heroAlt}
+              className={`h-full w-full object-cover ${
+                p.heroBgOpacity === undefined
+                  ? p.heroSplit
+                    ? "opacity-30"
+                    : p.heroNoOverlay
+                      ? ""
+                      : "opacity-40"
+                  : ""
+              }`}
+              style={p.heroBgOpacity !== undefined ? { opacity: p.heroBgOpacity / 100 } : undefined}
+              loading="eager"
+            />
+          )}
+          {p.heroSplit ? (
+            <>
+              {!p.heroBgColor && !p.heroNoOverlay && (
+                <div
+                  className={`absolute inset-0 ${
+                    p.heroBgOpacity !== undefined
+                      ? "bg-gradient-to-r from-secondary/70 via-secondary/30 to-transparent"
+                      : "bg-gradient-to-r from-secondary via-secondary/90 to-secondary/55"
+                  }`}
+                />
+              )}
+              {!p.heroNoOverlay && <div className="absolute inset-0 grid-blueprint opacity-10" />}
+            </>
+          ) : (
+            <>
+              {!p.heroNoOverlay &&
+                (p.heroOverlayColor ? (
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `linear-gradient(to right, ${p.heroOverlayColor} 0%, ${p.heroOverlayColor}d9 45%, ${p.heroOverlayColor}99 100%)`,
+                    }}
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/40" />
+                ))}
+              {!p.heroNoOverlay && <div className="absolute inset-0 grid-blueprint opacity-15" />}
+            </>
+          )}
         </div>
         <div className="container-rider relative grid gap-10 py-20 sm:py-28 lg:grid-cols-12 lg:items-center">
           <motion.div
             className={
-              p.heroBoxed
-                ? "lg:col-span-9 rounded-2xl border border-white/15 bg-black/35 p-8 sm:p-10 backdrop-blur-md shadow-2xl"
-                : "lg:col-span-7"
+              p.heroSplit
+                ? "lg:col-span-7"
+                : p.heroBoxed
+                  ? "lg:col-span-9 rounded-2xl border border-white/15 bg-black/35 p-8 sm:p-10 backdrop-blur-md shadow-2xl"
+                  : "lg:col-span-7"
             }
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -556,14 +634,32 @@ export function ProductPageTemplate(p: ProductPageProps) {
                 View specifications <ArrowRight className="h-4 w-4" />
               </a>
             </div>
-            <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium opacity-80">
-              {certs.slice(0, 4).map((c) => (
-                <span key={c} className="inline-flex items-center gap-1.5">
-                  <ShieldCheck className="h-3.5 w-3.5 text-primary" /> {c}
-                </span>
-              ))}
-            </div>
           </motion.div>
+          {p.heroSplit && p.heroFgImage && (
+            <motion.div
+              className="lg:col-span-5 flex justify-center lg:justify-end"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="relative w-full max-w-md lg:max-w-none">
+                <div
+                  className="absolute -inset-6 rounded-[2rem] bg-primary/25 blur-3xl"
+                  aria-hidden
+                />
+                <div
+                  className="absolute -inset-2 rounded-[1.75rem] bg-white/5 blur-2xl"
+                  aria-hidden
+                />
+                <img
+                  src={p.heroFgImage}
+                  alt={p.heroFgAlt ?? ""}
+                  loading="eager"
+                  className="relative h-auto w-full object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.45)]"
+                />
+              </div>
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -654,6 +750,9 @@ export function ProductPageTemplate(p: ProductPageProps) {
 
       {/* SECTION 4 — WHY THIS PROGRAM (split visual) */}
       {!p.whyAfterHero && !p.hideWhy && (p.whyNumbered ? whyNumberedSection : whySection)}
+
+      {/* SECTION 4b — CUSTOM PROCESS (optional, renders directly after Why) */}
+      {customProcessSection}
 
       {p.certsAfterWhy && !p.hideCerts && certsSection}
       {p.certsAfterWhy && !p.hideCerts && p.comparisonAfterCerts && comparisonSection}

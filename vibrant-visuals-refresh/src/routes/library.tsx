@@ -5,13 +5,13 @@ import { Search, X, Ruler, ArrowRight, Filter, Layers3 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import libraryImg from "@/assets/format-library.jpg";
-import factory from "@/assets/factory-floor.jpg";
-import packing from "@/assets/process-packing.jpg";
-import polishing from "@/assets/process-polishing.jpg";
-import drilling from "@/assets/process-drilling.jpg";
-import qc from "@/assets/process-qc.jpg";
-import port from "@/assets/shipping-port.jpg";
-import lframes from "@/assets/logistics-lframes.jpg";
+import packing from "@/assets/mixed-packing.png";
+import fromFloorLibrary1 from "@/assets/fromFloor-library-1.png";
+import fromFloorLibrary2 from "@/assets/fromFloor-library-2.png";
+import fromFloorLibrary3 from "@/assets/fromFloor-library-3.png";
+import fromFloorLibrary4 from "@/assets/fromFloor-library-4.png";
+import fromFloorLibrary5 from "@/assets/fromFloor-library-5.png";
+import fromFloorLibrary6 from "@/assets/fromFloor-library-6.png";
 
 import { TOP_CATEGORIES } from "./library.categories";
 import { FORMATS, SKU_IMAGES, CATEGORIES, THICKNESSES, TYPES, HARDWARE, THICKNESS_COLORS } from "./library.skus";
@@ -27,7 +27,7 @@ import { FAQ } from "@/components/site/FAQ";
 import { CtaBand } from "@/components/site/CtaBand";
 import footer2 from "@/assets/footer2.png";
 import programLibrary1 from "@/assets/program-library-1.png";
-import programLibrary2 from "@/assets/program-library-2.png";
+import programLibrary2 from "@/assets/system-hardware-3.png";
 import programLibrary3 from "@/assets/program-library-3.png";
 import { motion as m } from "framer-motion";
 
@@ -159,8 +159,8 @@ function LibraryPage() {
 
       {/* SECTION 4 — FILTER + RESULTS */}
       <section id="filters" className="container-rider py-12">
-        {/* Filter Catalog — hidden */}
-        {/* <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
+        {/* Filter Catalog */}
+        <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-primary" />
@@ -231,15 +231,15 @@ function LibraryPage() {
               )}
             </div>
           </div>
-        </div> */}
+        </div>
 
         {/* Top Categories */}
-        {/* <div className="mt-10">
+        <div className="mt-10">
           <div className="mb-4 flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground">Top Categories</span>
             <div className="flex-1 border-t border-border" />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {TOP_CATEGORIES.map((tc) => (
               <div key={tc.category} className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg">
                 <div className="relative h-36 overflow-hidden bg-muted">
@@ -255,7 +255,7 @@ function LibraryPage() {
                   </span>
                 </div>
                 <div className="p-3.5">
-                  <div className="font-display text-sm font-bold text-foreground">{tc.category}</div>
+                  <div className="font-display text-sm font-bold text-foreground">{tc.title ?? tc.category}</div>
                   <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-muted-foreground">{tc.description}</p>
                   <div className="mt-3 flex gap-1.5">
                     {[".DWG", ".DXF", ".STEP"].map((ext) => (
@@ -268,7 +268,7 @@ function LibraryPage() {
               </div>
             ))}
           </div>
-        </div> */}
+        </div>
 
         {/* All Format Library */}
         <div className="mt-12">
@@ -298,38 +298,50 @@ function LibraryPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: 0.35, delay: Math.min(i * 0.02, 0.2), ease: [0.22, 1, 0.36, 1] }}
-                    className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
+                    className="group flex flex-col rounded-xl border border-border bg-card p-5 text-foreground shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-lg"
                   >
-                    <div className="relative h-44 overflow-hidden bg-muted">
-                      {SKU_IMAGES[f.sku] ? (
-                        <img src={SKU_IMAGES[f.sku]} alt={f.sku} className="h-full w-full object-cover transition group-hover:scale-105" />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted to-surface-2">
-                          <Ruler className="h-10 w-10 text-muted-foreground/30" />
-                        </div>
-                      )}
-                      <span className={`absolute left-2.5 top-2.5 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${THICKNESS_COLORS[f.thickness]}`}>
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
+                        {f.category}
+                      </span>
+                      <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${THICKNESS_COLORS[f.thickness]}`}>
                         {f.thickness}MM
                       </span>
                     </div>
-                    <div className="p-4">
-                      <div className="font-display text-base font-bold text-foreground">{f.sku}</div>
-                      <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-primary">
-                        {f.category} &bull; {f.width}" &times; {f.height}"
+                    <div className="mt-2 font-display text-xl font-bold leading-tight text-foreground">{f.sku}</div>
+                    <div className="mt-4 flex items-center gap-2.5 rounded-lg border border-border bg-muted px-3 py-2.5">
+                      <Ruler className="h-4 w-4 flex-shrink-0 text-primary" />
+                      <span className="text-sm font-semibold text-foreground">
+                        {f.width}" W &times; {f.height}" H
+                      </span>
+                    </div>
+                    <div className="mt-4 flex items-center justify-between gap-3 text-xs">
+                      <span className="font-bold uppercase tracking-[0.15em] text-muted-foreground">Glass Type</span>
+                      <span className="font-medium text-foreground">{f.type}</span>
+                    </div>
+                    <div className="mt-4">
+                      <div className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
+                        Compatible Hardware
                       </div>
-                      <dl className="mt-3 space-y-1.5 text-xs">
-                        <div className="flex justify-between gap-2">
-                          <dt className="text-muted-foreground">Glass</dt>
-                          <dd className="text-right font-medium text-foreground">{f.type}</dd>
-                        </div>
-                        <div className="flex justify-between gap-2">
-                          <dt className="text-muted-foreground">Hardware</dt>
-                          <dd className="text-right font-medium text-foreground">{f.hardware.join(", ")}</dd>
-                        </div>
-                      </dl>
-                      <div className="mt-4">
-                        <SendDrawingButton size="sm" variant="outline" label="Quote SKU" defaultProgram={`Library SKU: ${f.sku}`} withIcon={false} />
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {f.hardware.map((h) => (
+                          <span
+                            key={h}
+                            className="rounded-md border border-border bg-surface-2 px-2 py-0.5 text-[11px] font-medium text-foreground"
+                          >
+                            {h}
+                          </span>
+                        ))}
                       </div>
+                    </div>
+                    <div className="mt-5">
+                      <SendDrawingButton
+                        size="sm"
+                        variant="outline"
+                        label={`Quote ${f.sku}`}
+                        defaultProgram={`Library SKU: ${f.sku}`}
+                        withIcon={false}
+                      />
                     </div>
                   </motion.li>
                 ))}
@@ -383,12 +395,12 @@ function LibraryPage() {
         </Reveal>
         <Gallery
           images={[
-            { src: factory, alt: "Factory floor with standard formats", span: "wide" },
-            { src: polishing, alt: "Edge polishing line" },
-            { src: drilling, alt: "CNC drilling" },
-            { src: qc, alt: "Light-table QC" },
-            { src: lframes, alt: "L-frame transport" },
-            { src: port, alt: "Container shipping", span: "wide" }
+            { src: fromFloorLibrary1, alt: "Format library production — frame 1", span: "wide" },
+            { src: fromFloorLibrary2, alt: "Format library production — frame 2" },
+            { src: fromFloorLibrary3, alt: "Format library production — frame 3" },
+            { src: fromFloorLibrary4, alt: "Format library production — frame 4" },
+            { src: fromFloorLibrary5, alt: "Format library production — frame 5" },
+            { src: fromFloorLibrary6, alt: "Format library production — frame 6", span: "wide" }
           ]}
         />
       </section>

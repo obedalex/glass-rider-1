@@ -1,15 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import fixed from "@/assets/fixed-hero-2.png";
+import fixedHeroBg from "@/assets/fixed-hero-bg.png";
 import lFrameTransport from "@/assets/l-frame-transport.png";
-import fromFloor2 from "@/assets/fromFloor2.png";
+import fromFloorFixed1 from "@/assets/fromFloor-fixed-1.png";
+import fromFloorFixed2 from "@/assets/fromFloor-fixed-2.png";
+import fromFloorFixed3 from "@/assets/fromFloor-fixed-3.png";
+import fromFloorFixed4 from "@/assets/fromFloor-fixed-4.png";
+import fromFloorFixed5 from "@/assets/fromFloor-fixed-5.png";
+import fromFloorFixed6 from "@/assets/fromFloor-fixed-6.png";
 import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
 import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
 import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
-import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
-import fromFloor3 from "@/assets/fromFloor3.png";
-import fromFloor4 from "@/assets/fromFloor4.png";
-import fromFloor5 from "@/assets/fromFloor5.png";
-import fromFloor6 from "@/assets/fromFloor6.png";
+import mixedPacking from "@/assets/mixed-packing.png";
 import structuralGlass from "@/assets/Structural glass details.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
@@ -39,7 +41,7 @@ function Page() {
       eyebrow="Fixed Panel Program"
       title="Fixed shower panel glass — walk-in, return & side-screen."
       intro="Produced for inline shower enclosures, walk-in shower layouts, return panels, and side-screen installations. Supplied with polished safety edges and optional clamp-compatible processing for frameless and semi-frameless systems."
-      heroImage={fixed}
+      heroImage={fixedHeroBg}
       heroAlt="Tall fixed glass panel for walk-in shower"
       heroNoOverlay
       heroBoxed
@@ -96,15 +98,15 @@ function Page() {
         { step: "01", title: "Drawing Review", desc: "Heights, edges, and hardware compatibility verified against your spec.", image: tubCheckpoint1 },
         { step: "02", title: "Tempering", desc: "Heavy 10–12mm tempering with SGCC stamp on every panel.", image: tubCheckpoint2 },
         { step: "03", title: "Edge Finishing", desc: "Flat, pencil, or arrissed polishing for clamp and channel install.", image: tubCheckpoint3 },
-        { step: "04", title: "L-frame Pack", desc: "Yellow steel L-frames stabilise tall walk-in panels for ocean transit.", image: tubCheckpoint4 },
+        { step: "04", title: "L-frame Pack", desc: "Yellow steel L-frames stabilise tall walk-in panels for ocean transit.", image: mixedPacking },
       ]}
       gallery={[
-        { src: fixed, alt: "Walk-in shower with fixed panel", span: "wide" },
-        { src: fromFloor2, alt: "CNC roller-hole drilling" },
-        { src: fromFloor3, alt: "Edge polishing line" },
-        { src: fromFloor4, alt: "Panels on yellow L-frames" },
-        { src: fromFloor5, alt: "Warehouse rows of fixed panels" },
-        { src: fromFloor6, alt: "Containers loaded at port", span: "wide" },
+        { src: fromFloorFixed1, alt: "Fixed panel production — frame 1", span: "wide" },
+        { src: fromFloorFixed2, alt: "Fixed panel production — frame 2" },
+        { src: fromFloorFixed3, alt: "Fixed panel production — frame 3" },
+        { src: fromFloorFixed4, alt: "Fixed panel production — frame 4" },
+        { src: fromFloorFixed5, alt: "Fixed panel production — frame 5" },
+        { src: fromFloorFixed6, alt: "Fixed panel production — frame 6", span: "wide" },
       ]}
       useCases={[
         { image: hotel, tag: "Hospitality", title: "Hotel walk-in showers", desc: "Tall fixed panels across resort suite renovations.", defaultProgram: "Fixed — Hospitality" },

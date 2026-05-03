@@ -12,13 +12,14 @@ import {
 } from "lucide-react";
 import sgcc from "@/assets/safety-stamp.jpg";
 import batchTraceability from "@/assets/batch-traceability2.png";
-import safetyHero from "@/assets/safety-hero.png";
+import safetyHero from "@/assets/safety-hero-2.png";
 import safetyTest from "@/assets/safety-test.jpg";
 import qc from "@/assets/process-qc.jpg";
 import polishing from "@/assets/process-polishing.jpg";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
 import complianceSafety from "@/assets/compliance-safety-2.png"
+import impactTesting from "@/assets/impact-testing-2.png"
 import footer2 from "@/assets/footer2.png"
 import qc1 from "@/assets/4-qc-1.png"
 import qc2 from "@/assets/4-qc-2.png"
@@ -220,7 +221,7 @@ function Page() {
           <div className="relative">
             <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
             <img
-              src={complianceSafety}
+              src={impactTesting}
               alt="Impact testing tempered shower glass with drop bag"
               loading="lazy"
               className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full"
@@ -228,8 +229,11 @@ function Page() {
           </div>
         </div>
         <div>
-          <a href="">
-            <button>Read full compliance details</button>
+          <a
+            href=""
+            className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+          >
+            Read full compliance details <ArrowRight className="h-4 w-4" />
           </a>
         </div>
       </section>

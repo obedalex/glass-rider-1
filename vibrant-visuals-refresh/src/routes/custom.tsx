@@ -9,7 +9,7 @@ import crates from "@/assets/logistics-crates.jpg";
 import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
 import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
 import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
-import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
+import mixedPacking from "@/assets/mixed-packing.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
@@ -96,11 +96,35 @@ function Page() {
       ]}
       whyImage={fromOneDrawing}
       whyImageAlt="Engineer reviewing CAD on screen with glass sample"
+      customProcessTitle="The Custom Process"
+      customProcessBody="Our structured workflow ensures technical accuracy from initial inquiry to final delivery, minimizing variance and lead times."
+      customProcessSteps={[
+        {
+          step: "01",
+          title: "Technical Intake",
+          desc: "Initial review of CAD models, structural requirements, and environmental variables.",
+        },
+        {
+          step: "02",
+          title: "Engineering Feasibility",
+          desc: "Stress analysis, material selection, and optimization of manufacturing pathways.",
+        },
+        {
+          step: "03",
+          title: "Precision Manufacturing",
+          desc: "Robotic fabrication and manual finishing overseen by senior industrial technicians.",
+        },
+        {
+          step: "04",
+          title: "Site-Ready Delivery",
+          desc: "Secured transport with integrated lifting points and installation documentation.",
+        },
+      ]}
       process={[
         { step: "01", title: "Drawing Intake", desc: "Send CAD/PDF — engineering replies with feasibility & quote within 24h.", image: tubCheckpoint1 },
         { step: "02", title: "RS-SKU Creation", desc: "Approved drawing becomes a locked Rider RS-SKU for repeat supply.", image: tubCheckpoint2 },
         { step: "03", title: "Custom Fabrication", desc: "U-cuts, notches, drilling, radius edges — all CNC-controlled.", image: tubCheckpoint3 },
-        { step: "04", title: "Program Crating", desc: "Heavy-duty crates engineered for the panel mix in your program.", image: tubCheckpoint4 },
+        { step: "04", title: "Program Crating", desc: "Heavy-duty crates engineered for the panel mix in your program.", image: mixedPacking },
       ]}
       gallery={[
         { src: custom, alt: "CAD blueprint with glass panel", span: "wide" },

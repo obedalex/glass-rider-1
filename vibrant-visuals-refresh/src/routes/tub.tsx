@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import tub from "@/assets/tub-hero.jpg";
+import tubHeroFg from "@/assets/tub-hero-fg.png";
 import tubD1 from "@/assets/tub-detail-1.jpg";
 import oneSkuCarton from "@/assets/one-sku-carton.png";
 import logisticsTub from "@/assets/logistics-tub.png";
@@ -11,11 +12,11 @@ import fromFloorTub2 from "@/assets/fromFloor-tub-2.png";
 import fromFloorTub3 from "@/assets/fromFloor-tub-3.png";
 import fromFloorTub4 from "@/assets/fromFloor-tub-4.png";
 import fromFloorTub5 from "@/assets/fromFloor-tub-5.png";
-import fromFloorTub6 from "@/assets/fromFloor-tub-6.png";
+import fromFloorTub7 from "@/assets/fromFloor-tub-7.png";
 import tubCheckpoint1 from "@/assets/tub-checkpoint-1.png";
 import tubCheckpoint2 from "@/assets/tub-checkpoint-2.png";
 import tubCheckpoint3 from "@/assets/tub-checkpoint-3.png";
-import tubCheckpoint4 from "@/assets/tub-checkpoint-4.png";
+import mixedPacking from "@/assets/mixed-packing.png";
 import hotel from "@/assets/usecase-hotel.jpg";
 import oem from "@/assets/usecase-oem.jpg";
 import residential from "@/assets/usecase-residential.jpg";
@@ -45,8 +46,10 @@ function Page() {
       intro="Standard program sizes for sliding bathtub shower door systems and compact bathroom installations. Supplied with installation-ready drilling layouts, polished safety edges, and retail-ready export packing for distributor warehouse handling."
       heroImage={tub}
       heroAlt="Modern bathtub with sliding glass shower screen"
-      heroNoOverlay
-      heroBoxed
+      heroSplit
+      heroBgColor="#020617"
+      heroFgImage={tubHeroFg}
+      heroFgAlt="Tub enclosure glass product render"
       specs={[
         { label: "Common Formats", value: '30" × 55" · 30" × 60" · 30" × 68"' },
         { label: "Typical Thickness", value: "6 mm · 8 mm" },
@@ -79,7 +82,7 @@ function Page() {
         { step: "01", title: "SKU Setup", desc: "Drawing approved once; the SKU runs identical for the life of the program.", image: tubCheckpoint1 },
         { step: "02", title: "Tempering", desc: "6mm and 8mm tempering with SGCC stamp.", image: tubCheckpoint2 },
         { step: "03", title: "Drill & Polish", desc: "Roller and handle holes drilled, all edges flat-polished.", image: tubCheckpoint3 },
-        { step: "04", title: "Retail Carton", desc: "Foam-separated retail cartons, mixed-pack containers.", image: tubCheckpoint4 },
+        { step: "04", title: "Retail Carton", desc: "Foam-separated retail cartons, mixed-pack containers.", image: mixedPacking },
       ]}
       gallery={[
         { src: fromFloorTub1, alt: "Tub enclosure production — frame 1", span: "wide" },
@@ -87,7 +90,7 @@ function Page() {
         { src: fromFloorTub3, alt: "Tub enclosure production — frame 3" },
         { src: fromFloorTub4, alt: "Tub enclosure production — frame 4" },
         { src: fromFloorTub5, alt: "Tub enclosure production — frame 5" },
-        { src: fromFloorTub6, alt: "Tub enclosure production — frame 6", span: "wide" },
+        { src: fromFloorTub7, alt: "Tub enclosure production — frame 6", span: "wide" },
       ]}
       useCases={[
         { image: residential, tag: "Distributor", title: "Big-box retail", desc: "Carton-packed standard tub sizes for store shelving and DIY pickup.", defaultProgram: "Tub — Retail Distributor" },
