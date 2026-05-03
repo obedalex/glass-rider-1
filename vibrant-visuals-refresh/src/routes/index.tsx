@@ -51,16 +51,16 @@ import fixedPanelGlass from "@/assets/fixed-panel-glass.png";
 import compliance from "@/assets/compliance.png";
 import edgeAndDrilling from "@/assets/edge-and-drilling.png";
 import technicalExpertise from "@/assets/technical-expertise.png";
-import realProduction1 from "@/assets/real-production-1.png"
-import realProduction2 from "@/assets/real-production-2.png"
-import realProduction3 from "@/assets/real-production-3.png"
-import realProduction4 from "@/assets/real-production-4.png"
-import realProduction5 from "@/assets/real-production-5.png"
-import realProduction6 from "@/assets/real-production-6.png"
-import homepageHero from "@/assets/homepage-hero.png"
-import hotelBath from "@/assets/hotel-bath.png"
-import hardwareSystemOEMs from "@/assets/hardware-system-3.png"
-import bigBox from "@/assets/big-box.png"
+import realProduction1 from "@/assets/real-production-1.png";
+import realProduction2 from "@/assets/real-production-2.png";
+import realProduction3 from "@/assets/real-production-3.png";
+import realProduction4 from "@/assets/real-production-4.png";
+import realProduction5 from "@/assets/real-production-5.png";
+import realProduction6 from "@/assets/real-production-6.png";
+import homepageHero from "@/assets/homepage-hero.png";
+import hotelBath from "@/assets/hotel-bath.png";
+import hardwareSystemOEMs from "@/assets/hardware-system-3.png";
+import bigBox from "@/assets/big-box.png";
 
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
@@ -95,8 +95,12 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
-  { src: homepageHero1, alt: "Premium frameless shower enclosure", caption: "Frameless Enclosures" },
-  { src: homepageHero2, alt: "Tempering furnace at the Rider factory", caption: "Inline Tempering" },
+  {
+    src: homepageHero1,
+    alt: "Premium frameless shower enclosure",
+    caption: "Frameless Enclosures"
+  },
+  { src: homepageHero2, alt: "Tempering furnace at the Rider factory", caption: "Inline Tempering" }
 ];
 
 const products = [
@@ -333,7 +337,8 @@ function Home() {
                 Program-ready glass formats
               </h2>
               <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-                Standard enclosure formats available with repeatable SKU program structures for distributor inventory systems.
+                Standard enclosure formats available with repeatable SKU program structures for
+                distributor inventory systems.
               </p>
             </div>
             <Link

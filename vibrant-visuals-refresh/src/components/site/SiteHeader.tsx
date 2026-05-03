@@ -10,7 +10,7 @@ import {
   Sun,
   Tent,
   X,
-  type LucideIcon,
+  type LucideIcon
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -36,12 +36,12 @@ const nav: NavItem[] = [
       { to: "/sliding", label: "Sliding" },
       { to: "/swing", label: "Swing" },
       { to: "/tub", label: "Tub" },
-      { to: "/fixed", label: "Fixed" },
-    ],
+      { to: "/fixed", label: "Fixed" }
+    ]
   },
   { type: "link", to: "/library", label: "Format Library" },
   { type: "link", to: "/custom", label: "Custom" },
-  { type: "link", to: "/safety", label: "Safety" },
+  { type: "link", to: "/safety", label: "Safety" }
 ];
 
 const programPaths = ["/sliding", "/swing", "/tub", "/fixed"];
@@ -162,9 +162,7 @@ export function SiteHeader() {
                   >
                     <span>{item.label}</span>
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform ${
-                        programsOpen ? "rotate-180" : ""
-                      }`}
+                      className={`h-4 w-4 transition-transform ${programsOpen ? "rotate-180" : ""}`}
                     />
                   </button>
                   {programsOpen && (
@@ -228,7 +226,8 @@ export function SiteHeader() {
                         Fresh Perspectives, Unmatched Solutions
                       </h1>
                       <p className="mt-2 text-sm leading-relaxed text-white/85">
-                        Revolutionising the industrial landscape through precision engineering and tactical innovation
+                        Revolutionising the industrial landscape through precision engineering and
+                        tactical innovation
                       </p>
                     </div>
                   </div>
@@ -312,43 +311,42 @@ const showerSystems: ShowerSystem[] = [
     to: "/sliding",
     label: "Sliding",
     desc: "Precision-engineered roller systems for bypass and inline enclosures.",
-    Icon: MoveHorizontal,
+    Icon: MoveHorizontal
   },
   {
     to: "/swing",
     label: "Swing",
     desc: "Heavy-duty pivot and hinge systems for frameless glass doors.",
-    Icon: DoorOpen,
+    Icon: DoorOpen
   },
   {
     to: "/tub",
     label: "Tub",
     desc: "Water-tight enclosure systems designed for high-traffic hospitality use.",
-    Icon: Bath,
+    Icon: Bath
   },
   {
     to: "/fixed",
     label: "Fixed",
     desc: "Structural glass panels with reinforced U-channel architectural support.",
-    Icon: RectangleVertical,
-  },
+    Icon: RectangleVertical
+  }
 ];
 
 const futurePrograms: FutureProgram[] = [
   {
     label: "Cabinet & Wardrobe Glass",
     desc: "Specialized thin-gauge tempered glass for high-end millwork integration.",
-    abbr: "CWG",
+    abbr: "CWG"
   },
   {
     label: "Furniture Glass",
     desc: "Impact-resistant surfaces with custom edge profiles for commercial interiors.",
-    abbr: "FG",
+    abbr: "FG"
   },
   {
     label: "Outdoor Structures Glass",
     desc: "Weather-hardened panels for architectural canopies and glass balustrades.",
-    Icon: Tent,
-  },
+    Icon: Tent
+  }
 ];
-

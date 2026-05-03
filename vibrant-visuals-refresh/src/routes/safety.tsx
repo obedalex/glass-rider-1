@@ -8,7 +8,7 @@ import {
   Microscope,
   Beaker,
   FileSearch,
-  ArrowRight,
+  ArrowRight
 } from "lucide-react";
 import sgcc from "@/assets/safety-stamp.jpg";
 import batchTraceability from "@/assets/batch-traceability2.png";
@@ -18,13 +18,13 @@ import qc from "@/assets/process-qc.jpg";
 import polishing from "@/assets/process-polishing.jpg";
 import warehouse from "@/assets/warehouse-rows.jpg";
 import port from "@/assets/shipping-port.jpg";
-import complianceSafety from "@/assets/compliance-safety-2.png"
-import impactTesting from "@/assets/impact-testing-2.png"
-import footer2 from "@/assets/footer2.png"
-import qc1 from "@/assets/4-qc-1.png"
-import qc2 from "@/assets/4-qc-2.png"
-import qc3 from "@/assets/4-qc-3.png"
-import qc4 from "@/assets/4-qc-4.png"
+import complianceSafety from "@/assets/compliance-safety-2.png";
+import impactTesting from "@/assets/impact-testing-2.png";
+import footer2 from "@/assets/footer2.png";
+import qc1 from "@/assets/4-qc-1.png";
+import qc2 from "@/assets/4-qc-2.png";
+import qc3 from "@/assets/4-qc-3.png";
+import qc4 from "@/assets/4-qc-4.png";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/site/Reveal";
 import { SendDrawingButton } from "@/components/site/SendDrawingButton";
 import { Gallery } from "@/components/site/Gallery";
@@ -39,51 +39,51 @@ export const Route = createFileRoute("/safety")({
       {
         name: "description",
         content:
-          "Rider tempered shower glass meets ANSI Z97.1, 16 CFR 1201, CAN/CGSB 12.1, and SGCC standards with full batch traceability and rigorous QC.",
+          "Rider tempered shower glass meets ANSI Z97.1, 16 CFR 1201, CAN/CGSB 12.1, and SGCC standards with full batch traceability and rigorous QC."
       },
       { property: "og:title", content: "Safety & Compliance | Rider Shower Systems" },
       {
         property: "og:description",
         content:
-          "ANSI, 16 CFR 1201 Cat. II, CAN/CGSB 12.1, and SGCC certified tempered shower glass with full batch traceability.",
+          "ANSI, 16 CFR 1201 Cat. II, CAN/CGSB 12.1, and SGCC certified tempered shower glass with full batch traceability."
       },
       { property: "og:image", content: safetyTest },
-      { name: "twitter:image", content: safetyTest },
-    ],
-  }),
+      { name: "twitter:image", content: safetyTest }
+    ]
+  })
 });
 
 const certs = [
   {
     code: "ANSI Z97.1",
     icon: ShieldCheck,
-    desc: "American National Standard for Safety Glazing Materials — structural integrity and safe breakage patterns.",
+    desc: "American National Standard for Safety Glazing Materials — structural integrity and safe breakage patterns."
   },
   {
     code: "16 CFR 1201",
     icon: FileCheck2,
-    desc: "Category II US Federal safety standards for architectural glazing in high-traffic environments.",
+    desc: "Category II US Federal safety standards for architectural glazing in high-traffic environments."
   },
   {
     code: "CAN/CGSB 12.1",
     icon: ClipboardCheck,
-    desc: "Safety glazing compliance for the Canadian construction market and architectural enclosure systems.",
+    desc: "Safety glazing compliance for the Canadian construction market and architectural enclosure systems."
   },
   {
     code: "SGCC Certified",
     icon: Microscope,
-    desc: "Safety Glazing Certification Council — independent batch certification with permanent etched stamp.",
+    desc: "Safety Glazing Certification Council — independent batch certification with permanent etched stamp."
   },
   {
     code: "ASTM C1048",
     icon: Beaker,
-    desc: "Standard for heat-strengthened and tempered flat glass — verified across every Rider production run.",
+    desc: "Standard for heat-strengthened and tempered flat glass — verified across every Rider production run."
   },
   {
     code: "Full Batch Traceability",
     icon: FileSearch,
-    desc: "Every panel ties to a tempering lot, QC record, and SGCC stamp — auditable for years.",
-  },
+    desc: "Every panel ties to a tempering lot, QC record, and SGCC stamp — auditable for years."
+  }
 ];
 
 function Page() {
@@ -128,7 +128,6 @@ function Page() {
           </motion.div>
         </div>
       </section>
-
 
       {/* SECTION 3 — CERT GRID */}
       <section id="certs" className="container-rider py-20">
@@ -209,7 +208,7 @@ function Page() {
                 "Drawing-to-SKU conversion for repeat supply",
                 "Fragmentation analysis per 16 CFR 1201 Cat. II",
                 "Surface compression verification (≥10,000 psi)",
-                "Per-batch test reports filed for 7 years",
+                "Per-batch test reports filed for 7 years"
               ].map((t) => (
                 <li key={t} className="flex items-start gap-3">
                   <ShieldCheck className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
@@ -254,30 +253,35 @@ function Page() {
               step: "01",
               title: "Pre-Temper Inspection",
               desc: "Glass cleared for inclusions, scratches, and edge defects before entering the furnace.",
-              image: qc1,
+              image: qc1
             },
             {
               step: "02",
               title: "Tempering Witness",
               desc: "Inline temperature, cool-rate, and stress-pattern monitoring on every batch.",
-              image: qc2,
+              image: qc2
             },
             {
               step: "03",
               title: "Optical Light-Table",
               desc: "Every panel scanned for distortion and surface defects under polarised light.",
-              image: qc3,
+              image: qc3
             },
             {
               step: "04",
               title: "Pack Witness",
               desc: "SGCC stamp, edge finish, and SKU label verified before crate seal.",
-              image: qc4,
-            },
+              image: qc4
+            }
           ].map(({ step, title, desc, image }) => (
             <StaggerItem key={step}>
               <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col h-full">
-                <img src={image} alt={title} loading="lazy" className="aspect-video w-full object-cover" />
+                <img
+                  src={image}
+                  alt={title}
+                  loading="lazy"
+                  className="aspect-video w-full object-cover"
+                />
                 <div className="p-5 flex flex-col gap-3 flex-1">
                   <div className="flex items-center gap-3">
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-[11px] font-bold">
@@ -348,7 +352,7 @@ function Page() {
                 "CAN/CGSB 12.1 conformance",
                 "SGCC certificate of compliance",
                 "ASTM C1048 heat-treatment record",
-                "Per-batch traceability log",
+                "Per-batch traceability log"
               ].map((d) => (
                 <div
                   key={d}
@@ -382,16 +386,16 @@ function Page() {
           {[
             {
               region: "United States",
-              body: "ANSI Z97.1 + 16 CFR 1201 Cat. II + SGCC. Stamp visible at install for inspector sign-off.",
+              body: "ANSI Z97.1 + 16 CFR 1201 Cat. II + SGCC. Stamp visible at install for inspector sign-off."
             },
             {
               region: "Canada",
-              body: "CAN/CGSB 12.1 conformance with bilingual documentation available on request.",
+              body: "CAN/CGSB 12.1 conformance with bilingual documentation available on request."
             },
             {
               region: "Project-Specific",
-              body: "Hotel chains, multi-unit developers, and OEMs receive project-specific declarations on letterhead.",
-            },
+              body: "Hotel chains, multi-unit developers, and OEMs receive project-specific declarations on letterhead."
+            }
           ].map((r) => (
             <div key={r.region} className="rounded-xl border border-border bg-card p-7 shadow-sm">
               <h3 className="font-display text-xl font-bold text-primary">{r.region}</h3>
@@ -417,7 +421,7 @@ function Page() {
               { t: "PO confirmed", b: "Tempering lot reserved with full traceability id." },
               { t: "Production", b: "Per-panel SGCC stamp, light-table QC, sample impact test." },
               { t: "Pack & seal", b: "Witness sign-off on stamp, edge, and SKU label." },
-              { t: "Packet delivered", b: "PDF compliance dossier emailed within 24h of ship." },
+              { t: "Packet delivered", b: "PDF compliance dossier emailed within 24h of ship." }
             ].map((s, i) => (
               <div
                 key={s.t}
@@ -441,24 +445,24 @@ function Page() {
           items={[
             {
               q: "What file types do you accept?",
-              a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program.",
+              a: "Yes. SGCC certification with permanent etched stamp is standard across the entire Rider tempered program."
             },
             {
               q: "Do you ship mixed format containers",
-              a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request.",
+              a: "Yes — every batch ties to a traceability id, and per-batch test reports are filed for 7 years and available on request."
             },
             {
               q: "Are panels SGCC containers certified",
-              a: "Yes. Hotel chains, multi-unit developers, and OEMs receive project-specific compliance letters on Rider letterhead.",
+              a: "Yes. Hotel chains, multi-unit developers, and OEMs receive project-specific compliance letters on Rider letterhead."
             },
             {
               q: "Can you private-label the glass?",
-              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request.",
+              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request."
             },
             {
               q: "What is the minimum order for OEM program?",
-              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request.",
-            },
+              a: "Yes. CAN/CGSB 12.1 conformance is standard, with bilingual documentation available on request."
+            }
           ]}
         />
       </section>
