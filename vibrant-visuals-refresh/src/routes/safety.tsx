@@ -490,7 +490,6 @@ function Page() {
         <CtaBand
           title="Ready to Scale Your Production?"
           intro="Send us your project drawing — we'll ship the full compliance dossier alongside the engineering review."
-          image={footer2}
           imageAlt="Rider glass program engineering"
         />
       </section>

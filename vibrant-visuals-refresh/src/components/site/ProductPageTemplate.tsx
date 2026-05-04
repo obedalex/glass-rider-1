@@ -10,7 +10,6 @@ import { Gallery, type GalleryImage } from "./Gallery";
 import { UseCaseCards, type UseCase } from "./UseCaseCards";
 import { FAQ, type FAQItem } from "./FAQ";
 import { CtaBand } from "./CtaBand";
-import footer2 from "@/assets/footer2.png";
 import sgccStamp from "@/assets/sgcc-stamp-1.png";
 import ansiStamp from "@/assets/ansi-stamp-1.png";
 import igccIgmaStamp from "@/assets/igcc-igma-stamp.png";
@@ -898,7 +897,6 @@ export function ProductPageTemplate(p: ProductPageProps) {
           title={`Start your ${p.eyebrow.toLowerCase()} program with Rider.`}
           intro="Send your CAD or PDF — a Rider program manager confirms feasibility, pricing, and lead time within 24 hours."
           defaultProgram={p.program}
-          image={footer2}
           imageAlt="Rider glass program engineering"
         />
       </section>

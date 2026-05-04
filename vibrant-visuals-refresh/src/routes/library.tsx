@@ -25,7 +25,6 @@ import { SendDrawingButton } from "@/components/site/SendDrawingButton";
 import { Gallery } from "@/components/site/Gallery";
 import { FAQ } from "@/components/site/FAQ";
 import { CtaBand } from "@/components/site/CtaBand";
-import footer2 from "@/assets/footer2.png";
 import programLibrary1 from "@/assets/program-library-1.png";
 import programLibrary2 from "@/assets/system-hardware-3.png";
 import programLibrary3 from "@/assets/program-library-3.png";
@@ -638,7 +637,6 @@ function LibraryPage() {
         <CtaBand
           title="Ready to plan a library order?"
           intro="Send your shortlist of RS-SKUs, sizes, and quantities — a Rider program manager replies with a mixed-container quote within 24 hours."
-          image={footer2}
           imageAlt="Rider glass program engineering"
         />
       </section>

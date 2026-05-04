@@ -9,15 +9,10 @@ export function SiteFooter() {
       <div className="container-rider py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-1">
           <div className="flex items-center gap-3">
-            <img src={logo} alt="Rider Iron & Steel Ghana Ltd" className="h-12 w-auto" />
-            <div className="flex flex-col leading-[1.05]">
-              <span className="font-display text-base font-extrabold tracking-tight">
-                RIDER IRON &amp; STEEL
-              </span>
-              <span className="font-display text-base font-extrabold tracking-tight">
-                GHANA LTD
-              </span>
-            </div>
+            <img src={logo} alt="Rider Iron & Steel Ltd" className="h-12 w-auto" />
+            <span className="font-display text-base font-extrabold tracking-tight uppercase">
+              Rider Glass
+            </span>
           </div>
           <p className="mt-4 text-sm leading-relaxed opacity-80">
             B2B OEM &amp; program supply for North American shower enclosure manufacturers and distributors.

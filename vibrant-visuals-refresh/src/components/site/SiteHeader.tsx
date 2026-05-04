@@ -70,15 +70,10 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="container-rider flex h-16 items-center justify-between gap-6">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <img src={logo} alt="Rider Iron & Steel Ghana Ltd" className="h-10 w-auto" />
-          <div className="hidden sm:flex flex-col leading-[1.05]">
-            <span className="font-display text-sm font-extrabold tracking-tight text-foreground">
-              RIDER IRON &amp; STEEL
-            </span>
-            <span className="font-display text-sm font-extrabold tracking-tight text-foreground">
-              GHANA LTD
-            </span>
-          </div>
+          <img src={logo} alt="Rider Glass" className="h-10 w-auto" />
+          <span className="hidden sm:block font-display text-base font-extrabold tracking-tight uppercase text-foreground">
+            Rider Glass
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">

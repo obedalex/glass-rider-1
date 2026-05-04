@@ -70,7 +70,6 @@ import { Gallery } from "@/components/site/Gallery";
 import { UseCaseCards } from "@/components/site/UseCaseCards";
 import { FAQ } from "@/components/site/FAQ";
 import { CtaBand } from "@/components/site/CtaBand";
-import footer2 from "@/assets/footer2.png";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -655,7 +654,6 @@ function Home() {
         <CtaBand
           title="Ready to start your shower glass program?"
           intro="Send your CAD or PDF — a Rider engineer reviews every drawing within 24 hours and confirms feasibility, pricing, and lead time."
-          image={footer2}
           imageAlt="Rider glass program engineering"
         />
       </section>

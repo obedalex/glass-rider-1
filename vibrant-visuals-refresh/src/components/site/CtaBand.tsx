@@ -1,11 +1,12 @@
 import { SendDrawingButton } from "./SendDrawingButton";
 import { Mail } from "lucide-react";
+import ctaImage from "@/assets/cta2.png";
 
 export function CtaBand({
   title = "Ready to start your program?",
   intro = "Send us your CAD or PDF drawings — a Rider program manager reviews every submission within 24 hours.",
   defaultProgram,
-  image,
+  image = ctaImage,
   imageAlt = "Engineering intake",
 }: {
   title?: string;

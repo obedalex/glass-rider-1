@@ -20,8 +20,8 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.04 255);
 
-  /* Primary — crimson red (CTA buttons, underlines, badges) */
-  --primary: oklch(0.61 0.21 27);
+  /* Primary — #0060DE (CTA buttons, underlines, badges) */
+  --primary: oklch(0.553 0.218 261.5);
   --primary-foreground: oklch(1 0 0);
 
   /* Secondary — dark charcoal hero section */
@@ -68,8 +68,8 @@
   --card-foreground: oklch(0.97 0.005 240);
   --popover: oklch(0.22 0.04 258);
   --popover-foreground: oklch(0.97 0.005 240);
-  --primary: oklch(0.65 0.2 258);
-  --primary-foreground: oklch(0.16 0.03 258);
+  --primary: oklch(0.553 0.218 261.5);
+  --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.3 0.04 258);
   --secondary-foreground: oklch(0.97 0.005 240);
   --muted: oklch(0.28 0.04 258);
