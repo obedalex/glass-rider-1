@@ -670,7 +670,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
                 size="lg"
                 variant="solid"
                 defaultProgram={p.program}
-                label="Send Drawing"
+                label="Send Drawing for Review"
               />
               <a
                 href="#specs"

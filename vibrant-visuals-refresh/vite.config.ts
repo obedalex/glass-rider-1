@@ -4,6 +4,8 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 import { visualizer } from "rollup-plugin-visualizer";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import viteCompression from "vite-plugin-compression";
 
 function apiQuoteDevPlugin(env: Record<string, string>): Plugin {
   return {
@@ -61,7 +63,15 @@ export default defineConfig(({ mode }) => {
       tailwindcss(),
       tsConfigPaths(),
       apiQuoteDevPlugin(env),
-      visualizer({ open: true })
+      mode === "development" && visualizer({ open: true }),
+      ViteImageOptimizer({
+        png:  { quality: 80 },
+        jpg:  { quality: 80 },
+        jpeg: { quality: 80 },
+        webp: { lossless: false, quality: 80 },
+      }),
+      viteCompression({ algorithm: "gzip" }),
+      viteCompression({ algorithm: "brotliCompress", ext: ".br" }),
     ]
   };
 });

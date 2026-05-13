@@ -31,7 +31,7 @@ export function CtaBand({
               size="lg"
               variant="white"
               defaultProgram={defaultProgram}
-              label="Send A Drawing"
+              label="Send Drawing for Review"
             />
             <a
               href="mailto:programs@rider-shower.com"

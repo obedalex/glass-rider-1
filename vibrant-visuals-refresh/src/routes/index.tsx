@@ -107,14 +107,14 @@ const products = [
     to: "/sliding",
     program: "Sliding Door Glass",
     title: "Sliding Door Glass",
-    desc: "Roller-hole precision for inline & bypass enclosures.",
+    desc: "Tempered panels with roller and guide cut-outs.",
     img: slidingDoorGlass
   },
   {
     to: "/swing",
     program: "Swing Door Glass",
     title: "Swing Door Glass",
-    desc: "Polished hinge cut-outs on heavy 10–12mm glass.",
+    desc: "Hinge-ready panels with precise hole positioning.",
     img: swingDoorGlass
   },
   {
@@ -128,7 +128,7 @@ const products = [
     to: "/fixed",
     program: "Fixed Panel Glass",
     title: "Fixed Panel Glass",
-    desc: "Walk-in screens, return panels, clamp-ready edges.",
+    desc: "Clean edge-finished panels for frameless systems.",
     img: fixedPanelGlass
   }
 ] as const;
@@ -150,12 +150,11 @@ function Home() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary" /> B2B OEM &amp; Program Supply
             </span>
             <h1 className="mt-6 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] text-white text-balance">
-              Shower system glass built for distributor &amp;OEM programs
+              Installation-Ready Shower Glass Panels for OEMs &amp; Distributors
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
-              Rider supplies hardware-ready tempered glass components for enclosure manufacturers
-              requiring stable geometry, precision drilling, and repeat-spec supply across North
-              American distribution platforms.
+              Precision-cut, tempered panels with hinge, handle, and hardware cut-outs — ready for
+              direct installation.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <SendDrawingButton size="lg" variant="solid" label="Send Drawing for Review" />
@@ -178,21 +177,21 @@ function Home() {
               Processing Capabilities
             </span>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-balance">
-              Processing Capabilities for Shower System Integration
+              Installation-Ready Shower Glass Panel Capabilities
             </h2>
             <p className="mt-4 text-base leading-relaxed opacity-85">
-              Rider Shower Systems glass panels are produced as installation-ready components...
-              Instead of supplying standard tempered panels, Rider prepares each panel according to
-              hardware layout and enclosure geometry requirements used by shower system
-              manufacturers.
+              Rider manufactures installation-ready shower glass panels based on OEM drawings and
+              system requirements. Each panel is produced according to hardware layout, enclosure
+              geometry, and installation specifications — not as standard tempered glass.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Precision hinge cut-outs for frameless swing doors.",
-                "Roller slot preparation for sliding systems.",
-                "CNC-controlled hole positioning for repeatable assembly accuracy.",
-                "Permanent panel identification marking for full traceability.",
-                "Single-panel protective export packaging for OEM handling."
+                "Hinge cut-outs for frameless swing door systems",
+                "Roller slot machining for sliding door systems",
+                "CNC-controlled hole positioning for consistent assembly",
+                "Panel marking for traceability and batch identification",
+                "Single-panel protective packaging for OEM distribution",
+                "Drawings reviewed and verified before production"
               ].map((b) => (
                 <li key={b} className="flex items-start gap-3">
                   <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -203,7 +202,7 @@ function Home() {
               ))}
             </ul>
             <div className="mt-7">
-              <SendDrawingButton size="md" variant="solid" label="Send A Drawing" />
+              <SendDrawingButton size="md" variant="solid" label="Send Drawing for Review" />
             </div>
           </Reveal>
 
@@ -256,7 +255,7 @@ function Home() {
               ))}
             </ul>
             <div className="mt-7">
-              <SendDrawingButton size="md" variant="solid" label="Send a drawing" />
+              <SendDrawingButton size="md" variant="solid" label="Send Drawing for Review" />
             </div>
           </div>
         </div>
@@ -270,7 +269,7 @@ function Home() {
               Built For
             </span>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground text-balance">
-              One supply chain. Three program types.
+              Three Programs. One Production System.
             </h2>
           </Reveal>
           <img
@@ -285,19 +284,19 @@ function Home() {
             {
               eyebrow: "Manufacturers",
               title: "Enclosure brands",
-              desc: "Convert proprietary CAD into repeatable RS-SKUs with hinge-mapped, hardware-ready panels.",
+              desc: "We produce hardware-ready glass panels directly from your drawings, with precise hole positioning and repeatable batch consistency.",
               program: "Manufacturer Program"
             },
             {
               eyebrow: "Distributors",
-              title: "Warehouse programs",
-              desc: "Standard formats in retail-ready cartons sized for store-delivery handling.",
+              title: "Distributors/ Warehouse programs",
+              desc: "Standard panel formats packed in retail-ready cartons, designed for warehouse storage and store distribution.",
               program: "Distributor Program"
             },
             {
               eyebrow: "Developers",
-              title: "Multi-unit projects",
-              desc: "Hotel, apartment, and luxury villa programs with consistent geometry across batches.",
+              title: "Project Developers",
+              desc: "Consistent glass panel production for hotels, apartments, and large-scale residential projects, ensuring uniform installation across units.",
               program: "Developer / Project Program"
             }
           ].map((c) => (
@@ -336,8 +335,7 @@ function Home() {
                 Program-ready glass formats
               </h2>
               <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-                Standard enclosure formats available with repeatable SKU program structures for
-                distributor inventory systems.
+                Standard configurations based on global shower enclosure systems.
               </p>
             </div>
             <Link
@@ -396,23 +394,23 @@ function Home() {
           {[
             {
               icon: Boxes,
-              title: "Stable Geometry",
-              desc: "Precision alignment ensures structural integrity across thousands of repeat-spec panels."
+              title: "Factory Precision",
+              desc: "Automated tempering lines ensure consistent flatness and geometry across batches."
             },
             {
               icon: BadgeCheck,
-              title: "Safety Assured",
-              desc: "SGCC & ANSI Z97.1 certified tempered glass for uncompromising compliance."
+              title: "System Compatibility",
+              desc: "Panels produced based on OEM drawings and hardware specifications."
             },
             {
               icon: Eye,
-              title: "Rigorous QC",
-              desc: "Light-table inspection on every panel for optical perfection."
+              title: "Retail-Ready Packing",
+              desc: "Single-panel cartons or bulk crates, adapted to your distribution model."
             },
             {
               icon: PackageCheck,
-              title: "Program Ready",
-              desc: "Cartons, crates & L-frames built for distributor warehouse handling."
+              title: "Export Experience",
+              desc: "Stable production and packing for long-distance container shipping."
             }
           ].map(({ icon: Icon, title, desc }) => (
             <StaggerItem
@@ -547,7 +545,7 @@ function Home() {
               ))}
             </ul>
             <div className="mt-7">
-              <SendDrawingButton size="md" variant="solid" label="Send A Drawing" />
+              <SendDrawingButton size="md" variant="solid" label="Send Drawing for Review" />
             </div>
           </Reveal>
           <Reveal className="mt-12">

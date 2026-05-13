@@ -8,7 +8,6 @@ import {
   MoveHorizontal,
   RectangleVertical,
   Sun,
-  Tent,
   X,
   type LucideIcon
 } from "lucide-react";
@@ -16,7 +15,7 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
 import { SendDrawingButton } from "./SendDrawingButton";
-import logo from "@/assets/logo-1.png";
+import logo from "@/assets/logo-new.png";
 import popoverImage from "@/assets/popover-2.png";
 
 type NavLink = { type: "link"; to: string; label: string };
@@ -70,9 +69,9 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="container-rider flex h-16 items-center justify-between gap-6">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <img src={logo} alt="Rider Glass" className="h-10 w-auto" />
-          <span className="hidden sm:block font-display text-base font-extrabold tracking-tight uppercase text-foreground">
-            Rider Glass
+          <img src={logo} alt="Rider Shower Glass" className="h-10 w-auto" />
+          <span className="hidden sm:block font-display text-base font-extrabold tracking-tight text-foreground">
+            Rider Shower Glass
           </span>
         </Link>
 
@@ -119,7 +118,7 @@ export function SiteHeader() {
           >
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
-          <SendDrawingButton size="md" label="Send Drawing" />
+          <SendDrawingButton size="md" label="Send Drawing for Review" />
         </div>
 
         <button
@@ -186,7 +185,7 @@ export function SiteHeader() {
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
             <div className="mt-3" onClick={() => setOpen(false)}>
-              <SendDrawingButton size="md" label="Send Drawing" className="w-full" />
+              <SendDrawingButton size="md" label="Send Drawing for Review" className="w-full" />
             </div>
           </div>
         </div>
@@ -227,8 +226,8 @@ export function SiteHeader() {
                     </div>
                   </div>
 
-                  {/* Middle: Shower Systems — 2 cols × 2 rows */}
-                  <div className="col-span-4 p-6">
+                  {/* Right: Shower Systems — 2 cols × 2 rows */}
+                  <div className="col-span-8 p-6">
                     <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
                       Shower Systems
                     </span>
@@ -257,37 +256,6 @@ export function SiteHeader() {
                       ))}
                     </div>
                   </div>
-
-                  {/* Right: Future Programs — 2 cols (3 items, 2-1 fill) */}
-                  <div className="col-span-4 border-l border-border bg-surface-2/40 p-6">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
-                      Future Programs
-                    </span>
-                    <div className="mt-4 grid grid-cols-2 gap-3">
-                      {futurePrograms.map(({ label, desc, abbr, Icon }) => (
-                        <div key={label} className="flex items-start gap-3">
-                          <span className="mt-0.5 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md border border-border text-foreground">
-                            {abbr ? (
-                              <span className="text-[10px] font-bold tracking-tight">{abbr}</span>
-                            ) : Icon ? (
-                              <Icon className="h-4 w-4" strokeWidth={1.75} />
-                            ) : null}
-                          </span>
-                          <span className="min-w-0">
-                            <span className="block text-sm font-bold text-foreground">
-                              {label}{" "}
-                              <span className="text-[11px] font-semibold text-primary">
-                                (Coming Soon)
-                              </span>
-                            </span>
-                            <span className="mt-1 block text-[11px] leading-relaxed text-muted-foreground">
-                              {desc}
-                            </span>
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -299,7 +267,6 @@ export function SiteHeader() {
 }
 
 type ShowerSystem = { to: string; label: string; desc: string; Icon: LucideIcon };
-type FutureProgram = { label: string; desc: string; abbr?: string; Icon?: LucideIcon };
 
 const showerSystems: ShowerSystem[] = [
   {
@@ -325,23 +292,5 @@ const showerSystems: ShowerSystem[] = [
     label: "Fixed",
     desc: "Structural glass panels with reinforced U-channel architectural support.",
     Icon: RectangleVertical
-  }
-];
-
-const futurePrograms: FutureProgram[] = [
-  {
-    label: "Cabinet & Wardrobe Glass",
-    desc: "Specialized thin-gauge tempered glass for high-end millwork integration.",
-    abbr: "CWG"
-  },
-  {
-    label: "Furniture Glass",
-    desc: "Impact-resistant surfaces with custom edge profiles for commercial interiors.",
-    abbr: "FG"
-  },
-  {
-    label: "Outdoor Structures Glass",
-    desc: "Weather-hardened panels for architectural canopies and glass balustrades.",
-    Icon: Tent
   }
 ];

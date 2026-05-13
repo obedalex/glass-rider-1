@@ -108,13 +108,13 @@ function LibraryPage() {
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               <Layers3 className="h-3.5 w-3.5" /> Format Library
             </span>
-            <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance max-w-[14ch]">
-              Standard RS-SKU formats, ready for your program.
+            <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance max-w-[18ch]">
+              Standard Shower Glass Panel Sizes, Ready for Production
             </h1>
             <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed opacity-85">
-              Filter Rider's catalog of repeat-spec tempered glass panels by size, thickness, glass
-              type, and hardware compatibility. Use this library as a starting point — every SKU is
-              also available in private-label and custom variants.
+              Filter standard panel sizes by dimensions, thickness, glass type, and hardware
+              compatibility. Use these formats as a starting point or request custom production
+              based on your drawings.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SendDrawingButton size="lg" variant="solid" label="Quote a SKU" />
@@ -217,8 +217,7 @@ function LibraryPage() {
             </div>
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
               <div className="text-sm text-muted-foreground">
-                Showing <span className="font-bold text-foreground">{filtered.length}</span> of{" "}
-                <span className="font-bold text-foreground">{Object.keys(SKU_IMAGES).length}</span> standard formats
+                Showing <span className="font-bold text-foreground">{filtered.length}</span> standard panel formats
               </div>
               {hasFilters && (
                 <button
@@ -421,7 +420,7 @@ function LibraryPage() {
                 hours.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <SendDrawingButton size="lg" variant="solid" label="Send Drawing" />
+                <SendDrawingButton size="lg" variant="solid" label="Send Drawing for Review" />
               </div>
             </div>
             <div className="lg:col-span-5">

@@ -1,7 +1,7 @@
 ﻿import { Link } from "@tanstack/react-router";
 import { Mail, Phone, ShieldCheck } from "lucide-react";
 import { SendDrawingButton } from "./SendDrawingButton";
-import logo from "@/assets/logo-1.png";
+import logo from "@/assets/logo-new.png";
 
 export function SiteFooter() {
   return (
@@ -9,9 +9,9 @@ export function SiteFooter() {
       <div className="container-rider py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-1">
           <div className="flex items-center gap-3">
-            <img src={logo} alt="Rider Iron & Steel Ltd" className="h-12 w-auto" />
-            <span className="font-display text-base font-extrabold tracking-tight uppercase">
-              Rider Glass
+            <img src={logo} alt="Rider Shower Glass" className="h-12 w-auto" />
+            <span className="font-display text-base font-extrabold tracking-tight">
+              Rider Shower Glass
             </span>
           </div>
           <p className="mt-4 text-sm leading-relaxed opacity-80">
