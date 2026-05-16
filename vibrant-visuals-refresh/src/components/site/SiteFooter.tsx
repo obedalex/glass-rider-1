@@ -1,7 +1,7 @@
 ﻿import { Link } from "@tanstack/react-router";
 import { Mail, Phone, ShieldCheck } from "lucide-react";
 import { SendDrawingButton } from "./SendDrawingButton";
-import logo from "@/assets/logo-new.png";
+import logo from "@/assets/footer-logo-3.png";
 
 export function SiteFooter() {
   return (

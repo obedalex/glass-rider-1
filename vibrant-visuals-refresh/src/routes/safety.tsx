@@ -234,6 +234,12 @@ function Page() {
                 </li>
               ))}
             </ul>
+            <a
+              href=""
+              className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+            >
+              Read full compliance details <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
           <div className="relative">
             <div className="absolute -inset-4 rounded-2xl bg-primary/30 blur-3xl" />
@@ -244,14 +250,6 @@ function Page() {
               className="relative rounded-xl border border-white/10 shadow-2xl object-cover h-[420px] w-full"
             />
           </div>
-        </div>
-        <div>
-          <a
-            href=""
-            className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-          >
-            Read full compliance details <ArrowRight className="h-4 w-4" />
-          </a>
         </div>
       </section>
 
