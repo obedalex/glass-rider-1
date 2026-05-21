@@ -1,5 +1,5 @@
 ﻿import { Link } from "@tanstack/react-router";
-import { Mail, Phone, ShieldCheck } from "lucide-react";
+import { Mail, Phone, MessageCircle, ShieldCheck } from "lucide-react";
 import { SendDrawingButton } from "./SendDrawingButton";
 import logo from "@/assets/footer-logo-3.png";
 
@@ -44,8 +44,10 @@ export function SiteFooter() {
         <div>
           <h4 className="text-xs font-semibold uppercase tracking-wider opacity-70">Program Desk</h4>
           <ul className="mt-4 space-y-2 text-sm">
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> programs@rider-shower.com</li>
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +1 (555) 010-2024</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> sales@ridershowersystems.com</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +86 532 80669600</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +86 532 83873000</li>
+            <li className="flex items-center gap-2"><MessageCircle className="h-4 w-4 text-primary" /> WhatsApp: +86 150 6303 2875</li>
           </ul>
           <div className="mt-5">
             <SendDrawingButton size="md" variant="solid" label="Send Engineering Files" />

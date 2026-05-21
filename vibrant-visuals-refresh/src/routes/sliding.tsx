@@ -56,7 +56,7 @@ function Page() {
         { label: "Common Widths", value: '24" · 28" · 30" · 32" · 36"' },
         { label: "Glass Types", value: "Clear · Low-Iron · Acid-Etched · Tinted" },
         { label: "Hardware Platforms", value: "Top-roller · Bottom-roller · Bypass" },
-        { label: "Safety Standards", value: "ANSI Z97.1 · 16 CFR 1201 · SGCC" },
+        { label: "Safety Standards", value: "ANSI Z97.1 · 16 CFR 1201 · SGCC · INSI" },
       ]}
       featureTitle="Hardware-Ready Processing"
       features={[

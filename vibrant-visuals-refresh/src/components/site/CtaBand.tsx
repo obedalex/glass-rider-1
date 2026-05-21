@@ -34,10 +34,10 @@ export function CtaBand({
               label="Send Drawing for Review"
             />
             <a
-              href="mailto:programs@rider-shower.com"
+              href="mailto:sales@ridershowersystems.com"
               className="inline-flex h-12 items-center gap-2 rounded-md border border-white/30 bg-white/10 px-5 text-sm font-semibold text-white transition hover:bg-white/20"
             >
-              <Mail className="h-4 w-4" /> programs@rider-shower.com
+              <Mail className="h-4 w-4" /> sales@ridershowersystems.com
             </a>
           </div>
         </div>

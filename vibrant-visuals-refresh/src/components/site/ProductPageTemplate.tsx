@@ -520,7 +520,7 @@ export function ProductPageTemplate(p: ProductPageProps) {
                   src={s.src}
                   alt={s.alt}
                   loading="lazy"
-                  className="h-14 w-auto object-contain sm:h-16"
+                  className="h-16 w-auto object-contain sm:h-20"
                 />
               ))}
             </div>

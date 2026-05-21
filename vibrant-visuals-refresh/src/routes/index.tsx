@@ -302,14 +302,14 @@ function Home() {
           ].map((c) => (
             <StaggerItem
               key={c.title}
-              className="group relative overflow-hidden rounded-xl border border-border bg-card p-7 transition hover:border-primary hover:shadow-lg"
+              className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card p-7 transition hover:border-primary hover:shadow-lg"
             >
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
                 {c.eyebrow}
               </span>
               <h3 className="mt-3 font-display text-2xl font-bold text-foreground">{c.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
-              <div className="mt-5">
+              <div className="mt-auto pt-5">
                 <SendDrawingButton
                   size="sm"
                   variant="outline"
@@ -378,53 +378,37 @@ function Home() {
       </section>
 
       {/* SECTION 5 — WHY RIDER */}
-      <section className="container-rider py-14 sm:py-16 lg:py-20">
-        <div className="flex items-center justify-center">
-          <Reveal className="mb-12 max-w-2xl">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-              Manufacturing Execellence{" "}
-            </span>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground">
-              Engineering-first, program-ready.
-            </h2>
+      <section className="bg-secondary text-secondary-foreground">
+        <div className="container-rider py-12">
+          <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-4">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+                Manufacturing Excellence
+              </span>
+              <h3 className="mt-2 font-display text-2xl font-bold text-balance">
+                Engineering-first, program-ready.
+              </h3>
+            </div>
+            <div className="lg:col-span-8">
+              <div className="flex flex-wrap items-start gap-x-10 gap-y-6">
+                {[
+                  { icon: Boxes, title: "Factory Precision", desc: "Automated tempering lines ensure consistent flatness and geometry across batches." },
+                  { icon: BadgeCheck, title: "System Compatibility", desc: "Panels produced based on OEM drawings and hardware specifications." },
+                  { icon: Eye, title: "Retail-Ready Packing", desc: "Single-panel cartons or bulk crates, adapted to your distribution model." },
+                  { icon: PackageCheck, title: "Export Experience", desc: "Stable production and packing for long-distance container shipping." }
+                ].map(({ icon: Icon, title, desc }) => (
+                  <div key={title} className="flex items-start gap-3 min-w-45 max-w-55">
+                    <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                    <div>
+                      <span className="block text-sm font-bold text-secondary-foreground">{title}</span>
+                      <span className="mt-1 block text-xs leading-relaxed text-secondary-foreground/70">{desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Reveal>
         </div>
-
-        <StaggerGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              icon: Boxes,
-              title: "Factory Precision",
-              desc: "Automated tempering lines ensure consistent flatness and geometry across batches."
-            },
-            {
-              icon: BadgeCheck,
-              title: "System Compatibility",
-              desc: "Panels produced based on OEM drawings and hardware specifications."
-            },
-            {
-              icon: Eye,
-              title: "Retail-Ready Packing",
-              desc: "Single-panel cartons or bulk crates, adapted to your distribution model."
-            },
-            {
-              icon: PackageCheck,
-              title: "Export Experience",
-              desc: "Stable production and packing for long-distance container shipping."
-            }
-          ].map(({ icon: Icon, title, desc }) => (
-            <StaggerItem
-              key={title}
-              className="rounded-xl bg-card border border-border p-6 hover:border-primary transition"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-4 font-display text-lg font-bold text-foreground">{title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
       </section>
 
       {/* SECTION 10 — COMPLIANCE */}
