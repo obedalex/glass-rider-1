@@ -28,7 +28,7 @@ export function CtaBand({
           <p className="mt-4 max-w-xl text-sm sm:text-base text-white/80">{intro}</p>
           <div className="mt-7 flex flex-wrap gap-3">
             <SendDrawingButton
-              size="lg"
+              size="md"
               variant="white"
               defaultProgram={defaultProgram}
               label="Send Drawing for Review"
